@@ -1,0 +1,126 @@
+"use client";
+
+import Link from "next/link";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X, MapPin } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "./theme-toggle";
+
+const navLinks = [
+  { href: "/", label: "Home" },
+  { href: "/destinations", label: "Destinations" },
+  { href: "/gallery", label: "Gallery" },
+  { href: "/team", label: "Team" },
+  { href: "/contact", label: "Contact" },
+];
+
+export function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  return (
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        scrolled
+          ? "bg-white/90 shadow-md backdrop-blur-lg dark:bg-charcoal/90"
+          : "bg-transparent"
+      }`}
+    >
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <nav className="flex h-20 items-center justify-between">
+          <Link href="/" className="flex items-center gap-2 group">
+            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gold text-white transition-transform group-hover:scale-110">
+              <MapPin className="h-5 w-5" />
+            </div>
+            <span
+              className={`font-heading text-2xl font-bold tracking-tight transition-colors ${
+                scrolled
+                  ? "text-foreground"
+                  : "text-white"
+              }`}
+            >
+              Bayak Tours
+            </span>
+          </Link>
+
+          <div className="hidden items-center gap-1 md:flex">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors ${
+                  scrolled
+                    ? "text-foreground/70 hover:bg-gold/10 hover:text-gold"
+                    : "text-white/80 hover:bg-white/10 hover:text-white"
+                }`}
+              >
+                {link.label}
+              </Link>
+            ))}
+            <div className="ml-4 flex items-center gap-2">
+              <ThemeToggle />
+              <Link href="/contact">
+                <Button className="rounded-full bg-gold px-6 text-white hover:bg-gold-dark">
+                  Book Now
+                </Button>
+              </Link>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-2 md:hidden">
+            <ThemeToggle />
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className={`rounded-lg p-2 ${
+                scrolled
+                  ? "text-foreground"
+                  : "text-white"
+              }`}
+            >
+              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
+          </div>
+        </nav>
+      </div>
+
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+            className="overflow-hidden border-t border-border bg-white/95 backdrop-blur-lg dark:bg-charcoal/95 md:hidden"
+          >
+            <div className="space-y-1 px-4 py-4">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setIsOpen(false)}
+                  className="block rounded-lg px-4 py-3 text-sm font-medium text-foreground/70 transition-colors hover:bg-gold/10 hover:text-gold"
+                >
+                  {link.label}
+                </Link>
+              ))}
+              <div className="pt-2">
+                <Link href="/contact" onClick={() => setIsOpen(false)}>
+                  <Button className="w-full rounded-full bg-gold text-white hover:bg-gold-dark">
+                    Book Now
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </header>
+  );
+}
