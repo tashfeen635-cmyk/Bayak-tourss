@@ -17,6 +17,7 @@ import { MapPin as LogoIcon } from "lucide-react";
 
 const footerLinks = {
   explore: [
+    { label: "About Us", href: "/about" },
     { label: "Destinations", href: "/destinations" },
     { label: "Gallery", href: "/gallery" },
     { label: "Our Team", href: "/team" },
