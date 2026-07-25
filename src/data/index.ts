@@ -22,6 +22,13 @@ export const destinations = [
       "Guide",
       "Activities",
     ],
+    itinerary: [
+      { day: 1, title: "Islamabad to Gilgit", description: "Scenic drive or flight to Gilgit, evening explore Gilgit bazaar and suspension bridge over Gilgit River." },
+      { day: 2, title: "Gilgit to Karimabad", description: "Drive to Karimabad, visit Baltit Fort and Altit Fort with panoramic views of Rakaposhi and Ultar Sar peaks." },
+      { day: 3, title: "Hunza Exploration", description: "Full day exploring Eagle's Nest viewpoint, Attabad Lake, and the stunning Passu Cones along the Karakoram Highway." },
+      { day: 4, title: "Excursion Day", description: "Visit Hussaini Suspension Bridge, Borith Lake, and enjoy a traditional Hunza dinner with local music." },
+      { day: 5, title: "Return to Islamabad", description: "Morning departure back to Gilgit, optional flight or scenic drive through the Karakoram Highway." },
+    ],
   },
   {
     id: "skardu",
@@ -45,6 +52,14 @@ export const destinations = [
       "Transport",
       "Guide",
       "Boat Ride",
+    ],
+    itinerary: [
+      { day: 1, title: "Arrival in Skardu", description: "Fly or drive to Skardu, check in to hotel, evening walk along the Indus River." },
+      { day: 2, title: "Shangrila & Lower Kachura Lake", description: "Visit the famous Shangrila Resort, boat ride on Lower Kachura Lake, explore Upper Kachura." },
+      { day: 3, title: "Shigar Valley", description: "Full day excursion to Shigar Fort, cold desert of Katpana, and Shigar Valley apple orchards." },
+      { day: 4, title: "Deosai Plains", description: "Jeep safari to Deosai Plains, witness wildflower meadows, marmots, and the stunning Sheosar Lake." },
+      { day: 5, title: "Skardu Sightseeing", description: "Visit Skardu Fort, Manthokha Waterfall, and enjoy a traditional Balti meal." },
+      { day: 6, title: "Return Journey", description: "Morning departure back to Islamabad via scenic drive or flight." },
     ],
   },
   {
@@ -70,6 +85,12 @@ export const destinations = [
       "Guide",
       "Trekking Gear",
     ],
+    itinerary: [
+      { day: 1, title: "Raikot Bridge to Tato", description: "Jeep ride from Raikot Bridge on the Karakoram Highway to Tato village, the starting point of the trek." },
+      { day: 2, title: "Trek to Fairy Meadows", description: "Scenic 3-hour trek through pine forests to Fairy Meadows, evening campfire with Nanga Parbat views." },
+      { day: 3, title: "Nanga Parbat Base Camp", description: "Trek to Nanga Parbat Base Camp, witness the Rupal Face — one of the world's largest mountain walls." },
+      { day: 4, title: "Return Journey", description: "Trek back to Tato and jeep ride to Raikot Bridge, onward journey to Islamabad or Gilgit." },
+    ],
   },
   {
     id: "naran-kaghan",
@@ -94,6 +115,12 @@ export const destinations = [
       "Guide",
       "Boat Ride",
     ],
+    itinerary: [
+      { day: 1, title: "Islamabad to Naran", description: "Scenic drive through Balakot and Mansehra, stop at Kiwai Waterfall, arrive in Naran by evening." },
+      { day: 2, title: "Lake Saiful Muluk", description: "Full day trip to the magical Lake Saiful Muluk, boat ride surrounded by snow-capped peaks and alpine scenery." },
+      { day: 3, title: "Shogran & Siri Paye", description: "Jeep to Shogran, then horse ride to Siri Paye meadows with panoramic views of Makra Peak." },
+      { day: 4, title: "Return to Islamabad", description: "Morning departure with stops at Balakot and Abbottabad on the way back." },
+    ],
   },
   {
     id: "swat",
@@ -116,6 +143,11 @@ export const destinations = [
       "Meals",
       "Transport",
       "Guide",
+    ],
+    itinerary: [
+      { day: 1, title: "Arrival in Mingora", description: "Drive to Mingora, visit the Swat Museum showcasing Gandhara Buddhist artifacts, evening at Mingora bazaar." },
+      { day: 2, title: "Malam Jabba & Kalam", description: "Full day excursion to Malam Jabba ski resort, then to Kalam Valley for stunning river views and waterfall visits." },
+      { day: 3, title: "Return Journey", description: "Morning visit to Bahrain and Mahodand Lake, afternoon drive back to Islamabad." },
     ],
   },
   {
@@ -141,6 +173,13 @@ export const destinations = [
       "Guide",
       "Karakoram Highway Tour",
     ],
+    itinerary: [
+      { day: 1, title: "Arrival in Gilgit", description: "Fly or drive to Gilgit, explore the old bazaar, visit Kargah Buddha rock carving, evening at Gilgit River." },
+      { day: 2, title: "Naltar Valley", description: "Full day trip to Naltar Valley, visit the famous Naltar Lakes by jeep trek, lunch in the pine forests." },
+      { day: 3, title: "Karakoram Highway", description: "Drive along the legendary Karakoram Highway, stop at Rakaposhi viewpoint and Hoper Glacier." },
+      { day: 4, title: "Cultural Day", description: "Visit Baltit Fort, Altit Fort, and traditional Balti village for authentic cultural immersion." },
+      { day: 5, title: "Departure", description: "Morning free time for shopping at the bazaar, afternoon flight or drive to Islamabad." },
+    ],
   },
   {
     id: "neelum-valley",
@@ -164,6 +203,12 @@ export const destinations = [
       "Transport",
       "Guide",
       "Sightseeing",
+    ],
+    itinerary: [
+      { day: 1, title: "Muzaffarabad to Keran", description: "Drive to Muzaffarabad, continue to Keran along the Neelum River, check in and evening walk along the riverbank." },
+      { day: 2, title: "Keran & Sharda", description: "Full day exploring Keran viewpoint, visit Sharda ancient ruins and Sharda University remnants." },
+      { day: 3, title: "Upper Neelum", description: "Drive to Upper Neelum, visit Dhani Waterfall and Ratti Galli Lake viewpoint with stunning valley views." },
+      { day: 4, title: "Return Journey", description: "Morning departure to Muzaffarabad, stop at Dhani Waterfall and Pir Chinasi on the way back." },
     ],
   },
   {
@@ -189,6 +234,14 @@ export const destinations = [
       "Guide",
       "Camping Gear",
     ],
+    itinerary: [
+      { day: 1, title: "Skardu to Shila", description: "Jeep ride from Skardu to Shila through winding mountain roads, set up camp near the river." },
+      { day: 2, title: "Trek to Deosai", description: "Full day trek entering the Deosai National Park, witness the transition from forest to vast alpine plateau." },
+      { day: 3, title: "Sheosar Lake", description: "Full day exploration of Sheosar Lake, one of the world's highest lakes, surrounded by wildflower meadows." },
+      { day: 4, title: "Deosai Exploration", description: "Visit Bara Pani, Chota Pani, and the Deosai Plateau — spot marmots, golden eagles, and Himalayan brown bears." },
+      { day: 5, title: "Return Trek", description: "Trek back through the plateau and forest, camp at Shila for the final night under the stars." },
+      { day: 6, title: "Back to Skardu", description: "Jeep ride back to Skardu, visit Shangrila Resort, evening free for shopping." },
+    ],
   },
 ];
 
@@ -197,61 +250,43 @@ export const reels = [
     id: "hunza-reel",
     destination: "Hunza Valley",
     description: "Where mountains touch the sky and time stands still.",
-    video:
-      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&q=80",
-    poster:
-      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&q=80",
-    likes: 12400,
+    video: "/videos/video-1.mp4",
   },
   {
     id: "skardu-reel",
     destination: "Skardu",
     description: "Turquoise waters of Shangrila, heaven on Earth.",
-    video:
-      "https://images.unsplash.com/photo-1531761535209-180857e963b9?w=400&q=80",
-    poster:
-      "https://images.unsplash.com/photo-1531761535209-180857e963b9?w=400&q=80",
-    likes: 9800,
+    video: "/videos/video-2.mp4",
   },
   {
     id: "fairy-reel",
     destination: "Fairy Meadows",
     description: "Sleep beneath the mighty Nanga Parbat.",
-    video:
-      "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=400&q=80",
-    poster:
-      "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=400&q=80",
-    likes: 15200,
+    video: "/videos/video-3.mp4",
   },
   {
     id: "naran-reel",
     destination: "Naran Kaghan",
     description: "Lake Saiful Muluk — the lake of fairy tales.",
-    video:
-      "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=400&q=80",
-    poster:
-      "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=400&q=80",
-    likes: 11300,
+    video: "/videos/video-4.mp4",
   },
   {
     id: "swat-reel",
     destination: "Swat Valley",
     description: "The Switzerland of the East awaits you.",
-    video:
-      "https://images.unsplash.com/photo-1504893524553-b855bce32c67?w=400&q=80",
-    poster:
-      "https://images.unsplash.com/photo-1504893524553-b855bce32c67?w=400&q=80",
-    likes: 8700,
+    video: "/videos/video-5.mp4",
   },
   {
     id: "gilgit-reel",
     destination: "Gilgit",
     description: "Ancient silk route, modern adventures.",
-    video:
-      "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=400&q=80",
-    poster:
-      "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=400&q=80",
-    likes: 7400,
+    video: "/videos/video-6.mp4",
+  },
+  {
+    id: "khunjerab-reel",
+    destination: "Khunjerab Pass",
+    description: "Where China meets Pakistan at 4,693 meters.",
+    video: "/videos/video-7.mp4",
   },
 ];
 
@@ -262,7 +297,9 @@ export const teamMembers = [
     bio: "With over 15 years in Pakistan tourism, Ahmed founded Bayak Tours to share the beauty of Pakistan with the world.",
     image:
       "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80",
-    social: { instagram: "#", facebook: "#", twitter: "#" },
+    experience: "15+ Years",
+    specialization: "Adventure & Luxury Tours",
+    languages: ["English", "Urdu", "Shina"],
   },
   {
     name: "Fatima Ali",
@@ -270,7 +307,9 @@ export const teamMembers = [
     bio: "A mountaineering enthusiast who has trekked every major route in the Karakoram and Himalayan ranges.",
     image:
       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&q=80",
-    social: { instagram: "#", facebook: "#", twitter: "#" },
+    experience: "10+ Years",
+    specialization: "Trekking & Mountaineering",
+    languages: ["English", "Urdu", "Balti"],
   },
   {
     name: "Bilal Shah",
@@ -278,7 +317,9 @@ export const teamMembers = [
     bio: "Born and raised in Hunza, Bilal knows every hidden gem in Pakistan's northern areas like the back of his hand.",
     image:
       "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80",
-    social: { instagram: "#", facebook: "#", twitter: "#" },
+    experience: "8+ Years",
+    specialization: "Cultural & Heritage Tours",
+    languages: ["English", "Urdu", "Burushaski"],
   },
   {
     name: "Sana Malik",
@@ -286,7 +327,9 @@ export const teamMembers = [
     bio: "Sana ensures every traveler's journey is seamless from the first inquiry to the final farewell.",
     image:
       "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&q=80",
-    social: { instagram: "#", facebook: "#", twitter: "#" },
+    experience: "6+ Years",
+    specialization: "Family & Honeymoon Packages",
+    languages: ["English", "Urdu", "Punjabi"],
   },
 ];
 

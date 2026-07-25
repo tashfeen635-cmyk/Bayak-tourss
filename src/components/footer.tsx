@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
 import {
   MapPin,
   Phone,
@@ -9,10 +8,7 @@ import {
   Globe,
   Share2,
   MessageCircle,
-  Send,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { MapPin as LogoIcon } from "lucide-react";
 
 const footerLinks = {
@@ -38,17 +34,6 @@ const socials = [
 ];
 
 export function Footer() {
-  const [email, setEmail] = useState("");
-  const [subscribed, setSubscribed] = useState(false);
-
-  function handleSubscribe(e: React.FormEvent) {
-    e.preventDefault();
-    if (email) {
-      setSubscribed(true);
-      setEmail("");
-    }
-  }
-
   return (
     <footer className="bg-charcoal text-white/80">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -139,37 +124,6 @@ export function Footer() {
               </li>
             </ul>
 
-            <div className="mt-6">
-              <h4 className="text-xs font-semibold uppercase tracking-wider text-gold">
-                Newsletter
-              </h4>
-              {subscribed ? (
-                <p className="mt-2 text-sm text-green-400">
-                  Thanks for subscribing!
-                </p>
-              ) : (
-                <form
-                  onSubmit={handleSubscribe}
-                  className="mt-2 flex gap-2"
-                >
-                  <Input
-                    type="email"
-                    placeholder="Your email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                    className="h-9 rounded-full border-white/20 bg-white/5 px-4 text-xs text-white placeholder:text-white/30"
-                  />
-                  <Button
-                    type="submit"
-                    size="sm"
-                    className="h-9 rounded-full bg-gold px-3 text-white hover:bg-gold-dark"
-                  >
-                    <Send className="h-3.5 w-3.5" />
-                  </Button>
-                </form>
-              )}
-            </div>
           </div>
         </div>
 

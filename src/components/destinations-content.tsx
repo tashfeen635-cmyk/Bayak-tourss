@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   MapPin,
   Clock,
@@ -11,10 +11,12 @@ import {
   Check,
   BadgeCheck,
   Filter,
+  X,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { destinations } from "@/data";
 import { FadeIn, StaggerContainer, StaggerItem } from "./animations";
+import { BookingModal } from "./booking-modal";
+import { Destination } from "@/types";
 
 const categories = [
   "All",
@@ -25,8 +27,30 @@ const categories = [
   "Luxury",
 ];
 
+function toArr(v: unknown): string[] {
+  if (Array.isArray(v)) return v;
+  if (typeof v === "string" && v) return v.split(",").map((s) => s.trim()).filter(Boolean);
+  return [];
+}
+
+function normalizeDest(d: Destination): Destination {
+  return {
+    ...d,
+    category: toArr(d.category),
+    availableDates: toArr(d.availableDates),
+    included: toArr(d.included),
+  };
+}
+
 export function DestinationsContent() {
+  const [destinations, setDestinations] = useState<Destination[]>([]);
   const [active, setActive] = useState("All");
+  const [selected, setSelected] = useState<number | null>(null);
+  const [bookingDest, setBookingDest] = useState<Destination | null>(null);
+
+  useEffect(() => {
+    fetch("/api/destinations").then((r) => r.json()).then((data) => setDestinations(Array.isArray(data) ? data.map(normalizeDest) : [])).catch(console.error);
+  }, []);
 
   const filtered =
     active === "All"
@@ -77,10 +101,13 @@ export function DestinationsContent() {
             </div>
           </FadeIn>
 
-          <StaggerContainer className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {filtered.map((dest) => (
-              <StaggerItem key={dest.id}>
-                <div className="group relative overflow-hidden rounded-2xl border border-border bg-card transition-all duration-300 hover:shadow-xl">
+          <StaggerContainer key={active} className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {filtered.map((dest, i) => (
+              <StaggerItem key={String(dest._id ?? dest.id ?? i)}>
+                <div
+                  onClick={() => setSelected(i)}
+                  className="group cursor-pointer relative overflow-hidden rounded-2xl border border-border bg-card transition-all duration-300 hover:shadow-xl"
+                >
                   {dest.featured && (
                     <div className="absolute left-3 top-3 z-10 flex items-center gap-1 rounded-full bg-gold px-3 py-1 text-xs font-semibold text-white shadow-md">
                       <BadgeCheck className="h-3.5 w-3.5" />
@@ -146,20 +173,13 @@ export function DestinationsContent() {
                       ))}
                     </div>
                     <div className="mt-4 flex items-end justify-between border-t border-border pt-4">
-                      <div>
-                        <span className="text-xs text-muted-foreground line-through">
-                          Rs. {dest.originalPrice.toLocaleString()}
-                        </span>
-                        <div className="text-xl font-bold text-gold">
-                          Rs. {dest.price.toLocaleString()}
-                        </div>
-                        <span className="text-[10px] text-muted-foreground">
-                          per person
-                        </span>
-                      </div>
                       <Button
                         size="sm"
                         className="rounded-full bg-gold px-5 text-white hover:bg-gold-dark"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setBookingDest(dest);
+                        }}
                       >
                         Book Now
                       </Button>
@@ -171,6 +191,154 @@ export function DestinationsContent() {
           </StaggerContainer>
         </div>
       </section>
+
+      <AnimatePresence>
+        {selected !== null && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4"
+            onClick={() => setSelected(null)}
+          >
+            <button
+              className="absolute right-4 top-4 z-50 text-white/70 transition-colors hover:text-white"
+              onClick={() => setSelected(null)}
+            >
+              <X className="h-8 w-8" />
+            </button>
+
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative max-h-[85vh] w-full max-w-3xl overflow-y-auto rounded-2xl bg-card shadow-2xl scrollbar-none"
+              style={{ scrollbarWidth: "none" }}
+            >
+              <div className="relative h-64 sm:h-80">
+                <Image
+                  src={filtered[selected].image}
+                  alt={filtered[selected].name}
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-card via-card/30 to-transparent" />
+                {filtered[selected].featured && (
+                  <div className="absolute left-4 top-4 flex items-center gap-1 rounded-full bg-gold px-3 py-1 text-xs font-semibold text-white shadow-md">
+                    <BadgeCheck className="h-3.5 w-3.5" />
+                    Featured
+                  </div>
+                )}
+                <div className="absolute bottom-4 left-4">
+                  <div className="flex items-center gap-1 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-charcoal backdrop-blur-sm dark:text-foreground">
+                    <Star className="h-3 w-3 fill-gold text-gold" />
+                    {filtered[selected].rating} ({filtered[selected].reviews} reviews)
+                  </div>
+                </div>
+              </div>
+
+              <div className="px-6 pb-6 sm:px-8">
+                <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                  <MapPin className="h-3 w-3 text-gold" />
+                  {filtered[selected].region}
+                </div>
+                <h3 className="mt-1 font-heading text-2xl font-bold">
+                  {filtered[selected].name}
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                  {filtered[selected].description}
+                </p>
+
+                <div className="mt-4 flex flex-wrap gap-1.5">
+                  {filtered[selected].category.map((c) => (
+                    <span
+                      key={c}
+                      className="rounded-full bg-gold/10 px-3 py-1 text-xs font-medium text-gold"
+                    >
+                      {c}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="mt-4 flex items-center gap-6 text-sm text-muted-foreground">
+                  <span className="flex items-center gap-1.5">
+                    <Clock className="h-4 w-4 text-gold" />
+                    {filtered[selected].duration}
+                  </span>
+                  <span className="flex items-center gap-1.5">
+                    <Calendar className="h-4 w-4 text-gold" />
+                    {filtered[selected].availableDates.join(", ")}
+                  </span>
+                </div>
+
+                <div className="mt-5">
+                  <h4 className="text-sm font-semibold">What&apos;s Included</h4>
+                  <div className="mt-2 flex flex-wrap gap-2">
+                    {filtered[selected].included.map((item) => (
+                      <span
+                        key={item}
+                        className="flex items-center gap-1.5 rounded-full bg-muted/50 px-3 py-1 text-xs"
+                      >
+                        <Check className="h-3 w-3 text-green-500" />
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="mt-6">
+                  <h4 className="text-sm font-semibold">Day-by-Day Itinerary</h4>
+                  <div className="mt-3 space-y-0">
+                    {filtered[selected].itinerary.map((day, i) => (
+                      <div key={i} className="flex gap-4">
+                        <div className="flex flex-col items-center">
+                          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gold text-xs font-bold text-white">
+                            {day.day}
+                          </div>
+                          {i < filtered[selected].itinerary.length - 1 && (
+                            <div className="w-px flex-1 bg-border" />
+                          )}
+                        </div>
+                        <div className="pb-6">
+                          <h5 className="text-sm font-semibold">{day.title}</h5>
+                          <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
+                            {day.description}
+                          </p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="mt-4 flex items-center gap-3 border-t border-border pt-5">
+                  <Button
+                    className="rounded-full bg-gold px-6 text-white hover:bg-gold-dark"
+                    onClick={() => setBookingDest(filtered[selected])}
+                  >
+                    Book Now
+                  </Button>
+                  <Button
+                    variant="outline"
+                    className="rounded-full border-border px-6"
+                    onClick={() => setSelected(null)}
+                  >
+                    Close
+                  </Button>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <BookingModal
+        isOpen={bookingDest !== null}
+        onClose={() => setBookingDest(null)}
+        tourName={bookingDest?.name}
+        tourDuration={bookingDest?.duration}
+        tourAvailableDates={bookingDest?.availableDates}
+      />
     </>
   );
 }

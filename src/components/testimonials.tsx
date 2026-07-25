@@ -4,29 +4,35 @@ import Image from "next/image";
 import { useEffect, useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Star, ChevronLeft, ChevronRight, Quote } from "lucide-react";
-import { testimonials } from "@/data";
 import { FadeIn } from "./animations";
+import { Testimonial } from "@/types";
 
 export function Testimonials() {
+  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
   const [current, setCurrent] = useState(0);
   const [direction, setDirection] = useState(0);
+
+  useEffect(() => {
+    fetch("/api/testimonials").then((r) => r.json()).then((data) => setTestimonials(Array.isArray(data) ? data : [])).catch(console.error);
+  }, []);
 
   const next = useCallback(() => {
     setDirection(1);
     setCurrent((prev) => (prev + 1) % testimonials.length);
-  }, []);
+  }, [testimonials.length]);
 
   const prev = useCallback(() => {
     setDirection(-1);
     setCurrent(
       (prev) => (prev - 1 + testimonials.length) % testimonials.length
     );
-  }, []);
+  }, [testimonials.length]);
 
   useEffect(() => {
+    if (testimonials.length === 0) return;
     const timer = setInterval(next, 5000);
     return () => clearInterval(timer);
-  }, [next]);
+  }, [next, testimonials.length]);
 
   const variants = {
     enter: (dir: number) => ({
@@ -40,7 +46,9 @@ export function Testimonials() {
     }),
   };
 
-  const t = testimonials[current];
+  if (testimonials.length === 0) return null;
+
+  const t = testimonials[Math.min(current, testimonials.length - 1)];
 
   return (
     <section className="py-24 sm:py-32">
@@ -105,13 +113,19 @@ export function Testimonials() {
                   &ldquo;{t.text}&rdquo;
                 </p>
                 <div className="mt-6 flex items-center gap-3">
-                  <Image
-                    src={t.avatar}
-                    alt={t.name}
-                    width={48}
-                    height={48}
-                    className="rounded-full object-cover"
-                  />
+                  {t.avatar ? (
+                    <Image
+                      src={t.avatar}
+                      alt={t.name}
+                      width={48}
+                      height={48}
+                      className="rounded-full object-cover"
+                    />
+                  ) : (
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gold/20 text-sm font-bold text-gold">
+                      {t.name.charAt(0)}
+                    </div>
+                  )}
                   <div>
                     <div className="font-semibold">{t.name}</div>
                     <div className="text-sm text-muted-foreground">

@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "./theme-toggle";
+import { BookingModal } from "./booking-modal";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -19,6 +20,7 @@ const navLinks = [
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [bookingOpen, setBookingOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -67,11 +69,12 @@ export function Navbar() {
             ))}
             <div className="ml-4 flex items-center gap-2">
               <ThemeToggle />
-              <Link href="/contact">
-                <Button className="rounded-full bg-gold px-6 text-white hover:bg-gold-dark">
-                  Book Now
-                </Button>
-              </Link>
+              <Button
+                className="rounded-full bg-gold px-6 text-white hover:bg-gold-dark"
+                onClick={() => setBookingOpen(true)}
+              >
+                Book Now
+              </Button>
             </div>
           </div>
 
@@ -112,16 +115,22 @@ export function Navbar() {
                 </Link>
               ))}
               <div className="pt-2">
-                <Link href="/contact" onClick={() => setIsOpen(false)}>
-                  <Button className="w-full rounded-full bg-gold text-white hover:bg-gold-dark">
-                    Book Now
-                  </Button>
-                </Link>
+                <Button
+                  className="w-full rounded-full bg-gold text-white hover:bg-gold-dark"
+                  onClick={() => {
+                    setIsOpen(false);
+                    setBookingOpen(true);
+                  }}
+                >
+                  Book Now
+                </Button>
               </div>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
+
+      <BookingModal isOpen={bookingOpen} onClose={() => setBookingOpen(false)} />
     </header>
   );
 }
