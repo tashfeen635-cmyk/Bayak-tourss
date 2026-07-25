@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { count } from "@/lib/db";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
