@@ -38,6 +38,7 @@ export function AdminDataTable({
   const [saving, setSaving] = useState(false);
   const [search, setSearch] = useState("");
   const [uploading, setUploading] = useState<string | null>(null);
+  const [uploadError, setUploadError] = useState<string | null>(null);
   const fetchedRef = useRef(false);
 
   const fetchItems = useCallback(async () => {
@@ -80,6 +81,7 @@ export function AdminDataTable({
       setFormData(form);
     }
     setIsModalOpen(true);
+    setUploadError(null);
   };
 
   const handleSave = async () => {
@@ -128,16 +130,20 @@ export function AdminDataTable({
 
   const handleFileUpload = async (fieldKey: string, file: File) => {
     setUploading(fieldKey);
+    setUploadError(null);
     try {
       const body = new FormData();
       body.append("file", file);
       const res = await fetch("/api/upload", { method: "POST", body });
-      if (res.ok) {
-        const { url } = await res.json();
-        setFormData((prev) => ({ ...prev, [fieldKey]: url }));
+      const data = await res.json();
+      if (res.ok && data.url) {
+        setFormData((prev) => ({ ...prev, [fieldKey]: data.url }));
+      } else {
+        setUploadError(data.error || "Upload failed. Check server configuration.");
       }
     } catch (error) {
       console.error("Upload failed:", error);
+      setUploadError("Network error. Please try again.");
     } finally {
       setUploading(null);
     }
@@ -321,6 +327,9 @@ export function AdminDataTable({
                           </button>
                         </div>
                       ) : null}
+                      {uploadError && (
+                        <p className="text-xs text-red-500">{uploadError}</p>
+                      )}
                       <label className="flex items-center gap-2 cursor-pointer">
                         <span className="inline-flex items-center gap-1.5 rounded-lg border border-dashed border-border px-4 py-2 text-sm text-muted-foreground hover:border-gold/50 hover:text-gold transition-colors">
                           <Upload className="size-4" />
@@ -369,7 +378,7 @@ export function AdminDataTable({
                 >
                   Cancel
                 </Button>
-                <Button onClick={handleSave} disabled={saving}>
+                <Button onClick={handleSave} disabled={saving || uploading !== null}>
                   {saving ? (
                     <Loader2 className="size-4 animate-spin mr-1" />
                   ) : null}
