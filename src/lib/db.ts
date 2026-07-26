@@ -10,7 +10,6 @@ import type {
   Reel,
   Settings,
   User,
-  Category,
 } from "@/types";
 
 type CollectionMap = {
@@ -23,7 +22,6 @@ type CollectionMap = {
   reels: Reel;
   settings: Settings;
   users: User;
-  categories: Category;
 };
 
 export type CollectionName = keyof CollectionMap;
