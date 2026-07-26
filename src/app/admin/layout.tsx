@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import {
   LayoutDashboard,
   MapPin,
+  Tags,
   CalendarCheck,
   Users,
   UserCog,
@@ -22,6 +23,7 @@ import {
 const navItems = [
   { label: "Dashboard", href: "/admin", icon: LayoutDashboard },
   { label: "Destinations", href: "/admin/destinations", icon: MapPin },
+  { label: "Categories", href: "/admin/categories", icon: Tags },
   { label: "Bookings", href: "/admin/bookings", icon: CalendarCheck },
   { label: "Customers", href: "/admin/customers", icon: Users },
   { label: "Team", href: "/admin/team", icon: UserCog },

@@ -18,15 +18,6 @@ import { FadeIn, StaggerContainer, StaggerItem } from "./animations";
 import { BookingModal } from "./booking-modal";
 import { Destination } from "@/types";
 
-const categories = [
-  "All",
-  "Adventure",
-  "Family",
-  "Honeymoon",
-  "Cultural",
-  "Luxury",
-];
-
 function toArr(v: unknown): string[] {
   if (Array.isArray(v)) return v;
   if (typeof v === "string" && v) return v.split(",").map((s) => s.trim()).filter(Boolean);
@@ -44,6 +35,7 @@ function normalizeDest(d: Destination): Destination {
 
 export function DestinationsContent() {
   const [destinations, setDestinations] = useState<Destination[]>([]);
+  const [categories, setCategories] = useState<string[]>(["All"]);
   const [active, setActive] = useState("All");
   const [selected, setSelected] = useState<number | null>(null);
   const [bookingDest, setBookingDest] = useState<Destination | null>(null);
@@ -57,6 +49,15 @@ export function DestinationsContent() {
         else setDestinations([]);
       })
       .catch(() => setDestinations([]));
+
+    fetch("/api/categories")
+      .then((r) => r.json())
+      .then((data) => {
+        if (Array.isArray(data)) {
+          setCategories(["All", ...data.map((c: { name: string }) => c.name)]);
+        }
+      })
+      .catch(() => {});
   }, []);
 
   const filtered =

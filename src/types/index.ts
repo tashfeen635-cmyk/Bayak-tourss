@@ -148,3 +148,11 @@ export interface WhyChooseUs {
   label: string;
   description: string;
 }
+
+export interface Category {
+  _id?: ObjectId;
+  id?: string;
+  name: string;
+  createdAt?: Date;
+  updatedAt?: Date;
+}

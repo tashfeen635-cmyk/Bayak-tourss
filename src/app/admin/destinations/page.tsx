@@ -35,7 +35,6 @@ interface Destination {
   featured: boolean;
 }
 
-const PREDEFINED_CATEGORIES = ["Adventure", "Family", "Honeymoon", "Cultural", "Luxury"];
 const MAX_CATEGORIES = 6;
 
 const emptyForm: Destination = {
@@ -62,6 +61,7 @@ export default function DestinationsPage() {
   const [uploadError, setUploadError] = useState<string | null>(null);
   const [catDropdownOpen, setCatDropdownOpen] = useState(false);
   const [newCategoryInput, setNewCategoryInput] = useState("");
+  const [apiCategories, setApiCategories] = useState<string[]>([]);
   const fetchedRef = useRef(false);
   const catDropdownRef = useRef<HTMLDivElement>(null);
 
@@ -79,12 +79,27 @@ export default function DestinationsPage() {
     }
   }, []);
 
+  const fetchCategories = useCallback(async () => {
+    try {
+      const res = await fetch("/api/categories");
+      if (res.ok) {
+        const data = await res.json();
+        if (Array.isArray(data)) {
+          setApiCategories(data.map((c: { name: string }) => c.name));
+        }
+      }
+    } catch (error) {
+      console.error("Failed to fetch categories:", error);
+    }
+  }, []);
+
   useEffect(() => {
     if (!fetchedRef.current) {
       fetchedRef.current = true;
       fetchItems();
+      fetchCategories();
     }
-  }, [fetchItems]);
+  }, [fetchItems, fetchCategories]);
 
   useEffect(() => {
     if (!catDropdownOpen) return;
@@ -217,8 +232,8 @@ export default function DestinationsPage() {
   const selectedCategories = formData.category as string[];
 
   const allCategories = [
-    ...PREDEFINED_CATEGORIES,
-    ...selectedCategories.filter((c) => !PREDEFINED_CATEGORIES.includes(c)),
+    ...apiCategories,
+    ...selectedCategories.filter((c) => !apiCategories.includes(c)),
   ];
 
   const atLimit = selectedCategories.length >= MAX_CATEGORIES;
@@ -503,9 +518,6 @@ export default function DestinationsPage() {
                             {isSelected && <Check className="size-3" />}
                           </span>
                           {cat}
-                          {!PREDEFINED_CATEGORIES.includes(cat) && (
-                            <span className="text-[10px] text-muted-foreground ml-auto">custom</span>
-                          )}
                         </button>
                       );
                     })}
