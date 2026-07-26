@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getById, update, remove } from "@/lib/db";
+import { deleteImage, extractPublicId } from "@/lib/cloudinary";
 
 export async function GET(
   _request: NextRequest,
@@ -25,6 +26,17 @@ export async function PUT(
   try {
     const { id } = await params;
     const data = await request.json();
+
+    if (data.src !== undefined) {
+      const existing = await getById("gallery", id);
+      if (existing && "src" in existing && existing.src && existing.src !== data.src) {
+        const publicId = extractPublicId(existing.src);
+        if (publicId) {
+          await deleteImage(publicId).catch(() => {});
+        }
+      }
+    }
+
     await update("gallery", id, data);
     return NextResponse.json({ success: true });
   } catch (error) {
@@ -39,6 +51,13 @@ export async function DELETE(
 ) {
   try {
     const { id } = await params;
+    const existing = await getById("gallery", id);
+    if (existing && "src" in existing && existing.src) {
+      const publicId = extractPublicId(existing.src);
+      if (publicId) {
+        await deleteImage(publicId).catch(() => {});
+      }
+    }
     await remove("gallery", id);
     return NextResponse.json({ success: true });
   } catch (error) {
