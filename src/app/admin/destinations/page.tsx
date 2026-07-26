@@ -12,6 +12,8 @@ import {
   Loader2,
   Upload,
   GripVertical,
+  ChevronDown,
+  Check,
 } from "lucide-react";
 
 interface ItineraryDay {
@@ -32,6 +34,9 @@ interface Destination {
   itinerary: ItineraryDay[];
   featured: boolean;
 }
+
+const PREDEFINED_CATEGORIES = ["Adventure", "Family", "Honeymoon", "Cultural", "Luxury"];
+const MAX_CATEGORIES = 6;
 
 const emptyForm: Destination = {
   name: "",
@@ -55,7 +60,10 @@ export default function DestinationsPage() {
   const [search, setSearch] = useState("");
   const [uploading, setUploading] = useState(false);
   const [uploadError, setUploadError] = useState<string | null>(null);
+  const [catDropdownOpen, setCatDropdownOpen] = useState(false);
+  const [newCategoryInput, setNewCategoryInput] = useState("");
   const fetchedRef = useRef(false);
+  const catDropdownRef = useRef<HTMLDivElement>(null);
 
   const fetchItems = useCallback(async () => {
     try {
@@ -77,6 +85,17 @@ export default function DestinationsPage() {
       fetchItems();
     }
   }, [fetchItems]);
+
+  useEffect(() => {
+    if (!catDropdownOpen) return;
+    const handleClickOutside = (e: MouseEvent) => {
+      if (catDropdownRef.current && !catDropdownRef.current.contains(e.target as Node)) {
+        setCatDropdownOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [catDropdownOpen]);
 
   const openModal = (item?: Destination) => {
     if (item) {
@@ -191,6 +210,33 @@ export default function DestinationsPage() {
           .some((v) => String(v).toLowerCase().includes(search.toLowerCase()))
       : true
   );
+
+  const selectedCategories = formData.category as string[];
+
+  const allCategories = [
+    ...PREDEFINED_CATEGORIES,
+    ...selectedCategories.filter((c) => !PREDEFINED_CATEGORIES.includes(c)),
+  ];
+
+  const atLimit = selectedCategories.length >= MAX_CATEGORIES;
+
+  const toggleCategory = (cat: string) => {
+    setFormData((prev) => {
+      const current = prev.category as string[];
+      const next = current.includes(cat)
+        ? current.filter((c) => c !== cat)
+        : [...current, cat];
+      return { ...prev, category: next };
+    });
+  };
+
+  const addNewCategory = () => {
+    const name = newCategoryInput.trim();
+    if (!name || selectedCategories.includes(name) || allCategories.includes(name)) return;
+    if (atLimit) return;
+    setFormData((prev) => ({ ...prev, category: [...(prev.category as string[]), name] }));
+    setNewCategoryInput("");
+  };
 
   return (
     <div className="space-y-4">
@@ -383,18 +429,114 @@ export default function DestinationsPage() {
               </div>
 
               {/* Categories */}
-              <div className="space-y-1">
-                <label className="text-sm font-medium">Categories (comma-separated)</label>
-                <Input
-                  value={(formData.category as string[]).join(", ")}
-                  onChange={(e) =>
-                    setFormData((prev) => ({
-                      ...prev,
-                      category: e.target.value.split(",").map((s) => s.trim()).filter(Boolean),
-                    }))
-                  }
-                  placeholder="e.g. Adventure, Cultural, Honeymoon"
-                />
+              <div className="space-y-1" ref={catDropdownRef}>
+                <label className="text-sm font-medium">
+                  Categories{" "}
+                  <span className="text-muted-foreground font-normal">
+                    ({selectedCategories.length}/{MAX_CATEGORIES})
+                  </span>
+                </label>
+
+                {/* Selected chips */}
+                {selectedCategories.length > 0 && (
+                  <div className="flex flex-wrap gap-1.5">
+                    {selectedCategories.map((cat) => (
+                      <span
+                        key={cat}
+                        className="inline-flex items-center gap-1 rounded-full bg-gold/10 px-2.5 py-0.5 text-xs font-medium text-gold"
+                      >
+                        {cat}
+                        <button
+                          type="button"
+                          onClick={() => toggleCategory(cat)}
+                          className="rounded-full hover:bg-gold/20 p-0.5"
+                        >
+                          <X className="size-3" />
+                        </button>
+                      </span>
+                    ))}
+                  </div>
+                )}
+
+                {/* Dropdown trigger */}
+                <button
+                  type="button"
+                  onClick={() => setCatDropdownOpen((o) => !o)}
+                  className="flex h-8 w-full items-center justify-between rounded-lg border border-input bg-transparent px-2.5 py-1 text-sm text-left"
+                >
+                  <span className={selectedCategories.length === 0 ? "text-muted-foreground" : ""}>
+                    {selectedCategories.length === 0
+                      ? "Select categories..."
+                      : `${selectedCategories.length} selected`}
+                  </span>
+                  <ChevronDown className="size-4 text-muted-foreground shrink-0" />
+                </button>
+
+                {/* Dropdown menu */}
+                {catDropdownOpen && (
+                  <div className="rounded-lg border border-border bg-card shadow-lg p-1 space-y-0.5">
+                    {allCategories.map((cat) => {
+                      const isSelected = selectedCategories.includes(cat);
+                      const isDisabled = atLimit && !isSelected;
+                      return (
+                        <button
+                          key={cat}
+                          type="button"
+                          disabled={isDisabled}
+                          onClick={() => toggleCategory(cat)}
+                          className={`flex w-full items-center gap-2 rounded-md px-2.5 py-1.5 text-sm text-left transition-colors ${
+                            isDisabled
+                              ? "opacity-40 cursor-not-allowed"
+                              : "hover:bg-muted"
+                          }`}
+                        >
+                          <span
+                            className={`flex size-4 shrink-0 items-center justify-center rounded border ${
+                              isSelected
+                                ? "border-gold bg-gold text-white"
+                                : "border-border"
+                            }`}
+                          >
+                            {isSelected && <Check className="size-3" />}
+                          </span>
+                          {cat}
+                          {!PREDEFINED_CATEGORIES.includes(cat) && (
+                            <span className="text-[10px] text-muted-foreground ml-auto">custom</span>
+                          )}
+                        </button>
+                      );
+                    })}
+
+                    {/* Add new category */}
+                    <div className="border-t border-border mt-1 pt-1">
+                      <div className="flex items-center gap-1">
+                        <input
+                          type="text"
+                          value={newCategoryInput}
+                          onChange={(e) => setNewCategoryInput(e.target.value)}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              addNewCategory();
+                            }
+                          }}
+                          placeholder="Add new category..."
+                          disabled={atLimit}
+                          className="flex-1 h-7 rounded-md border border-input bg-transparent px-2 text-xs placeholder:text-muted-foreground disabled:opacity-40"
+                        />
+                        <Button
+                          type="button"
+                          variant="ghost"
+                          size="icon-xs"
+                          onClick={addNewCategory}
+                          disabled={atLimit || !newCategoryInput.trim()}
+                        >
+                          <Plus className="size-3" />
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
 
               {/* Available Dates */}
