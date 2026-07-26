@@ -121,10 +121,13 @@ export default function DestinationsPage() {
       const method = editingItem ? "PUT" : "POST";
       const url = editingItem ? `/api/destinations/${editingItem._id}` : "/api/destinations";
 
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { _id, createdAt, updatedAt, ...payload } = formData as unknown as Record<string, unknown>;
+
       await fetch(url, {
         method,
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(payload),
       });
 
       setIsModalOpen(false);
