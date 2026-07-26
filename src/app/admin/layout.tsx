@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import {
   LayoutDashboard,
@@ -39,10 +39,31 @@ export default function AdminLayout({
   const pathname = usePathname();
   const router = useRouter();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [checking, setChecking] = useState(true);
 
-  // Don't show layout on login page
+  useEffect(() => {
+    if (pathname === "/admin/login") {
+      setChecking(false);
+      return;
+    }
+    fetch("/api/auth/me")
+      .then((res) => {
+        if (!res.ok) router.replace("/admin/login");
+        else setChecking(false);
+      })
+      .catch(() => router.replace("/admin/login"));
+  }, [pathname, router]);
+
   if (pathname === "/admin/login") {
     return <>{children}</>;
+  }
+
+  if (checking) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-background">
+        <div className="text-muted-foreground text-sm">Checking session…</div>
+      </div>
+    );
   }
 
   const handleLogout = async () => {

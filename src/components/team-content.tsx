@@ -56,37 +56,39 @@ export function TeamContent() {
 
       <section className="py-20 sm:py-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <StaggerContainer className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {teamMembers.map((member, i) => (
-              <StaggerItem key={member.name}>
-                <div
-                  onClick={() => setSelected(i)}
-                  className="group cursor-pointer overflow-hidden rounded-2xl border border-border bg-card transition-all duration-300 hover:shadow-xl"
-                >
-                  <div className="relative aspect-square overflow-hidden">
-                    <Image
-                      src={member.image}
-                      alt={member.name}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                    />
+          {teamMembers.length > 0 && (
+            <StaggerContainer key="team-content-grid" className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+              {teamMembers.map((member, i) => (
+                <StaggerItem key={member.name}>
+                  <div
+                    onClick={() => setSelected(i)}
+                    className="group cursor-pointer overflow-hidden rounded-2xl border border-border bg-card transition-all duration-300 hover:shadow-xl"
+                  >
+                    <div className="relative aspect-square overflow-hidden">
+                      <Image
+                        src={member.image}
+                        alt={member.name}
+                        fill
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                      />
+                    </div>
+                    <div className="p-6">
+                      <h3 className="font-heading text-lg font-semibold">
+                        {member.name}
+                      </h3>
+                      <p className="mt-1 text-sm font-medium text-gold">
+                        {member.role}
+                      </p>
+                      <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                        {member.bio}
+                      </p>
+                    </div>
                   </div>
-                  <div className="p-6">
-                    <h3 className="font-heading text-lg font-semibold">
-                      {member.name}
-                    </h3>
-                    <p className="mt-1 text-sm font-medium text-gold">
-                      {member.role}
-                    </p>
-                    <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                      {member.bio}
-                    </p>
-                  </div>
-                </div>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
+                </StaggerItem>
+              ))}
+            </StaggerContainer>
+          )}
         </div>
       </section>
 

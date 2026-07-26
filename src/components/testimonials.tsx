@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Star, ChevronLeft, ChevronRight, Quote } from "lucide-react";
 import { FadeIn } from "./animations";
@@ -11,6 +11,7 @@ export function Testimonials() {
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
   const [current, setCurrent] = useState(0);
   const [direction, setDirection] = useState(0);
+  const hasInteracted = useRef(false);
 
   useEffect(() => {
     fetch("/api/testimonials")
@@ -25,11 +26,13 @@ export function Testimonials() {
 
   const next = useCallback(() => {
     setDirection(1);
+    hasInteracted.current = true;
     setCurrent((prev) => (prev + 1) % testimonials.length);
   }, [testimonials.length]);
 
   const prev = useCallback(() => {
     setDirection(-1);
+    hasInteracted.current = true;
     setCurrent(
       (prev) => (prev - 1 + testimonials.length) % testimonials.length
     );
@@ -106,7 +109,7 @@ export function Testimonials() {
                 key={current}
                 custom={direction}
                 variants={variants}
-                initial="enter"
+                initial={hasInteracted.current ? "enter" : false}
                 animate="center"
                 exit="exit"
                 transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}

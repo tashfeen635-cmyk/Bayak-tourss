@@ -63,6 +63,7 @@ export default function AdminLoginPage() {
             <Input
               id="email"
               type="email"
+              autoComplete="username"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="admin@bayaktours.com"
@@ -77,6 +78,7 @@ export default function AdminLoginPage() {
             <Input
               id="password"
               type="password"
+              autoComplete="current-password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Enter password"

@@ -42,6 +42,13 @@ export async function POST(request: NextRequest) {
     });
   } catch (error) {
     console.error("Login error:", error);
+    const message = error instanceof Error ? error.message : "Unknown error";
+    if (message.includes("MONGODB_URI")) {
+      return NextResponse.json(
+        { error: "Database not configured. Please set MONGODB_URI environment variable." },
+        { status: 500 }
+      );
+    }
     return NextResponse.json(
       { error: "Internal server error" },
       { status: 500 }
