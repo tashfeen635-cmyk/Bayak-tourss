@@ -49,7 +49,14 @@ export function DestinationsContent() {
   const [bookingDest, setBookingDest] = useState<Destination | null>(null);
 
   useEffect(() => {
-    fetch("/api/destinations").then((r) => r.json()).then((data) => setDestinations(Array.isArray(data) ? data.map(normalizeDest) : [])).catch(console.error);
+    fetch("/api/destinations")
+      .then((r) => r.json())
+      .then((data) => {
+        if (Array.isArray(data)) setDestinations(data.map(normalizeDest));
+        else if (data && Array.isArray(data.destinations)) setDestinations(data.destinations.map(normalizeDest));
+        else setDestinations([]);
+      })
+      .catch(() => setDestinations([]));
   }, []);
 
   const filtered =
@@ -290,13 +297,13 @@ export function DestinationsContent() {
                 <div className="mt-6">
                   <h4 className="text-sm font-semibold">Day-by-Day Itinerary</h4>
                   <div className="mt-3 space-y-0">
-                    {filtered[selected].itinerary.map((day, i) => (
+                    {(filtered[selected].itinerary ?? []).map((day, i) => (
                       <div key={i} className="flex gap-4">
                         <div className="flex flex-col items-center">
                           <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gold text-xs font-bold text-white">
                             {day.day}
                           </div>
-                          {i < filtered[selected].itinerary.length - 1 && (
+                          {i < (filtered[selected].itinerary ?? []).length - 1 && (
                             <div className="w-px flex-1 bg-border" />
                           )}
                         </div>

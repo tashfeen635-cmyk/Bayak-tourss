@@ -24,7 +24,14 @@ export function TeamTeaser() {
   const [selected, setSelected] = useState<number | null>(null);
 
   useEffect(() => {
-    fetch("/api/team").then((r) => r.json()).then((data) => setTeamMembers(Array.isArray(data) ? data.map(normalizeMember) : [])).catch(console.error);
+    fetch("/api/team")
+      .then((r) => r.json())
+      .then((data) => {
+        if (Array.isArray(data)) setTeamMembers(data.map(normalizeMember));
+        else if (data && Array.isArray(data.team)) setTeamMembers(data.team.map(normalizeMember));
+        else setTeamMembers([]);
+      })
+      .catch(() => setTeamMembers([]));
   }, []);
 
   return (

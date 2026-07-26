@@ -5,24 +5,22 @@ const SECRET = new TextEncoder().encode(
   process.env.NEXTAUTH_SECRET || "bayak-tours-secret-change-in-production"
 );
 
-const PUBLIC_ADMIN_ROUTES = ["/admin/login"];
-const ADMIN_API_ROUTES = ["/api/auth"];
+const PUBLIC_PATHS = ["/admin/login", "/api/auth"];
 
 export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  if (PUBLIC_ADMIN_ROUTES.some((route) => pathname.startsWith(route))) {
+  if (PUBLIC_PATHS.some((p) => pathname.startsWith(p))) {
     return NextResponse.next();
   }
 
-  if (ADMIN_API_ROUTES.some((route) => pathname.startsWith(route))) {
-    return NextResponse.next();
-  }
-
-  if (pathname.startsWith("/admin")) {
+  if (pathname.startsWith("/admin") || pathname.startsWith("/api/admin")) {
     const token = request.cookies.get("bayak-admin-token")?.value;
 
     if (!token) {
+      if (pathname.startsWith("/api/")) {
+        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+      }
       return NextResponse.redirect(new URL("/admin/login", request.url));
     }
 
@@ -30,7 +28,9 @@ export async function proxy(request: NextRequest) {
       await jwtVerify(token, SECRET);
       return NextResponse.next();
     } catch {
-      const response = NextResponse.redirect(new URL("/admin/login", request.url));
+      const response = pathname.startsWith("/api/")
+        ? NextResponse.json({ error: "Invalid session" }, { status: 401 })
+        : NextResponse.redirect(new URL("/admin/login", request.url));
       response.cookies.delete("bayak-admin-token");
       return response;
     }

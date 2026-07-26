@@ -13,7 +13,14 @@ export function Testimonials() {
   const [direction, setDirection] = useState(0);
 
   useEffect(() => {
-    fetch("/api/testimonials").then((r) => r.json()).then((data) => setTestimonials(Array.isArray(data) ? data : [])).catch(console.error);
+    fetch("/api/testimonials")
+      .then((r) => r.json())
+      .then((data) => {
+        if (Array.isArray(data)) setTestimonials(data);
+        else if (data && Array.isArray(data.testimonials)) setTestimonials(data.testimonials);
+        else setTestimonials([]);
+      })
+      .catch(() => setTestimonials([]));
   }, []);
 
   const next = useCallback(() => {

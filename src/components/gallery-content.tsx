@@ -13,7 +13,14 @@ export function GalleryContent() {
   const [active, setActive] = useState("All");
 
   useEffect(() => {
-    fetch("/api/gallery").then((r) => r.json()).then((data) => setGalleryImages(Array.isArray(data) ? data : [])).catch(console.error);
+    fetch("/api/gallery")
+      .then((r) => r.json())
+      .then((data) => {
+        if (Array.isArray(data)) setGalleryImages(data);
+        else if (data && Array.isArray(data.images)) setGalleryImages(data.images);
+        else setGalleryImages([]);
+      })
+      .catch(() => setGalleryImages([]));
   }, []);
 
   const filtered =
