@@ -9,7 +9,7 @@ import { Input } from "@/components/ui/input";
 import { FadeIn } from "./animations";
 import { Testimonial } from "@/types";
 
-const MAX_WORDS = 36;
+const MIN_CHARS = 90;
 
 export function Testimonials() {
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
@@ -87,13 +87,7 @@ export function Testimonials() {
     }
   };
 
-  const handleReviewTextChange = (value: string) => {
-    const words = value.trim().split(/\s+/).filter(Boolean);
-    if (words.length > MAX_WORDS) return;
-    setReviewText(value);
-  };
-
-  const wordCount = reviewText.trim().split(/\s+/).filter(Boolean).length;
+  const charCount = reviewText.length;
 
   const handleSubmitReview = async () => {
     if (!reviewName.trim() || reviewRating === 0 || !reviewText.trim()) {
@@ -399,13 +393,13 @@ export function Testimonials() {
                       <label className="text-sm font-medium">
                         Review *{" "}
                         <span className="text-muted-foreground font-normal">
-                          ({wordCount}/{MAX_WORDS} words)
+                          ({charCount} characters{charCount < MIN_CHARS ? `, minimum ${MIN_CHARS}` : ""})
                         </span>
                       </label>
                       <textarea
                         className="w-full min-h-[80px] rounded-lg border border-input bg-transparent px-3 py-2 text-sm"
                         value={reviewText}
-                        onChange={(e) => handleReviewTextChange(e.target.value)}
+                        onChange={(e) => setReviewText(e.target.value)}
                         placeholder="Share your experience..."
                       />
                     </div>
