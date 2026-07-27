@@ -9,7 +9,7 @@ import { Input } from "@/components/ui/input";
 import { FadeIn } from "./animations";
 import { Testimonial } from "@/types";
 
-const MAX_CHARS = 90;
+const MAX_CHARS = 200;
 
 export function Testimonials() {
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
