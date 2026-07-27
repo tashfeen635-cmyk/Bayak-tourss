@@ -59,6 +59,7 @@ export interface Testimonial {
   text: string;
   rating: number;
   avatar: string;
+  status?: "pending" | "approved" | "rejected";
   createdAt?: Date;
   updatedAt?: Date;
 }
