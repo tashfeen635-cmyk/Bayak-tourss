@@ -9,7 +9,7 @@ import { Input } from "@/components/ui/input";
 import { FadeIn } from "./animations";
 import { Testimonial } from "@/types";
 
-const MIN_CHARS = 90;
+const MAX_CHARS = 90;
 
 export function Testimonials() {
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
@@ -393,13 +393,14 @@ export function Testimonials() {
                       <label className="text-sm font-medium">
                         Review *{" "}
                         <span className="text-muted-foreground font-normal">
-                          ({charCount} characters{charCount < MIN_CHARS ? `, minimum ${MIN_CHARS}` : ""})
+                          ({charCount}/{MAX_CHARS} characters)
                         </span>
                       </label>
                       <textarea
                         className="w-full min-h-[80px] rounded-lg border border-input bg-transparent px-3 py-2 text-sm"
                         value={reviewText}
                         onChange={(e) => setReviewText(e.target.value)}
+                        maxLength={MAX_CHARS}
                         placeholder="Share your experience..."
                       />
                     </div>
