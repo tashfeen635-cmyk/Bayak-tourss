@@ -9,7 +9,6 @@ export const destinations = [
     originalPrice: 85000,
     duration: "5 Days / 4 Nights",
     rating: 4.9,
-    reviews: 342,
     image:
       "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80",
     category: ["Adventure", "Family", "Cultural"],
@@ -40,7 +39,6 @@ export const destinations = [
     originalPrice: 95000,
     duration: "6 Days / 5 Nights",
     rating: 4.8,
-    reviews: 287,
     image:
       "https://images.unsplash.com/photo-1531761535209-180857e963b9?w=800&q=80",
     category: ["Adventure", "Luxury"],
@@ -72,7 +70,6 @@ export const destinations = [
     originalPrice: 75000,
     duration: "4 Days / 3 Nights",
     rating: 4.9,
-    reviews: 198,
     image:
       "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80",
     category: ["Adventure"],
@@ -102,7 +99,6 @@ export const destinations = [
     originalPrice: 60000,
     duration: "4 Days / 3 Nights",
     rating: 4.7,
-    reviews: 456,
     image:
       "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=800&q=80",
     category: ["Family", "Honeymoon", "Cultural"],
@@ -132,7 +128,6 @@ export const destinations = [
     originalPrice: 55000,
     duration: "3 Days / 2 Nights",
     rating: 4.6,
-    reviews: 312,
     image:
       "https://images.unsplash.com/photo-1504893524553-b855bce32c67?w=800&q=80",
     category: ["Family", "Cultural"],
@@ -160,7 +155,6 @@ export const destinations = [
     originalPrice: 80000,
     duration: "5 Days / 4 Nights",
     rating: 4.7,
-    reviews: 189,
     image:
       "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=800&q=80",
     category: ["Adventure", "Cultural"],
@@ -191,7 +185,6 @@ export const destinations = [
     originalPrice: 62000,
     duration: "4 Days / 3 Nights",
     rating: 4.7,
-    reviews: 234,
     image:
       "https://images.unsplash.com/photo-1528164344705-47542687000d?w=800&q=80",
     category: ["Honeymoon", "Family", "Adventure"],
@@ -221,7 +214,6 @@ export const destinations = [
     originalPrice: 100000,
     duration: "6 Days / 5 Nights",
     rating: 4.9,
-    reviews: 156,
     image:
       "https://images.unsplash.com/photo-1493246507139-91e8fad9978e?w=800&q=80",
     category: ["Adventure", "Luxury"],
@@ -410,10 +402,10 @@ export const galleryImages = [
 ];
 
 export const stats = [
-  { label: "Tours Completed", value: 500 },
-  { label: "Happy Travelers", value: 10000 },
-  { label: "Destinations", value: 15 },
-  { label: "Years Experience", value: 12 },
+  { label: "Tours Completed", value: 44 },
+  { label: "Happy Travelers", value: 438 },
+  { label: "Destinations", value: 11 },
+  { label: "Years Experience", value: 5 },
 ];
 
 export const whyChooseUs = [
@@ -422,5 +414,5 @@ export const whyChooseUs = [
   { label: "Custom Tours", description: "Every trip tailored to your interests, pace, and group size." },
   { label: "24/7 Support", description: "Round-the-clock assistance before, during, and after your trip." },
   { label: "Luxury Transport", description: "Comfortable 4x4s, air-conditioned coaches, and private transfers." },
-  { label: "Secure Booking", description: "Safe payments, verified reviews, and transparent pricing." },
+  { label: "Secure Booking", description: "Safe payments and transparent pricing." },
 ];

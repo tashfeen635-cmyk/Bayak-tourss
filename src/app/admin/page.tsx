@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   MapPin,
   CalendarCheck,
-  Users,
+  Compass,
   Star,
   Image,
   TrendingUp,
@@ -13,17 +13,17 @@ import {
 import Link from "next/link";
 
 async function getStats() {
-  const [destinations, bookings, customers, team, testimonials, gallery] =
+  const [destinations, bookings, customTrips, team, testimonials, gallery] =
     await Promise.all([
       count("destinations"),
       count("bookings"),
-      count("customers"),
+      count("customTrips"),
       count("team"),
       count("testimonials"),
       count("gallery"),
     ]);
 
-  return { destinations, bookings, customers, team, testimonials, gallery };
+  return { destinations, bookings, customTrips, team, testimonials, gallery };
 }
 
 const statCards = [
@@ -42,11 +42,11 @@ const statCards = [
     color: "text-green-500",
   },
   {
-    label: "Customers",
-    key: "customers" as const,
-    icon: Users,
-    href: "/admin/customers",
-    color: "text-purple-500",
+    label: "Custom Trips",
+    key: "customTrips" as const,
+    icon: Compass,
+    href: "/admin/custom-trips",
+    color: "text-cyan-500",
   },
   {
     label: "Team Members",

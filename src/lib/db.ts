@@ -3,25 +3,25 @@ import { ObjectId, WithId } from "mongodb";
 import type {
   Destination,
   Booking,
-  Customer,
   TeamMember,
   Testimonial,
   GalleryImage,
   Reel,
   Settings,
   User,
+  CustomTrip,
 } from "@/types";
 
 type CollectionMap = {
   destinations: Destination;
   bookings: Booking;
-  customers: Customer;
   team: TeamMember;
   testimonials: Testimonial;
   gallery: GalleryImage;
   reels: Reel;
   settings: Settings;
   users: User;
+  customTrips: CustomTrip;
 };
 
 export type CollectionName = keyof CollectionMap;

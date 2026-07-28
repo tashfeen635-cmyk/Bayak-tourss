@@ -134,7 +134,7 @@ export function DestinationsContent() {
                       <div className="absolute bottom-3 left-3">
                         <div className="flex items-center gap-1 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-charcoal backdrop-blur-sm dark:text-foreground">
                           <Star className="h-3 w-3 fill-gold text-gold" />
-                          {dest.rating} ({dest.reviews})
+                          {dest.rating}
                         </div>
                       </div>
                     </div>
@@ -242,7 +242,7 @@ export function DestinationsContent() {
                 <div className="absolute bottom-4 left-4">
                   <div className="flex items-center gap-1 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-charcoal backdrop-blur-sm dark:text-foreground">
                     <Star className="h-3 w-3 fill-gold text-gold" />
-                    {filtered[selected].rating} ({filtered[selected].reviews} reviews)
+                    {filtered[selected].rating}
                   </div>
                 </div>
               </div>
@@ -346,7 +346,7 @@ export function DestinationsContent() {
         onClose={() => setBookingDest(null)}
         tourName={bookingDest?.name}
         tourDuration={bookingDest?.duration}
-        tourAvailableDates={bookingDest?.availableDates}
+        destinationId={bookingDest?.id}
       />
     </>
   );

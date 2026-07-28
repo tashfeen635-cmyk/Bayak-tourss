@@ -16,9 +16,8 @@ export function GalleryTeaser() {
     fetch("/api/gallery")
       .then((r) => r.json())
       .then((data) => {
-        if (Array.isArray(data)) setGalleryImages(data);
-        else if (data && Array.isArray(data.images)) setGalleryImages(data.images);
-        else setGalleryImages([]);
+        const list = Array.isArray(data) ? data : data?.images ?? [];
+        setGalleryImages(list.filter((img: GalleryImage) => img.src));
       })
       .catch(() => setGalleryImages([]));
   }, []);

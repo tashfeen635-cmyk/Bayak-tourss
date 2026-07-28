@@ -10,7 +10,7 @@ import {
   Send,
   ChevronDown,
   Users,
-  CalendarDays,
+  Loader2,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -64,7 +64,8 @@ interface BookingModalProps {
   onClose: () => void;
   tourName?: string;
   tourDuration?: string;
-  tourAvailableDates?: string[];
+  apiEndpoint?: string;
+  destinationId?: string;
 }
 
 export function BookingModal({
@@ -72,13 +73,24 @@ export function BookingModal({
   onClose,
   tourName,
   tourDuration,
-  tourAvailableDates,
+  apiEndpoint = "/api/bookings",
+  destinationId,
 }: BookingModalProps) {
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [countryQuery, setCountryQuery] = useState("");
   const [showCountryList, setShowCountryList] = useState(false);
   const [groupType, setGroupType] = useState<string>("");
   const countryRef = useRef<HTMLDivElement>(null);
+
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [city, setCity] = useState("");
+  const [adults, setAdults] = useState(1);
+  const [children, setChildren] = useState(0);
+  const [specialRequests, setSpecialRequests] = useState("");
 
   const filteredCountries = useMemo(() => {
     if (!countryQuery) return COUNTRIES;
@@ -96,16 +108,65 @@ export function BookingModal({
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitted(true);
-  };
-
-  const handleClose = () => {
+  const resetForm = () => {
     setSubmitted(false);
+    setSubmitting(false);
+    setError(null);
     setCountryQuery("");
     setGroupType("");
     setShowCountryList(false);
+    setFullName("");
+    setEmail("");
+    setPhone("");
+    setCity("");
+    setAdults(1);
+    setChildren(0);
+    setSpecialRequests("");
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmitting(true);
+    setError(null);
+
+    const payload: Record<string, unknown> = {
+      customerName: fullName,
+      email,
+      phone,
+      country: countryQuery,
+      city,
+      destinationId: destinationId || "",
+      destinationName: tourName || "",
+      groupType,
+      adults,
+      children,
+      travelDate: "",
+      duration: tourDuration || "",
+      specialRequests,
+    };
+
+    try {
+      const res = await fetch(apiEndpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => null);
+        throw new Error(data?.error || "Something went wrong. Please try again.");
+      }
+
+      setSubmitted(true);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Something went wrong. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  const handleClose = () => {
+    resetForm();
     onClose();
   };
 
@@ -158,7 +219,7 @@ export function BookingModal({
               <div className="px-6 py-6 sm:px-8 sm:py-8">
                 <div className="mb-6">
                   <h3 className="font-heading text-2xl font-bold">
-                    Book Your Trip
+                    {tourName ? "Book Your Trip" : "Create Your Trip"}
                   </h3>
                   <p className="mt-1 text-sm text-muted-foreground">
                     Fill in your details and we&apos;ll get back to you shortly.
@@ -180,6 +241,12 @@ export function BookingModal({
                   </div>
                 )}
 
+                {error && (
+                  <div className="mb-4 rounded-xl border border-red-200 bg-red-50 p-3 text-sm text-red-700 dark:border-red-800 dark:bg-red-950 dark:text-red-400">
+                    {error}
+                  </div>
+                )}
+
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
                     <label className="mb-1.5 block text-sm font-medium">
@@ -189,6 +256,8 @@ export function BookingModal({
                       placeholder="e.g. Ahmed Khan"
                       required
                       className="rounded-xl"
+                      value={fullName}
+                      onChange={(e) => setFullName(e.target.value)}
                     />
                   </div>
                   <div>
@@ -200,6 +269,8 @@ export function BookingModal({
                       placeholder="ahmed@example.com"
                       required
                       className="rounded-xl"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
                     />
                   </div>
                   <div>
@@ -212,6 +283,8 @@ export function BookingModal({
                       placeholder="+92 300 1234567"
                       required
                       className="rounded-xl"
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
                     />
                   </div>
 
@@ -258,6 +331,8 @@ export function BookingModal({
                     <Input
                       placeholder="e.g. Dubai, London, New York"
                       className="rounded-xl"
+                      value={city}
+                      onChange={(e) => setCity(e.target.value)}
                     />
                   </div>
 
@@ -293,9 +368,10 @@ export function BookingModal({
                         type="number"
                         min="1"
                         max="50"
-                        defaultValue="1"
                         required
                         className="rounded-xl"
+                        value={adults}
+                        onChange={(e) => setAdults(Number(e.target.value))}
                       />
                     </div>
                     <div>
@@ -307,38 +383,12 @@ export function BookingModal({
                         type="number"
                         min="0"
                         max="30"
-                        defaultValue="0"
                         className="rounded-xl"
+                        value={children}
+                        onChange={(e) => setChildren(Number(e.target.value))}
                       />
                     </div>
                   </div>
-
-                  {tourAvailableDates && tourAvailableDates.length > 0 && (
-                    <div>
-                      <label className="mb-1.5 block text-sm font-medium">
-                        <CalendarDays className="mr-1 inline h-3.5 w-3.5 text-gold" />
-                        Preferred Travel Date{" "}
-                        <span className="text-destructive">*</span>
-                      </label>
-                      <div className="relative">
-                        <select
-                          required
-                          defaultValue=""
-                          className="h-9 w-full appearance-none rounded-xl border border-input bg-transparent px-2.5 py-1 text-base outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 md:text-sm dark:bg-input/30"
-                        >
-                          <option value="" disabled>
-                            Select a date...
-                          </option>
-                          {tourAvailableDates.map((date) => (
-                            <option key={date} value={date}>
-                              {date}
-                            </option>
-                          ))}
-                        </select>
-                        <ChevronDown className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-                      </div>
-                    </div>
-                  )}
 
                   {tourDuration && (
                     <div>
@@ -363,22 +413,30 @@ export function BookingModal({
                       placeholder="Any dietary needs, accessibility requirements, or special occasions..."
                       rows={3}
                       className="rounded-xl"
+                      value={specialRequests}
+                      onChange={(e) => setSpecialRequests(e.target.value)}
                     />
                   </div>
 
                   <div className="flex items-center gap-3 pt-2">
                     <Button
                       type="submit"
+                      disabled={submitting}
                       className="flex-1 rounded-full bg-gold px-6 text-white hover:bg-gold-dark"
                     >
-                      <Send className="mr-2 h-4 w-4" />
-                      Confirm Booking
+                      {submitting ? (
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      ) : (
+                        <Send className="mr-2 h-4 w-4" />
+                      )}
+                      {submitting ? "Submitting..." : "Confirm Booking"}
                     </Button>
                     <Button
                       type="button"
                       variant="outline"
                       className="rounded-full border-border px-6"
                       onClick={handleClose}
+                      disabled={submitting}
                     >
                       Cancel
                     </Button>

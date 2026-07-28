@@ -58,7 +58,7 @@ const milestones = [
     year: "2015",
     title: "First 1,000 Travelers",
     description:
-      "Reached our first thousand happy travelers, expanding routes to cover all of Gilgit-Baltistan and Khyber Pakhtunkhwa.",
+      "Reached our first few hundred happy travelers, expanding routes to cover all of Gilgit-Baltistan and Khyber Pakhtunkhwa.",
   },
   {
     year: "2018",
@@ -68,7 +68,7 @@ const milestones = [
   },
   {
     year: "2021",
-    title: "10,000+ Happy Travelers",
+    title: "438+ Happy Travelers",
     description:
       "Crossed the milestone of 10,000 satisfied travelers from over 40 countries around the world.",
   },
@@ -81,9 +81,9 @@ const milestones = [
 ];
 
 const aboutStats = [
-  { label: "Years of Experience", value: 12, suffix: "+" },
-  { label: "Happy Travelers", value: 10000, suffix: "+" },
-  { label: "Destinations Covered", value: 15, suffix: "" },
+  { label: "Years of Experience", value: 5, suffix: "+" },
+  { label: "Happy Travelers", value: 438, suffix: "+" },
+  { label: "Destinations Covered", value: 11, suffix: "" },
   { label: "Team Members", value: 35, suffix: "+" },
 ];
 
@@ -96,7 +96,7 @@ const faqs = [
   {
     question: "What is Bayak Tours?",
     answer:
-      "Bayak Tours is Pakistan's premier travel company, founded in 2012. We specialize in crafting premium travel experiences to Pakistan's most breathtaking destinations including Hunza Valley, Skardu, Fairy Meadows, Naran Kaghan, Swat Valley, and more. We have served over 10,000 happy travelers from 40+ countries worldwide.",
+      "Bayak Tours is Pakistan's premier travel company, founded in 2021. We specialize in crafting premium travel experiences to Pakistan's most breathtaking destinations including Hunza Valley, Skardu, Fairy Meadows, Naran Kaghan, Swat Valley, and more. We have served over 438 happy travelers from 40+ countries worldwide.",
   },
   {
     question: "Is Pakistan safe for tourists?",

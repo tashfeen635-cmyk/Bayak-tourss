@@ -10,7 +10,6 @@ export interface Destination {
   originalPrice: number;
   duration: string;
   rating: number;
-  reviews: number;
   image: string;
   category: string[];
   featured: boolean;
@@ -74,18 +73,6 @@ export interface GalleryImage {
   updatedAt?: Date;
 }
 
-export interface Customer {
-  _id?: ObjectId;
-  id?: string;
-  name: string;
-  email: string;
-  phone: string;
-  country: string;
-  city: string;
-  createdAt?: Date;
-  updatedAt?: Date;
-}
-
 export interface Booking {
   _id?: ObjectId;
   id?: string;
@@ -103,6 +90,23 @@ export interface Booking {
   duration: string;
   specialRequests: string;
   status: "pending" | "confirmed" | "cancelled" | "completed";
+  createdAt?: Date;
+  updatedAt?: Date;
+}
+
+export interface CustomTrip {
+  _id?: ObjectId;
+  id?: string;
+  fullName: string;
+  email: string;
+  phone: string;
+  country: string;
+  city: string;
+  groupType: string;
+  adults: number;
+  children: number;
+  specialRequests: string;
+  status: "pending" | "confirmed" | "cancelled";
   createdAt?: Date;
   updatedAt?: Date;
 }
