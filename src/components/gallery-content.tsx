@@ -16,26 +16,13 @@ export function GalleryContent() {
   const categories = ["All", ...new Set(galleryImages.map((img) => img.category))];
   const [active, setActive] = useState("All");
 
-  useEffect(() => {
-    fetch("/api/gallery")
-      .then((r) => r.json())
-      .then((data) => {
-        const list = Array.isArray(data) ? data : data?.images ?? [];
-        setGalleryImages(list.filter((img: GalleryImage) => img.src));
-      })
-      .catch(() => setGalleryImages([]))
-      .finally(() => setLoading(false));
-  }, []);
-
-  if (loading) return <GalleryContentSkeleton />;
+  const touchStartX = useRef(0);
+  const touchStartY = useRef(0);
 
   const filtered =
     active === "All"
       ? galleryImages
       : galleryImages.filter((img) => img.category === active);
-
-  const touchStartX = useRef(0);
-  const touchStartY = useRef(0);
 
   const goNext = useCallback(() => {
     if (selected === null) return;
@@ -71,6 +58,19 @@ export function GalleryContent() {
     window.addEventListener("keydown", handleKey);
     return () => window.removeEventListener("keydown", handleKey);
   }, [selected, goNext, goPrev]);
+
+  useEffect(() => {
+    fetch("/api/gallery")
+      .then((r) => r.json())
+      .then((data) => {
+        const list = Array.isArray(data) ? data : data?.images ?? [];
+        setGalleryImages(list.filter((img: GalleryImage) => img.src));
+      })
+      .catch(() => setGalleryImages([]))
+      .finally(() => setLoading(false));
+  }, []);
+
+  if (loading) return <GalleryContentSkeleton />;
 
   return (
     <>
@@ -140,7 +140,7 @@ export function GalleryContent() {
                 </div>
               ))}
             </div>
-            <div className="hidden sm:columns-2 sm:block lg:columns-3 gap-4">
+            <div className="hidden sm:block sm:columns-2 lg:columns-3">
               {filtered.map((img, i) => (
                 <div key={i} className="mb-4 break-inside-avoid">
                   <div
@@ -150,9 +150,9 @@ export function GalleryContent() {
                     <Image
                       src={buildImageUrl(img.src, 600)}
                       alt={img.alt}
-                      fill
-                      sizes="(max-width: 1024px) 50vw, 33vw"
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      width={800}
+                      height={600}
+                      className="h-auto w-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 flex items-end bg-gradient-to-t from-black/60 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                       <div className="p-4">

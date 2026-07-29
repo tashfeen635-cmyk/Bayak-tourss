@@ -105,7 +105,7 @@ export function GalleryTeaser({ images: data }: { images?: GalleryImage[] }) {
                 </div>
               ))}
             </div>
-            <div className="hidden sm:columns-2 sm:block lg:columns-3 gap-4">
+            <div className="hidden sm:block sm:columns-2 lg:columns-3">
               {galleryImages.map((img, i) => (
                 <div key={i} className="mb-4 break-inside-avoid">
                   <div
@@ -115,9 +115,9 @@ export function GalleryTeaser({ images: data }: { images?: GalleryImage[] }) {
                     <Image
                       src={buildImageUrl(img.src, 600)}
                       alt={img.alt}
-                      fill
-                      sizes="(max-width: 1024px) 50vw, 33vw"
-                      className="object-cover transition-transform duration-500 group-hover:scale-110"
+                      width={800}
+                      height={600}
+                      className="h-auto w-full object-cover transition-transform duration-500 group-hover:scale-110"
                     />
                     <div className="absolute inset-0 flex items-end bg-gradient-to-t from-black/70 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                       <div className="p-4">
