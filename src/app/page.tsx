@@ -16,33 +16,46 @@ import {
   TestimonialsSkeleton,
 } from "@/components/skeletons";
 
-export default async function Home() {
-  const [galleryImages, destinations, team, testimonials] = await Promise.all([
-    getCollection("gallery"),
-    getCollection("destinations"),
-    getCollection("team"),
-    getCollection("testimonials", { status: "approved" }),
-  ]);
+async function GallerySection() {
+  const images = await getCollection("gallery");
+  return <GalleryTeaser images={images} />;
+}
 
+async function TeamSection() {
+  const team = await getCollection("team");
+  return <TeamTeaser team={team} />;
+}
+
+async function DestinationsSection() {
+  const destinations = await getCollection("destinations");
+  return <BookingDeals destinations={destinations} />;
+}
+
+async function TestimonialsSection() {
+  const testimonials = await getCollection("testimonials", { status: "approved" });
+  return <Testimonials testimonials={testimonials} />;
+}
+
+export default function Home() {
   return (
     <>
       <Hero />
       <Intro />
       <WhyChooseUs />
       <Suspense fallback={<GalleryTeaserSkeleton />}>
-        <GalleryTeaser images={galleryImages} />
+        <GallerySection />
       </Suspense>
       <Suspense fallback={<SectionFallback />}>
         <ReelsSection />
       </Suspense>
       <Suspense fallback={<TeamTeaserSkeleton />}>
-        <TeamTeaser team={team} />
+        <TeamSection />
       </Suspense>
       <Suspense fallback={<BookingDealsSkeleton />}>
-        <BookingDeals destinations={destinations} />
+        <DestinationsSection />
       </Suspense>
       <Suspense fallback={<TestimonialsSkeleton />}>
-        <Testimonials testimonials={testimonials} />
+        <TestimonialsSection />
       </Suspense>
       <CallToAction />
     </>
