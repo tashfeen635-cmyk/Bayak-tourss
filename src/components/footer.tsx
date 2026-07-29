@@ -2,11 +2,11 @@
 
 import Link from "next/link";
 import {
-  MapPin,
+  Mountain,
   Phone,
   Mail,
 } from "lucide-react";
-import { MapPin as LogoIcon } from "lucide-react";
+import { Mountain as LogoIcon } from "lucide-react";
 
 const socials = [
   {
@@ -150,12 +150,7 @@ export function Footer() {
                   info@bayaktours.com
                 </a>
               </li>
-              <li className="flex items-start gap-3">
-                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
-                <span className="text-sm text-white/60">
-                  Main Boulevard, Islamabad, Pakistan
-                </span>
-              </li>
+
             </ul>
 
           </div>

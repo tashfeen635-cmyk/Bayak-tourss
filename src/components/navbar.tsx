@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, MapPin } from "lucide-react";
+import { Menu, X, Mountain } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "./theme-toggle";
 
@@ -38,7 +38,7 @@ export function Navbar() {
         <nav className="flex h-20 items-center justify-between">
           <Link href="/" className="flex items-center gap-2 group">
             <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gold text-white transition-transform group-hover:scale-110">
-              <MapPin className="h-5 w-5" />
+              <Mountain className="h-5 w-5" />
             </div>
             <span
               className={`font-heading text-2xl font-bold tracking-tight transition-colors ${

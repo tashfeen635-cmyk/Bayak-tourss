@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Mail, Phone, MapPin, Send, MessageCircle } from "lucide-react";
+import { Mail, Phone, Send, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -71,11 +71,6 @@ export function ContactContent() {
 
               <StaggerContainer className="mt-8 space-y-6">
                 {[
-                  {
-                    icon: MapPin,
-                    label: "Visit Us",
-                    value: "Main Boulevard, Islamabad, Pakistan",
-                  },
                   {
                     icon: Phone,
                     label: "Call Us",
