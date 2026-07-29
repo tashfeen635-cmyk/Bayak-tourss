@@ -90,30 +90,57 @@ export function GalleryContent() {
             </div>
           </FadeIn>
 
-          <div className="mt-12 columns-1 gap-4 sm:columns-2 lg:columns-3">
-            {filtered.map((img, i) => (
-              <div key={i} className="mb-4 break-inside-avoid">
-                <div
-                  onClick={() => setSelected(i)}
-                  className="group relative cursor-pointer overflow-hidden rounded-xl"
-                >
-                  <img
-                    src={img.src}
-                    alt={img.alt}
-                    loading="lazy"
-                    className="h-auto w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 flex items-end bg-gradient-to-t from-black/60 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                    <div className="p-4">
-                      <p className="text-sm font-medium text-white">
-                        {img.alt}
-                      </p>
-                      <p className="text-xs text-gold">{img.category}</p>
+          <div className="mt-12">
+            <div className="flex gap-3 overflow-x-auto snap-x snap-mandatory scrollbar-none sm:hidden">
+              {filtered.map((img, i) => (
+                <div key={i} className="w-1/3 flex-shrink-0 snap-start">
+                  <div
+                    onClick={() => setSelected(i)}
+                    className="group relative cursor-pointer overflow-hidden rounded-xl"
+                  >
+                    <img
+                      src={img.src}
+                      alt={img.alt}
+                      loading="lazy"
+                      className="h-auto w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 flex items-end bg-gradient-to-t from-black/60 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                      <div className="p-4">
+                        <p className="text-sm font-medium text-white">
+                          {img.alt}
+                        </p>
+                        <p className="text-xs text-gold">{img.category}</p>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
+            <div className="hidden sm:columns-2 sm:block lg:columns-3 gap-4">
+              {filtered.map((img, i) => (
+                <div key={i} className="mb-4 break-inside-avoid">
+                  <div
+                    onClick={() => setSelected(i)}
+                    className="group relative cursor-pointer overflow-hidden rounded-xl"
+                  >
+                    <img
+                      src={img.src}
+                      alt={img.alt}
+                      loading="lazy"
+                      className="h-auto w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 flex items-end bg-gradient-to-t from-black/60 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                      <div className="p-4">
+                        <p className="text-sm font-medium text-white">
+                          {img.alt}
+                        </p>
+                        <p className="text-xs text-gold">{img.category}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
