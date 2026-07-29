@@ -7,9 +7,11 @@ import Image from "next/image";
 import { FadeIn } from "./animations";
 import { GalleryImage } from "@/types";
 import { buildImageUrl } from "@/lib/image";
+import { GalleryContentSkeleton } from "@/components/skeletons";
 
 export function GalleryContent() {
   const [galleryImages, setGalleryImages] = useState<GalleryImage[]>([]);
+  const [loading, setLoading] = useState(true);
   const [selected, setSelected] = useState<number | null>(null);
   const categories = ["All", ...new Set(galleryImages.map((img) => img.category))];
   const [active, setActive] = useState("All");
@@ -21,8 +23,11 @@ export function GalleryContent() {
         const list = Array.isArray(data) ? data : data?.images ?? [];
         setGalleryImages(list.filter((img: GalleryImage) => img.src));
       })
-      .catch(() => setGalleryImages([]));
+      .catch(() => setGalleryImages([]))
+      .finally(() => setLoading(false));
   }, []);
+
+  if (loading) return <GalleryContentSkeleton />;
 
   const filtered =
     active === "All"

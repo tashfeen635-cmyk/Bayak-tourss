@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, Globe, Briefcase, Languages } from "lucide-react";
 import { FadeIn, StaggerContainer, StaggerItem } from "./animations";
 import { TeamMember } from "@/types";
+import { TeamContentSkeleton } from "@/components/skeletons";
 
 function toArr(v: unknown): string[] {
   if (Array.isArray(v)) return v;
@@ -19,6 +20,7 @@ function normalizeMember(m: TeamMember): TeamMember {
 
 export function TeamContent() {
   const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
+  const [loading, setLoading] = useState(true);
   const [selected, setSelected] = useState<number | null>(null);
 
   useEffect(() => {
@@ -29,8 +31,11 @@ export function TeamContent() {
         else if (data && Array.isArray(data.team)) setTeamMembers(data.team.map(normalizeMember));
         else setTeamMembers([]);
       })
-      .catch(() => setTeamMembers([]));
+      .catch(() => setTeamMembers([]))
+      .finally(() => setLoading(false));
   }, []);
+
+  if (loading) return <TeamContentSkeleton />;
 
   return (
     <>

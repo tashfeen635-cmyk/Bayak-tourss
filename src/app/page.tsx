@@ -9,10 +9,12 @@ import { BookingDeals } from "@/components/booking-deals";
 import { Testimonials } from "@/components/testimonials";
 import { CallToAction } from "@/components/call-to-action";
 import { getCollection } from "@/lib/db";
-
-function SectionFallback() {
-  return <div className="h-96 animate-pulse bg-muted/30" />;
-}
+import {
+  GalleryTeaserSkeleton,
+  TeamTeaserSkeleton,
+  BookingDealsSkeleton,
+  TestimonialsSkeleton,
+} from "@/components/skeletons";
 
 export default async function Home() {
   const [galleryImages, destinations, team, testimonials] = await Promise.all([
@@ -27,22 +29,26 @@ export default async function Home() {
       <Hero />
       <Intro />
       <WhyChooseUs />
-      <Suspense fallback={<SectionFallback />}>
+      <Suspense fallback={<GalleryTeaserSkeleton />}>
         <GalleryTeaser images={galleryImages} />
       </Suspense>
       <Suspense fallback={<SectionFallback />}>
         <ReelsSection />
       </Suspense>
-      <Suspense fallback={<SectionFallback />}>
+      <Suspense fallback={<TeamTeaserSkeleton />}>
         <TeamTeaser team={team} />
       </Suspense>
-      <Suspense fallback={<SectionFallback />}>
+      <Suspense fallback={<BookingDealsSkeleton />}>
         <BookingDeals destinations={destinations} />
       </Suspense>
-      <Suspense fallback={<SectionFallback />}>
+      <Suspense fallback={<TestimonialsSkeleton />}>
         <Testimonials testimonials={testimonials} />
       </Suspense>
       <CallToAction />
     </>
   );
+}
+
+function SectionFallback() {
+  return <div className="h-96 animate-pulse bg-muted/30" />;
 }

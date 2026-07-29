@@ -17,6 +17,7 @@ import { Button } from "@/components/ui/button";
 import { FadeIn, StaggerContainer, StaggerItem } from "./animations";
 import { BookingModal } from "./booking-modal";
 import { Destination } from "@/types";
+import { DestinationsContentSkeleton } from "@/components/skeletons";
 
 const CATEGORIES = [
   "All",
@@ -46,6 +47,7 @@ function normalizeDest(d: Destination): Destination {
 
 export function DestinationsContent() {
   const [destinations, setDestinations] = useState<Destination[]>([]);
+  const [loading, setLoading] = useState(true);
   const [active, setActive] = useState("All");
   const [selected, setSelected] = useState<number | null>(null);
   const [bookingDest, setBookingDest] = useState<Destination | null>(null);
@@ -58,8 +60,11 @@ export function DestinationsContent() {
         else if (data && Array.isArray(data.destinations)) setDestinations(data.destinations.map(normalizeDest));
         else setDestinations([]);
       })
-      .catch(() => setDestinations([]));
+      .catch(() => setDestinations([]))
+      .finally(() => setLoading(false));
   }, []);
+
+  if (loading) return <DestinationsContentSkeleton />;
 
   const filtered =
     active === "All"
