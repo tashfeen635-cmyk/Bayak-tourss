@@ -1,5 +1,6 @@
+import { cache } from "react";
 import { connectToDatabase } from "@/lib/mongodb";
-import { ObjectId, WithId } from "mongodb";
+import { ObjectId, WithId, type Filter } from "mongodb";
 import type {
   Destination,
   Booking,
@@ -41,12 +42,13 @@ function normalizeData(data: Record<string, any>): Record<string, any> {
   return out;
 }
 
-export async function getCollection<K extends CollectionName>(
-  name: K
+export const getCollection = cache(async function getCollection<K extends CollectionName>(
+  name: K,
+  filter: Filter<CollectionMap[K]> = {}
 ): Promise<WithId<CollectionMap[K]>[]> {
   const { db } = await connectToDatabase();
-  return db.collection<CollectionMap[K]>(name).find().sort({ createdAt: -1 }).toArray();
-}
+  return db.collection<CollectionMap[K]>(name).find(filter).sort({ createdAt: -1 }).toArray();
+});
 
 export async function getById<K extends CollectionName>(
   name: K,

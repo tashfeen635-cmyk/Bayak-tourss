@@ -3,16 +3,21 @@
 import { useState, useCallback, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import Image from "next/image";
 import { FadeIn } from "./animations";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { GalleryImage } from "@/types";
+import { buildImageUrl } from "@/lib/image";
 
-export function GalleryTeaser() {
-  const [galleryImages, setGalleryImages] = useState<GalleryImage[]>([]);
+export function GalleryTeaser({ images: data }: { images?: GalleryImage[] }) {
+  const [galleryImages, setGalleryImages] = useState<GalleryImage[]>(() =>
+    data ? data.filter((img) => img.src) : []
+  );
   const [selected, setSelected] = useState<number | null>(null);
 
   useEffect(() => {
+    if (data) return;
     fetch("/api/gallery")
       .then((r) => r.json())
       .then((data) => {
@@ -20,7 +25,7 @@ export function GalleryTeaser() {
         setGalleryImages(list.filter((img: GalleryImage) => img.src));
       })
       .catch(() => setGalleryImages([]));
-  }, []);
+  }, [data]);
 
   const touchStartX = useRef(0);
   const touchStartY = useRef(0);
@@ -84,11 +89,12 @@ export function GalleryTeaser() {
                     onClick={() => setSelected(i)}
                     className="group relative cursor-pointer overflow-hidden rounded-xl aspect-square"
                   >
-                    <img
-                      src={img.src}
+                    <Image
+                      src={buildImageUrl(img.src, 400)}
                       alt={img.alt}
-                      loading="lazy"
-                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      fill
+                      sizes="33vw"
+                      className="object-cover transition-transform duration-500 group-hover:scale-110"
                     />
                     <div className="absolute inset-0 flex items-end bg-gradient-to-t from-black/70 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                       <div className="p-2">
@@ -106,11 +112,12 @@ export function GalleryTeaser() {
                     onClick={() => setSelected(i)}
                     className="group relative cursor-pointer overflow-hidden rounded-xl"
                   >
-                    <img
-                      src={img.src}
+                    <Image
+                      src={buildImageUrl(img.src, 600)}
                       alt={img.alt}
-                      loading="lazy"
-                      className="h-auto w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      fill
+                      sizes="(max-width: 1024px) 50vw, 33vw"
+                      className="object-cover transition-transform duration-500 group-hover:scale-110"
                     />
                     <div className="absolute inset-0 flex items-end bg-gradient-to-t from-black/70 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                       <div className="p-4">
@@ -180,10 +187,12 @@ export function GalleryTeaser() {
                 onClick={(e) => e.stopPropagation()}
                 className="relative max-h-[85vh] max-w-5xl"
               >
-                <img
-                  src={galleryImages[selected].src}
+                <Image
+                  src={buildImageUrl(galleryImages[selected].src, 1200)}
                   alt={galleryImages[selected].alt}
-                  className="h-auto max-h-[80vh] w-auto rounded-lg object-contain"
+                  fill
+                  sizes="90vw"
+                  className="object-contain rounded-lg"
                 />
                 <div className="mt-3 text-center">
                   <p className="text-sm font-medium text-white">

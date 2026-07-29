@@ -44,13 +44,16 @@ function normalizeDest(d: Destination): Destination {
   };
 }
 
-export function BookingDeals() {
-  const [destinations, setDestinations] = useState<Destination[]>([]);
+export function BookingDeals({ destinations: data }: { destinations?: Destination[] }) {
+  const [destinations, setDestinations] = useState<Destination[]>(() =>
+    data ? data.map(normalizeDest) : []
+  );
   const [active, setActive] = useState("All");
   const [selected, setSelected] = useState<number | null>(null);
   const [bookingDest, setBookingDest] = useState<Destination | null>(null);
 
   useEffect(() => {
+    if (data) return;
     fetch("/api/destinations")
       .then((r) => r.json())
       .then((data) => {
@@ -59,7 +62,7 @@ export function BookingDeals() {
         else setDestinations([]);
       })
       .catch(() => setDestinations([]));
-  }, []);
+  }, [data]);
 
   const filtered =
     active === "All"

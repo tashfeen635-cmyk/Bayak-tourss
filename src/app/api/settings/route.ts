@@ -12,7 +12,6 @@ export async function GET() {
         siteName: "Bayak Tours",
         contactEmail: "info@bayaktours.com",
         contactPhone: "+92 314 6605966",
-        address: "Islamabad, Pakistan",
         socialLinks: {
           instagram: "https://instagram.com/travelwith_arrehman",
           facebook: "https://facebook.com/Travelwitharrehman",
@@ -24,6 +23,9 @@ export async function GET() {
             "Discover Pakistan with Bayak Tours. Premium travel experiences to Hunza, Skardu, Fairy Meadows, and more.",
           keywords: ["Pakistan tourism", "Hunza Valley tours", "Skardu trips"],
         },
+      },
+      {
+        headers: { "Cache-Control": "public, s-maxage=60, stale-while-revalidate=120" },
       }
     );
   } catch (error) {

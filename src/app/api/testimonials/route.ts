@@ -6,18 +6,20 @@ export async function GET(request: NextRequest) {
     const { searchParams } = new URL(request.url);
     const status = searchParams.get("status");
 
-    const all = await getCollection("testimonials");
-
-    let results = all;
+    let filter = {};
     if (status === "approved") {
-      results = all.filter((t) => t.status === "approved" || !t.status);
+      filter = { $or: [{ status: "approved" }, { status: { $exists: false } }] };
     } else if (status === "pending") {
-      results = all.filter((t) => t.status === "pending");
+      filter = { status: "pending" };
     } else if (status === "rejected") {
-      results = all.filter((t) => t.status === "rejected");
+      filter = { status: "rejected" };
     }
 
-    return NextResponse.json(results);
+    const results = await getCollection("testimonials", filter);
+
+    return NextResponse.json(results, {
+      headers: { "Cache-Control": "public, s-maxage=60, stale-while-revalidate=120" },
+    });
   } catch (error) {
     console.error("GET testimonials error:", error);
     return NextResponse.json({ error: "Failed to fetch testimonials" }, { status: 500 });

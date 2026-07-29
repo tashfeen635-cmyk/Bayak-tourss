@@ -19,11 +19,14 @@ function normalizeMember(m: TeamMember): TeamMember {
   return { ...m, languages: toArr(m.languages) };
 }
 
-export function TeamTeaser() {
-  const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
+export function TeamTeaser({ team: data }: { team?: TeamMember[] }) {
+  const [teamMembers, setTeamMembers] = useState<TeamMember[]>(() =>
+    data ? data.map(normalizeMember) : []
+  );
   const [selected, setSelected] = useState<number | null>(null);
 
   useEffect(() => {
+    if (data) return;
     fetch("/api/team")
       .then((r) => r.json())
       .then((data) => {
@@ -32,7 +35,7 @@ export function TeamTeaser() {
         else setTeamMembers([]);
       })
       .catch(() => setTeamMembers([]));
-  }, []);
+  }, [data]);
 
   return (
     <section className="py-24 sm:py-32">

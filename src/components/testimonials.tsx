@@ -11,8 +11,8 @@ import { Testimonial } from "@/types";
 
 const MAX_CHARS = 200;
 
-export function Testimonials() {
-  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
+export function Testimonials({ testimonials: data }: { testimonials?: Testimonial[] }) {
+  const [testimonials, setTestimonials] = useState<Testimonial[]>(data ?? []);
   const [current, setCurrent] = useState(0);
   const [direction, setDirection] = useState(0);
   const [hasInteracted, setHasInteracted] = useState(false);
@@ -29,6 +29,7 @@ export function Testimonials() {
   const [reviewError, setReviewError] = useState<string | null>(null);
 
   useEffect(() => {
+    if (data) return;
     fetch("/api/testimonials?status=approved")
       .then((r) => r.json())
       .then((data) => {
@@ -36,7 +37,7 @@ export function Testimonials() {
         else setTestimonials([]);
       })
       .catch(() => setTestimonials([]));
-  }, []);
+  }, [data]);
 
   const next = useCallback(() => {
     setDirection(1);

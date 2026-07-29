@@ -3,8 +3,10 @@
 import { useState, useCallback, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import Image from "next/image";
 import { FadeIn } from "./animations";
 import { GalleryImage } from "@/types";
+import { buildImageUrl } from "@/lib/image";
 
 export function GalleryContent() {
   const [galleryImages, setGalleryImages] = useState<GalleryImage[]>([]);
@@ -115,11 +117,12 @@ export function GalleryContent() {
                     onClick={() => setSelected(i)}
                     className="group relative cursor-pointer overflow-hidden rounded-xl aspect-square"
                   >
-                    <img
-                      src={img.src}
+                    <Image
+                      src={buildImageUrl(img.src, 400)}
                       alt={img.alt}
-                      loading="lazy"
-                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      fill
+                      sizes="33vw"
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 flex items-end bg-gradient-to-t from-black/60 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                       <div className="p-2">
@@ -139,11 +142,12 @@ export function GalleryContent() {
                     onClick={() => setSelected(i)}
                     className="group relative cursor-pointer overflow-hidden rounded-xl"
                   >
-                    <img
-                      src={img.src}
+                    <Image
+                      src={buildImageUrl(img.src, 600)}
                       alt={img.alt}
-                      loading="lazy"
-                      className="h-auto w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      fill
+                      sizes="(max-width: 1024px) 50vw, 33vw"
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 flex items-end bg-gradient-to-t from-black/60 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                       <div className="p-4">
@@ -203,10 +207,12 @@ export function GalleryContent() {
                 onClick={(e) => e.stopPropagation()}
                 className="relative max-h-[85vh] max-w-5xl"
               >
-                <img
-                  src={filtered[selected].src}
+                <Image
+                  src={buildImageUrl(filtered[selected].src, 1200)}
                   alt={filtered[selected].alt}
-                  className="h-auto max-h-[80vh] w-auto rounded-lg object-contain"
+                  fill
+                  sizes="90vw"
+                  className="object-contain rounded-lg"
                 />
                 <div className="mt-3 text-center">
                   <p className="text-sm font-medium text-white">
