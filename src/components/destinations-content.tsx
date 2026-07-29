@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import { buildImageUrl } from "@/lib/image";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   MapPin,
@@ -45,14 +46,17 @@ function normalizeDest(d: Destination): Destination {
   };
 }
 
-export function DestinationsContent() {
-  const [destinations, setDestinations] = useState<Destination[]>([]);
-  const [loading, setLoading] = useState(true);
+export function DestinationsContent({ destinations: data }: { destinations?: Destination[] }) {
+  const [destinations, setDestinations] = useState<Destination[]>(() =>
+    data ? data.map(normalizeDest) : []
+  );
+  const [loading, setLoading] = useState(!data);
   const [active, setActive] = useState("All");
   const [selected, setSelected] = useState<number | null>(null);
   const [bookingDest, setBookingDest] = useState<Destination | null>(null);
 
   useEffect(() => {
+    if (data) return;
     fetch("/api/destinations")
       .then((r) => r.json())
       .then((data) => {
@@ -131,7 +135,7 @@ export function DestinationsContent() {
                     )}
                     <div className="relative aspect-[4/3] overflow-hidden">
                       <Image
-                        src={dest.image}
+                        src={buildImageUrl(dest.image, 600)}
                         alt={dest.name}
                         fill
                         className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -247,7 +251,7 @@ export function DestinationsContent() {
             >
               <div className="relative h-64 sm:h-80">
                 <Image
-                  src={filtered[selected].image}
+                  src={buildImageUrl(filtered[selected].image, 800)}
                   alt={filtered[selected].name}
                   fill
                   className="object-cover"

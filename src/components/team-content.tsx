@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import { buildImageUrl } from "@/lib/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Globe, Briefcase, Languages } from "lucide-react";
 import { FadeIn, StaggerContainer, StaggerItem } from "./animations";
@@ -18,12 +19,15 @@ function normalizeMember(m: TeamMember): TeamMember {
   return { ...m, languages: toArr(m.languages) };
 }
 
-export function TeamContent() {
-  const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
-  const [loading, setLoading] = useState(true);
+export function TeamContent({ team: data }: { team?: TeamMember[] }) {
+  const [teamMembers, setTeamMembers] = useState<TeamMember[]>(() =>
+    data ? data.map(normalizeMember) : []
+  );
+  const [loading, setLoading] = useState(!data);
   const [selected, setSelected] = useState<number | null>(null);
 
   useEffect(() => {
+    if (data) return;
     fetch("/api/team")
       .then((r) => r.json())
       .then((data) => {
@@ -71,7 +75,7 @@ export function TeamContent() {
                   >
                     <div className="relative aspect-square overflow-hidden">
                       <Image
-                        src={member.image}
+                        src={buildImageUrl(member.image, 400)}
                         alt={member.name}
                         fill
                         className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -122,7 +126,7 @@ export function TeamContent() {
             >
               <div className="relative h-64 sm:h-72">
                 <Image
-                  src={teamMembers[selected].image}
+                  src={buildImageUrl(teamMembers[selected].image, 600)}
                   alt={teamMembers[selected].name}
                   fill
                   className="object-contain"

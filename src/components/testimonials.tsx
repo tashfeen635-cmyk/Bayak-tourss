@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useState, useCallback } from "react";
+import { buildImageUrl } from "@/lib/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Star, ChevronLeft, ChevronRight, Quote, X, Upload, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -204,7 +205,7 @@ export function Testimonials({ testimonials: data }: { testimonials?: Testimonia
                     <div className="mt-6 flex items-center gap-3">
                       {t.avatar ? (
                         <Image
-                          src={t.avatar}
+                          src={buildImageUrl(t.avatar, 96)}
                           alt={t.name}
                           width={48}
                           height={48}

@@ -17,17 +17,17 @@ import {
 } from "@/components/skeletons";
 
 async function GallerySection() {
-  const images = await getCollection("gallery");
+  const images = await getCollection("gallery", {}, { limit: 6 });
   return <GalleryTeaser images={images} />;
 }
 
 async function TeamSection() {
-  const team = await getCollection("team");
+  const team = await getCollection("team", {}, { limit: 4 });
   return <TeamTeaser team={team} />;
 }
 
 async function DestinationsSection() {
-  const destinations = await getCollection("destinations");
+  const destinations = await getCollection("destinations", {}, { limit: 6 });
   return <BookingDeals destinations={destinations} />;
 }
 

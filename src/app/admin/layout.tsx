@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import useSWR from "swr";
 import { cn } from "@/lib/utils";
 import {
   LayoutDashboard,
@@ -40,20 +41,12 @@ export default function AdminLayout({
   const pathname = usePathname();
   const router = useRouter();
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [checking, setChecking] = useState(true);
-
-  useEffect(() => {
-    if (pathname === "/admin/login") {
-      setChecking(false);
-      return;
-    }
-    fetch("/api/auth/me")
-      .then((res) => {
-        if (!res.ok) router.replace("/admin/login");
-        else setChecking(false);
-      })
-      .catch(() => router.replace("/admin/login"));
-  }, [pathname, router]);
+  const { error, isValidating } = useSWR(
+    pathname === "/admin/login" ? null : "/api/auth/me",
+    (url: string) => fetch(url).then((r) => { if (!r.ok) throw new Error("Unauthorized"); return r.json(); }),
+    { revalidateOnFocus: false, revalidateOnReconnect: false }
+  );
+  const checking = pathname !== "/admin/login" && isValidating;
 
   if (pathname === "/admin/login") {
     return <>{children}</>;
@@ -65,6 +58,11 @@ export default function AdminLayout({
         <div className="text-muted-foreground text-sm">Checking session…</div>
       </div>
     );
+  }
+
+  if (error && pathname !== "/admin/login") {
+    router.replace("/admin/login");
+    return null;
   }
 
   const handleLogout = async () => {

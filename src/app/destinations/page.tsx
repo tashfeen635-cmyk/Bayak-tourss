@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { DestinationsContent } from "@/components/destinations-content";
+import { getCollection } from "@/lib/db";
 
 export const metadata: Metadata = {
   title: "Destinations | Bayak Tours",
@@ -7,6 +8,7 @@ export const metadata: Metadata = {
     "Explore our handpicked destinations around the world. From tropical beaches to mountain adventures.",
 };
 
-export default function DestinationsPage() {
-  return <DestinationsContent />;
+export default async function DestinationsPage() {
+  const destinations = await getCollection("destinations");
+  return <DestinationsContent destinations={destinations} />;
 }

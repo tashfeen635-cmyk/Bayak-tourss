@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import { buildImageUrl } from "@/lib/image";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   MapPin,
@@ -119,7 +120,7 @@ export function BookingDeals({ destinations: data }: { destinations?: Destinatio
                   )}
                   <div className="relative aspect-[4/3] overflow-hidden">
                     <Image
-                      src={dest.image}
+                      src={buildImageUrl(dest.image, 600)}
                       alt={dest.name}
                       fill
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -243,7 +244,7 @@ export function BookingDeals({ destinations: data }: { destinations?: Destinatio
             >
               <div className="relative h-64 sm:h-80">
                 <Image
-                  src={filtered[selected].image}
+                  src={buildImageUrl(filtered[selected].image, 800)}
                   alt={filtered[selected].name}
                   fill
                   className="object-cover"

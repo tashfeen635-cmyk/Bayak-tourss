@@ -5,13 +5,15 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { FadeIn } from "./animations";
-import { GalleryImage } from "@/types";
+import type { GalleryImage } from "@/types";
 import { buildImageUrl } from "@/lib/image";
 import { GalleryContentSkeleton } from "@/components/skeletons";
 
-export function GalleryContent() {
-  const [galleryImages, setGalleryImages] = useState<GalleryImage[]>([]);
-  const [loading, setLoading] = useState(true);
+export function GalleryContent({ images: data }: { images?: GalleryImage[] }) {
+  const [galleryImages, setGalleryImages] = useState<GalleryImage[]>(() =>
+    data ? data.filter((img) => img.src) : []
+  );
+  const [loading, setLoading] = useState(!data);
   const [selected, setSelected] = useState<number | null>(null);
   const categories = ["All", ...new Set(galleryImages.map((img) => img.category))];
   const [active, setActive] = useState("All");
@@ -60,6 +62,7 @@ export function GalleryContent() {
   }, [selected, goNext, goPrev]);
 
   useEffect(() => {
+    if (data) return;
     fetch("/api/gallery")
       .then((r) => r.json())
       .then((data) => {

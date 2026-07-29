@@ -42,12 +42,21 @@ function normalizeData(data: Record<string, any>): Record<string, any> {
   return out;
 }
 
+export interface GetCollectionOptions {
+  limit?: number;
+  projection?: Record<string, number>;
+}
+
 export const getCollection = cache(async function getCollection<K extends CollectionName>(
   name: K,
-  filter: Filter<CollectionMap[K]> = {}
+  filter: Filter<CollectionMap[K]> = {},
+  options: GetCollectionOptions = {}
 ): Promise<WithId<CollectionMap[K]>[]> {
   const { db } = await connectToDatabase();
-  return db.collection<CollectionMap[K]>(name).find(filter).sort({ createdAt: -1 }).toArray();
+  let query = db.collection<CollectionMap[K]>(name).find(filter).sort({ createdAt: -1 });
+  if (options.limit) query = query.limit(options.limit);
+  if (options.projection) query = query.project(options.projection);
+  return query.toArray();
 });
 
 export async function getById<K extends CollectionName>(
