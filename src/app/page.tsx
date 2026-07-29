@@ -1,4 +1,3 @@
-import { Suspense } from "react";
 import { Hero } from "@/components/hero";
 import { Intro } from "@/components/intro";
 import { WhyChooseUs } from "@/components/why-choose-us";
@@ -9,12 +8,6 @@ import { BookingDeals } from "@/components/booking-deals";
 import { Testimonials } from "@/components/testimonials";
 import { CallToAction } from "@/components/call-to-action";
 import { getCollection } from "@/lib/db";
-import {
-  GalleryTeaserSkeleton,
-  TeamTeaserSkeleton,
-  BookingDealsSkeleton,
-  TestimonialsSkeleton,
-} from "@/components/skeletons";
 
 async function GallerySection() {
   const images = await getCollection("gallery", {}, { limit: 6 });
@@ -42,26 +35,12 @@ export default function Home() {
       <Hero />
       <Intro />
       <WhyChooseUs />
-      <Suspense fallback={<GalleryTeaserSkeleton />}>
-        <GallerySection />
-      </Suspense>
-      <Suspense fallback={<SectionFallback />}>
-        <ReelsSection />
-      </Suspense>
-      <Suspense fallback={<TeamTeaserSkeleton />}>
-        <TeamSection />
-      </Suspense>
-      <Suspense fallback={<BookingDealsSkeleton />}>
-        <DestinationsSection />
-      </Suspense>
-      <Suspense fallback={<TestimonialsSkeleton />}>
-        <TestimonialsSection />
-      </Suspense>
+      <GallerySection />
+      <ReelsSection />
+      <TeamSection />
+      <DestinationsSection />
+      <TestimonialsSection />
       <CallToAction />
     </>
   );
-}
-
-function SectionFallback() {
-  return <div className="h-96 animate-pulse bg-muted/30" />;
 }
