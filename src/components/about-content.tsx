@@ -49,28 +49,28 @@ const values = [
 
 const milestones = [
   {
-    year: "2012",
+    year: "2021",
     title: "The Beginning",
     description:
       "Ahmed Khan founded Bayak Tours from a small office in Islamabad with a dream to show the world Pakistan's true beauty.",
   },
   {
-    year: "2015",
-    title: "First 1,000 Travelers",
+    year: "2022",
+    title: "First 200 Travelers",
     description:
-      "Reached our first few hundred happy travelers, expanding routes to cover all of Gilgit-Baltistan and Khyber Pakhtunkhwa.",
+      "Reached our first 200 happy travelers, expanding routes to cover all of Gilgit-Baltistan and Khyber Pakhtunkhwa.",
   },
   {
-    year: "2018",
+    year: "2023",
     title: "International Recognition",
     description:
       "Featured in Lonely Planet and recognized by Pakistan's Ministry of Tourism as a top-tier travel operator.",
   },
   {
-    year: "2021",
+    year: "2024",
     title: "438+ Happy Travelers",
     description:
-      "Crossed the milestone of 10,000 satisfied travelers from over 40 countries around the world.",
+      "Crossed the milestone of 438 satisfied travelers from over 10 countries around the world.",
   },
   {
     year: "2024",
@@ -137,7 +137,8 @@ const faqs = [
   {
     question: "How do I book a trip with Bayak Tours?",
     answer:
-      "Booking a trip with Bayak Tours is simple. You can reach us via our website contact form, WhatsApp at +92 300 1234567, or email at hello@bayaktours.com. Share your preferred destination, travel dates, group size, and budget. Our team will create a customized itinerary and guide you through the booking process with secure payment options.",
+      `Booking a trip with Bayak Tours is simple. You can reach us via our website contact form, WhatsApp at <a href="https://wa.me/923146605966" target="_blank" rel="noopener noreferrer" style="color: #B8860B; text-decoration: underline;">+92 314 6605966</a>, or email at <a href="mailto:info@bayaktours.com" style="color: #B8860B; text-decoration: underline;">info@bayaktours.com</a>. Share your preferred destination, travel dates, group size, and budget. Our team will create a customized itinerary and guide you through the booking process with secure payment options.`,
+    isHtml: true,
   },
 ];
 
@@ -199,7 +200,7 @@ export function AboutContent() {
                   />
                 </div>
                 <div className="absolute -bottom-6 -right-6 rounded-2xl bg-gold p-6 text-white shadow-xl sm:-bottom-8 sm:-right-8">
-                  <div className="font-heading text-3xl font-bold">12+</div>
+                  <div className="font-heading text-3xl font-bold">5+</div>
                   <div className="text-sm text-white/80">Years of Excellence</div>
                 </div>
               </div>
@@ -214,7 +215,7 @@ export function AboutContent() {
                   Born From a Love of Pakistan
                 </h2>
                 <p className="mt-4 text-muted-foreground">
-                  Bayak Tours was founded in 2012 by Ahmed Khan, a lifelong
+                  Bayak Tours was founded in 2021 by Ahmed Khan, a lifelong
                   mountaineer and travel enthusiast who saw the incredible beauty
                   of Pakistan going unnoticed by the world. What started as a
                   small team of passionate guides has grown into Pakistan&apos;s
@@ -422,7 +423,11 @@ export function AboutContent() {
                   >
                     <div className="overflow-hidden">
                       <div className="px-6 pb-5 text-sm leading-relaxed text-muted-foreground">
-                        {faq.answer}
+                        {faq.isHtml ? (
+                          <span dangerouslySetInnerHTML={{ __html: faq.answer }} />
+                        ) : (
+                          faq.answer
+                        )}
                       </div>
                     </div>
                   </div>

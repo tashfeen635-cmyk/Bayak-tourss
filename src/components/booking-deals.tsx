@@ -20,11 +20,12 @@ import { Destination } from "@/types";
 
 const categories = [
   "All",
-  "Adventure",
-  "Family",
+  "Autumn",
+  "Blossom",
   "Honeymoon",
-  "Cultural",
-  "Luxury",
+  "Family",
+  "Trekking",
+  "Bike tours",
 ];
 
 function toArr(v: unknown): string[] {
@@ -39,6 +40,7 @@ function normalizeDest(d: Destination): Destination {
     category: toArr(d.category),
     availableDates: toArr(d.availableDates),
     included: toArr(d.included),
+    notIncluded: toArr(d.notIncluded),
   };
 }
 
@@ -180,6 +182,24 @@ export function BookingDeals() {
                         </span>
                       )}
                     </div>
+                    {dest.notIncluded.length > 0 && (
+                      <div className="mt-1 flex flex-wrap gap-1.5">
+                        {dest.notIncluded.slice(0, 3).map((item) => (
+                          <span
+                            key={item}
+                            className="flex items-center gap-1 text-[10px] text-muted-foreground"
+                          >
+                            <X className="h-2.5 w-2.5 text-red-400" />
+                            {item}
+                          </span>
+                        ))}
+                        {dest.notIncluded.length > 3 && (
+                          <span className="text-[10px] text-muted-foreground">
+                            +{dest.notIncluded.length - 3} more
+                          </span>
+                        )}
+                      </div>
+                    )}
 
                     <div className="mt-4 flex items-end justify-between border-t border-border pt-4">
                       <span className="text-sm font-medium text-gold transition-colors group-hover:text-gold-dark">
@@ -288,6 +308,23 @@ export function BookingDeals() {
                     ))}
                   </div>
                 </div>
+
+                {filtered[selected].notIncluded.length > 0 && (
+                  <div className="mt-4">
+                    <h4 className="text-sm font-semibold">What&apos;s Not Included</h4>
+                    <div className="mt-2 flex flex-wrap gap-2">
+                      {filtered[selected].notIncluded.map((item) => (
+                        <span
+                          key={item}
+                          className="flex items-center gap-1.5 rounded-full bg-muted/50 px-3 py-1 text-xs"
+                        >
+                          <X className="h-3 w-3 text-red-400" />
+                          {item}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
 
                 <div className="mt-6">
                   <h4 className="text-sm font-semibold">Day-by-Day Itinerary</h4>

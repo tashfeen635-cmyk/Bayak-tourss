@@ -9,10 +9,30 @@ import { FadeIn, StaggerContainer, StaggerItem } from "./animations";
 
 export function ContactContent() {
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [destination, setDestination] = useState("");
+  const [travelDates, setTravelDates] = useState("");
+  const [message, setMessage] = useState("");
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    setSubmitted(true);
+    setSubmitting(true);
+    try {
+      await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ firstName, lastName, email, phone, destination, travelDates, message }),
+      });
+      setSubmitted(true);
+    } catch {
+      // silently fail for now
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (
@@ -59,17 +79,20 @@ export function ContactContent() {
                   {
                     icon: Phone,
                     label: "Call Us",
-                    value: "+92 300 1234567",
+                    value: "+92 314 6605966",
+                    href: "https://wa.me/923146605966",
                   },
                   {
                     icon: Mail,
                     label: "Email Us",
-                    value: "hello@bayaktours.com",
+                    value: "info@bayaktours.com",
+                    href: "mailto:info@bayaktours.com",
                   },
                   {
                     icon: MessageCircle,
                     label: "WhatsApp",
-                    value: "+92 300 1234567",
+                    value: "+92 314 6605966",
+                    href: "https://wa.me/923146605966",
                   },
                 ].map((item) => (
                   <StaggerItem key={item.label}>
@@ -82,7 +105,18 @@ export function ContactContent() {
                           {item.label}
                         </div>
                         <div className="text-sm text-muted-foreground">
-                          {item.value}
+                          {item.href ? (
+                            <a
+                              href={item.href}
+                              target={item.href.startsWith("http") ? "_blank" : undefined}
+                              rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                              className="transition-colors hover:text-gold"
+                            >
+                              {item.value}
+                            </a>
+                          ) : (
+                            item.value
+                          )}
                         </div>
                       </div>
                     </div>
@@ -124,6 +158,8 @@ export function ContactContent() {
                           placeholder="John"
                           required
                           className="rounded-xl"
+                          value={firstName}
+                          onChange={(e) => setFirstName(e.target.value)}
                         />
                       </div>
                       <div>
@@ -134,6 +170,8 @@ export function ContactContent() {
                           placeholder="Doe"
                           required
                           className="rounded-xl"
+                          value={lastName}
+                          onChange={(e) => setLastName(e.target.value)}
                         />
                       </div>
                     </div>
@@ -146,6 +184,8 @@ export function ContactContent() {
                         placeholder="john@example.com"
                         required
                         className="rounded-xl"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                       />
                     </div>
                     <div>
@@ -154,8 +194,10 @@ export function ContactContent() {
                       </label>
                       <Input
                         type="tel"
-                        placeholder="+92 300 1234567"
+                        placeholder="+92 314 6605966"
                         className="rounded-xl"
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
                       />
                     </div>
                     <div>
@@ -165,6 +207,8 @@ export function ContactContent() {
                       <Input
                         placeholder="e.g., Hunza, Skardu, Fairy Meadows"
                         className="rounded-xl"
+                        value={destination}
+                        onChange={(e) => setDestination(e.target.value)}
                       />
                     </div>
                     <div>
@@ -174,6 +218,8 @@ export function ContactContent() {
                       <Input
                         placeholder="e.g., Aug 15 - Aug 20, 2025"
                         className="rounded-xl"
+                        value={travelDates}
+                        onChange={(e) => setTravelDates(e.target.value)}
                       />
                     </div>
                     <div>
@@ -185,15 +231,18 @@ export function ContactContent() {
                         rows={5}
                         required
                         className="rounded-xl"
+                        value={message}
+                        onChange={(e) => setMessage(e.target.value)}
                       />
                     </div>
                     <Button
                       type="submit"
+                      disabled={submitting}
                       className="w-full rounded-full bg-gold text-white hover:bg-gold-dark"
                       size="lg"
                     >
                       <Send className="mr-2 h-4 w-4" />
-                      Send Message
+                      {submitting ? "Sending..." : "Send Message"}
                     </Button>
                   </form>
                 )}

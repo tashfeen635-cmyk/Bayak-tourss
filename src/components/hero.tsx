@@ -23,15 +23,13 @@ export function Hero() {
           type="video/mp4"
         />
       </video>
-      <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80" />
-
       <div className="relative z-10 mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
-          <span className="mb-6 inline-block rounded-full border border-gold/40 bg-gold/10 px-5 py-2 text-sm font-medium tracking-wider text-gold backdrop-blur-sm">
+          <span className="mb-6 inline-block rounded-full border border-gold/40 bg-gold/10 px-5 py-2 text-sm font-medium tracking-wider text-gold backdrop-blur-sm invisible">
             PAKISTAN&apos;S #1 TRAVEL COMPANY
           </span>
         </motion.div>

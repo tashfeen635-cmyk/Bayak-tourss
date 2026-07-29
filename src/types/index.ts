@@ -15,6 +15,7 @@ export interface Destination {
   featured: boolean;
   availableDates: string[];
   included: string[];
+  notIncluded: string[];
   itinerary: ItineraryDay[];
   createdAt?: Date;
   updatedAt?: Date;

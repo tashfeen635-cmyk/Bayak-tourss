@@ -12,8 +12,6 @@ import {
   Loader2,
   Upload,
   GripVertical,
-  ChevronDown,
-  Check,
 } from "lucide-react";
 
 interface ItineraryDay {
@@ -28,24 +26,27 @@ interface Destination {
   region: string;
   description: string;
   image: string;
+  duration: string;
   category: string[];
   availableDates: string[];
   included: string[];
+  notIncluded: string[];
   itinerary: ItineraryDay[];
   featured: boolean;
 }
 
-const PREDEFINED_CATEGORIES = ["Adventure", "Family", "Honeymoon", "Cultural", "Luxury"];
-const MAX_CATEGORIES = 6;
+const PREDEFINED_CATEGORIES = ["Autumn", "Blossom", "Honeymoon", "Family", "Trekking", "Bike tours"];
 
 const emptyForm: Destination = {
   name: "",
   region: "",
   description: "",
   image: "",
+  duration: "",
   category: [],
   availableDates: [],
   included: [],
+  notIncluded: [],
   itinerary: [],
   featured: false,
 };
@@ -60,10 +61,10 @@ export default function DestinationsPage() {
   const [search, setSearch] = useState("");
   const [uploading, setUploading] = useState(false);
   const [uploadError, setUploadError] = useState<string | null>(null);
-  const [catDropdownOpen, setCatDropdownOpen] = useState(false);
-  const [newCategoryInput, setNewCategoryInput] = useState("");
+  const [datesInput, setDatesInput] = useState("");
+  const [includedInput, setIncludedInput] = useState("");
+  const [notIncludedInput, setNotIncludedInput] = useState("");
   const fetchedRef = useRef(false);
-  const catDropdownRef = useRef<HTMLDivElement>(null);
 
   const fetchItems = useCallback(async () => {
     try {
@@ -86,30 +87,29 @@ export default function DestinationsPage() {
     }
   }, [fetchItems]);
 
-  useEffect(() => {
-    if (!catDropdownOpen) return;
-    const handleClickOutside = (e: MouseEvent) => {
-      if (catDropdownRef.current && !catDropdownRef.current.contains(e.target as Node)) {
-        setCatDropdownOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [catDropdownOpen]);
-
   const openModal = (item?: Destination) => {
     if (item) {
       setEditingItem(item);
+      const dates = Array.isArray(item.availableDates) ? item.availableDates : toArr(item.availableDates);
+      const inc = Array.isArray(item.included) ? item.included : toArr(item.included);
+      const notInc = Array.isArray(item.notIncluded) ? item.notIncluded : toArr(item.notIncluded);
+      setDatesInput(dates.join(", "));
+      setIncludedInput(inc.join(", "));
+      setNotIncludedInput(notInc.join(", "));
       setFormData({
         ...item,
         category: Array.isArray(item.category) ? item.category : toArr(item.category),
-        availableDates: Array.isArray(item.availableDates) ? item.availableDates : toArr(item.availableDates),
-        included: Array.isArray(item.included) ? item.included : toArr(item.included),
+        availableDates: dates,
+        included: inc,
+        notIncluded: notInc,
         itinerary: Array.isArray(item.itinerary) ? item.itinerary : [],
       });
     } else {
       setEditingItem(null);
       setFormData({ ...emptyForm });
+      setDatesInput("");
+      setIncludedInput("");
+      setNotIncludedInput("");
     }
     setIsModalOpen(true);
     setUploadError(null);
@@ -122,7 +122,12 @@ export default function DestinationsPage() {
       const url = editingItem ? `/api/destinations/${editingItem._id}` : "/api/destinations";
 
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { _id, createdAt, updatedAt, ...payload } = formData as unknown as Record<string, unknown>;
+      const { _id, createdAt, updatedAt, ...payload } = {
+        ...formData,
+        availableDates: datesInput.split(",").map((s) => s.trim()).filter(Boolean),
+        included: includedInput.split(",").map((s) => s.trim()).filter(Boolean),
+        notIncluded: notIncludedInput.split(",").map((s) => s.trim()).filter(Boolean),
+      } as unknown as Record<string, unknown>;
 
       await fetch(url, {
         method,
@@ -214,32 +219,7 @@ export default function DestinationsPage() {
       : true
   );
 
-  const selectedCategories = formData.category as string[];
-
-  const allCategories = [
-    ...PREDEFINED_CATEGORIES,
-    ...selectedCategories.filter((c) => !PREDEFINED_CATEGORIES.includes(c)),
-  ];
-
-  const atLimit = selectedCategories.length >= MAX_CATEGORIES;
-
-  const toggleCategory = (cat: string) => {
-    setFormData((prev) => {
-      const current = prev.category as string[];
-      const next = current.includes(cat)
-        ? current.filter((c) => c !== cat)
-        : [...current, cat];
-      return { ...prev, category: next };
-    });
-  };
-
-  const addNewCategory = () => {
-    const name = newCategoryInput.trim();
-    if (!name || selectedCategories.includes(name) || allCategories.includes(name)) return;
-    if (atLimit) return;
-    setFormData((prev) => ({ ...prev, category: [...(prev.category as string[]), name] }));
-    setNewCategoryInput("");
-  };
+  const selectedCategory = (formData.category as string[])[0] ?? "";
 
   return (
     <div className="space-y-4">
@@ -431,123 +411,54 @@ export default function DestinationsPage() {
                 />
               </div>
 
+              {/* Duration */}
+              <div className="space-y-1">
+                <label className="text-sm font-medium">Duration</label>
+                <Input
+                  value={formData.duration}
+                  onChange={(e) =>
+                    setFormData((prev) => ({ ...prev, duration: e.target.value }))
+                  }
+                  placeholder="e.g. 5 Days / 4 Nights"
+                />
+              </div>
+
               {/* Categories */}
-              <div className="space-y-1" ref={catDropdownRef}>
-                <label className="text-sm font-medium">
-                  Categories{" "}
-                  <span className="text-muted-foreground font-normal">
-                    ({selectedCategories.length}/{MAX_CATEGORIES})
-                  </span>
-                </label>
-
-                {/* Selected chips */}
-                {selectedCategories.length > 0 && (
-                  <div className="flex flex-wrap gap-1.5">
-                    {selectedCategories.map((cat) => (
-                      <span
-                        key={cat}
-                        className="inline-flex items-center gap-1 rounded-full bg-gold/10 px-2.5 py-0.5 text-xs font-medium text-gold"
-                      >
-                        {cat}
-                        <button
-                          type="button"
-                          onClick={() => toggleCategory(cat)}
-                          className="rounded-full hover:bg-gold/20 p-0.5"
-                        >
-                          <X className="size-3" />
-                        </button>
-                      </span>
-                    ))}
-                  </div>
-                )}
-
-                {/* Dropdown trigger */}
-                <button
-                  type="button"
-                  onClick={() => setCatDropdownOpen((o) => !o)}
-                  className="flex h-8 w-full items-center justify-between rounded-lg border border-input bg-transparent px-2.5 py-1 text-sm text-left"
-                >
-                  <span className={selectedCategories.length === 0 ? "text-muted-foreground" : ""}>
-                    {selectedCategories.length === 0
-                      ? "Select categories..."
-                      : `${selectedCategories.length} selected`}
-                  </span>
-                  <ChevronDown className="size-4 text-muted-foreground shrink-0" />
-                </button>
-
-                {/* Dropdown menu */}
-                {catDropdownOpen && (
-                  <div className="rounded-lg border border-border bg-card shadow-lg p-1 space-y-0.5">
-                    {allCategories.map((cat) => {
-                      const isSelected = selectedCategories.includes(cat);
-                      const isDisabled = atLimit && !isSelected;
-                      return (
-                        <button
-                          key={cat}
-                          type="button"
-                          disabled={isDisabled}
-                          onClick={() => toggleCategory(cat)}
-                          className={`flex w-full items-center gap-2 rounded-md px-2.5 py-1.5 text-sm text-left transition-colors ${
-                            isDisabled
-                              ? "opacity-40 cursor-not-allowed"
-                              : "hover:bg-muted"
-                          }`}
-                        >
-                          <span
-                            className={`flex size-4 shrink-0 items-center justify-center rounded border ${
-                              isSelected
-                                ? "border-gold bg-gold text-white"
-                                : "border-border"
-                            }`}
-                          >
-                            {isSelected && <Check className="size-3" />}
-                          </span>
-                          {cat}
-                        </button>
-                      );
-                    })}
-
-                    {/* Add new category */}
-                    <div className="border-t border-border mt-1 pt-1">
-                      <div className="flex items-center gap-1">
-                        <input
-                          type="text"
-                          value={newCategoryInput}
-                          onChange={(e) => setNewCategoryInput(e.target.value)}
-                          onKeyDown={(e) => {
-                            if (e.key === "Enter") {
-                              e.preventDefault();
-                              addNewCategory();
-                            }
-                          }}
-                          placeholder="Add new category..."
-                          disabled={atLimit}
-                          className="flex-1 h-7 rounded-md border border-input bg-transparent px-2 text-xs placeholder:text-muted-foreground disabled:opacity-40"
-                        />
-                        <Button
-                          type="button"
-                          variant="ghost"
-                          size="icon-xs"
-                          onClick={addNewCategory}
-                          disabled={atLimit || !newCategoryInput.trim()}
-                        >
-                          <Plus className="size-3" />
-                        </Button>
-                      </div>
-                    </div>
-                  </div>
-                )}
+              <div className="space-y-2">
+                <label className="text-sm font-medium">Category</label>
+                <div className="flex flex-wrap gap-2">
+                  {PREDEFINED_CATEGORIES.map((cat) => (
+                    <button
+                      key={cat}
+                      type="button"
+                      onClick={() =>
+                        setFormData((prev) => ({
+                          ...prev,
+                          category: selectedCategory === cat ? [] : [cat],
+                        }))
+                      }
+                      className={`rounded-full px-4 py-1.5 text-sm font-medium transition-all ${
+                        selectedCategory === cat
+                          ? "bg-gold text-white shadow-md"
+                          : "border border-border bg-card text-muted-foreground hover:border-gold/30 hover:text-gold"
+                      }`}
+                    >
+                      {cat}
+                    </button>
+                  ))}
+                </div>
               </div>
 
               {/* Available Dates */}
               <div className="space-y-1">
                 <label className="text-sm font-medium">Available Dates (comma-separated)</label>
                 <Input
-                  value={(formData.availableDates as string[]).join(", ")}
-                  onChange={(e) =>
+                  value={datesInput}
+                  onChange={(e) => setDatesInput(e.target.value)}
+                  onBlur={() =>
                     setFormData((prev) => ({
                       ...prev,
-                      availableDates: e.target.value.split(",").map((s) => s.trim()).filter(Boolean),
+                      availableDates: datesInput.split(",").map((s) => s.trim()).filter(Boolean),
                     }))
                   }
                   placeholder="e.g. March 15-20, April 1-6, May 10-15"
@@ -558,14 +469,31 @@ export default function DestinationsPage() {
               <div className="space-y-1">
                 <label className="text-sm font-medium">Included (comma-separated)</label>
                 <Input
-                  value={(formData.included as string[]).join(", ")}
-                  onChange={(e) =>
+                  value={includedInput}
+                  onChange={(e) => setIncludedInput(e.target.value)}
+                  onBlur={() =>
                     setFormData((prev) => ({
                       ...prev,
-                      included: e.target.value.split(",").map((s) => s.trim()).filter(Boolean),
+                      included: includedInput.split(",").map((s) => s.trim()).filter(Boolean),
                     }))
                   }
                   placeholder="e.g. Hotel, Transport, Guide, Meals"
+                />
+              </div>
+
+              {/* Not Included */}
+              <div className="space-y-1">
+                <label className="text-sm font-medium">Not Included (comma-separated)</label>
+                <Input
+                  value={notIncludedInput}
+                  onChange={(e) => setNotIncludedInput(e.target.value)}
+                  onBlur={() =>
+                    setFormData((prev) => ({
+                      ...prev,
+                      notIncluded: notIncludedInput.split(",").map((s) => s.trim()).filter(Boolean),
+                    }))
+                  }
+                  placeholder="e.g. Flights, Visa, Personal expenses"
                 />
               </div>
 

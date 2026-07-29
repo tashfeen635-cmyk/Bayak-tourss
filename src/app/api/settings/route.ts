@@ -1,18 +1,17 @@
 import { NextRequest, NextResponse } from "next/server";
 import { connectToDatabase } from "@/lib/mongodb";
-import { ObjectId } from "mongodb";
 
-const SETTINGS_ID = "default";
+const SETTINGS_KEY = "global";
 
 export async function GET() {
   try {
     const { db } = await connectToDatabase();
-    const settings = await db.collection("settings").findOne({ _id: SETTINGS_ID as unknown as ObjectId });
+    const settings = await db.collection("settings").findOne({ key: SETTINGS_KEY });
     return NextResponse.json(
       settings || {
         siteName: "Bayak Tours",
         contactEmail: "info@bayaktours.com",
-        contactPhone: "+92 300 1234567",
+        contactPhone: "+92 314 6605966",
         address: "Islamabad, Pakistan",
         socialLinks: {
           instagram: "https://instagram.com/travelwith_arrehman",
@@ -41,8 +40,8 @@ export async function PUT(request: NextRequest) {
     await db
       .collection("settings")
       .updateOne(
-        { _id: SETTINGS_ID as unknown as ObjectId },
-        { $set: { ...data, updatedAt: new Date() } },
+        { key: SETTINGS_KEY },
+        { $set: { ...data, key: SETTINGS_KEY, updatedAt: new Date() } },
         { upsert: true }
       );
 

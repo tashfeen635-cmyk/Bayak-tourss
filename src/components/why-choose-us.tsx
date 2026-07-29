@@ -22,7 +22,7 @@ export function WhyChooseUs() {
                 />
               </div>
               <div className="absolute -bottom-6 -right-6 rounded-2xl bg-gold p-6 text-white shadow-xl sm:-bottom-8 sm:-right-8">
-                <div className="font-heading text-3xl font-bold">12+</div>
+                <div className="font-heading text-3xl font-bold">5+</div>
                 <div className="text-sm text-white/80">Years of Excellence</div>
               </div>
             </div>

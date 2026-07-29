@@ -31,6 +31,21 @@ export const metadata: Metadata = {
     "Pakistan travel agency",
     "Bayak Tours",
   ],
+  openGraph: {
+    title: "Bayak Tours | Premium Pakistan Travel Experiences",
+    description:
+      "Discover Pakistan with Bayak Tours. Premium travel experiences to Hunza, Skardu, Fairy Meadows, and more.",
+    url: "https://bayaktours.com",
+    siteName: "Bayak Tours",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Bayak Tours | Premium Pakistan Travel Experiences",
+    description:
+      "Discover Pakistan with Bayak Tours. Premium travel experiences to Hunza, Skardu, Fairy Meadows, and more.",
+  },
 };
 
 export default function RootLayout({

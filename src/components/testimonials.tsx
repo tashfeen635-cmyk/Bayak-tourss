@@ -162,7 +162,7 @@ export function Testimonials() {
             </div>
             <div className="border-l border-border pl-8">
               <div className="font-heading text-2xl font-bold text-gold">
-                10,000+
+                438+
               </div>
               <div className="text-sm text-muted-foreground">
                 Happy Travelers

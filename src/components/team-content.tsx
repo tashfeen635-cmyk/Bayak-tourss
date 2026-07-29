@@ -122,10 +122,9 @@ export function TeamContent() {
                   fill
                   className="object-contain"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-card via-card/20 to-transparent" />
               </div>
 
-              <div className="relative -mt-20 px-6 pb-6 sm:px-8">
+              <div className="px-6 pb-6 sm:px-8 pt-5">
                 <h3 className="font-heading text-2xl font-bold">
                   {teamMembers[selected].name}
                 </h3>
