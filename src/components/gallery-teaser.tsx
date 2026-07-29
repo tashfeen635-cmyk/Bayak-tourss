@@ -185,15 +185,17 @@ export function GalleryTeaser({ images: data }: { images?: GalleryImage[] }) {
                 exit={{ opacity: 0, x: -50 }}
                 transition={{ duration: 0.25 }}
                 onClick={(e) => e.stopPropagation()}
-                className="relative max-h-[85vh] max-w-5xl"
+                className="flex flex-col items-center"
               >
-                <Image
-                  src={buildImageUrl(galleryImages[selected].src, 1200)}
-                  alt={galleryImages[selected].alt}
-                  fill
-                  sizes="90vw"
-                  className="object-contain rounded-lg"
-                />
+                <div className="relative flex items-center justify-center">
+                  <Image
+                    src={buildImageUrl(galleryImages[selected].src, 1600)}
+                    alt={galleryImages[selected].alt}
+                    width={1600}
+                    height={1200}
+                    className="max-h-[85vh] w-auto max-w-5xl object-contain rounded-lg"
+                  />
+                </div>
                 <div className="mt-3 text-center">
                   <p className="text-sm font-medium text-white">
                     {galleryImages[selected].alt}
