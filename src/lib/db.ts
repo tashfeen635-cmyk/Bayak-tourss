@@ -56,7 +56,8 @@ export const getCollection = cache(async function getCollection<K extends Collec
   let query = db.collection<CollectionMap[K]>(name).find(filter).sort({ createdAt: -1 });
   if (options.limit) query = query.limit(options.limit);
   if (options.projection) query = query.project(options.projection);
-  return query.toArray();
+  const docs = await query.toArray();
+  return JSON.parse(JSON.stringify(docs));
 });
 
 export async function getById<K extends CollectionName>(
