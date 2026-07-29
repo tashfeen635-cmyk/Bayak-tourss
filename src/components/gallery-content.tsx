@@ -13,7 +13,9 @@ export function GalleryContent({ images: data }: { images?: GalleryImage[] }) {
     data ? data.filter((img) => img.src) : []
   );
   const [selected, setSelected] = useState<number | null>(null);
-  const categories = ["All", ...new Set(galleryImages.map((img) => img.category))];
+  const categories = ["All", ...new Set(galleryImages.map((img) =>
+    Array.isArray(img.category) ? img.category[0] : img.category
+  ).filter(Boolean))];
   const [active, setActive] = useState("All");
 
   const touchStartX = useRef(0);
@@ -22,7 +24,10 @@ export function GalleryContent({ images: data }: { images?: GalleryImage[] }) {
   const filtered =
     active === "All"
       ? galleryImages
-      : galleryImages.filter((img) => img.category === active);
+      : galleryImages.filter((img) => {
+          const cat = Array.isArray(img.category) ? img.category[0] : img.category;
+          return cat === active;
+        });
 
   const goNext = useCallback(() => {
     if (selected === null) return;
