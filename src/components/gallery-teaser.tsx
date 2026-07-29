@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { FadeIn } from "./animations";
@@ -22,6 +22,9 @@ export function GalleryTeaser() {
       .catch(() => setGalleryImages([]));
   }, []);
 
+  const touchStartX = useRef(0);
+  const touchStartY = useRef(0);
+
   const goNext = useCallback(() => {
     if (selected === null) return;
     setSelected((selected + 1) % galleryImages.length);
@@ -31,6 +34,20 @@ export function GalleryTeaser() {
     if (selected === null) return;
     setSelected((selected - 1 + galleryImages.length) % galleryImages.length);
   }, [selected, galleryImages.length]);
+
+  const handleTouchStart = useCallback((e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+    touchStartY.current = e.touches[0].clientY;
+  }, []);
+
+  const handleTouchEnd = useCallback((e: React.TouchEvent) => {
+    const dx = e.changedTouches[0].clientX - touchStartX.current;
+    const dy = e.changedTouches[0].clientY - touchStartY.current;
+    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 50) {
+      if (dx > 0) goPrev();
+      else goNext();
+    }
+  }, [goNext, goPrev]);
 
   useEffect(() => {
     if (selected === null) return;
@@ -60,23 +77,22 @@ export function GalleryTeaser() {
 
         {galleryImages.length > 0 && (
           <div className="mt-12">
-            <div className="flex gap-3 overflow-x-auto snap-x snap-mandatory scrollbar-none sm:hidden">
+            <div className="grid grid-cols-3 gap-3 sm:hidden">
               {galleryImages.map((img, i) => (
-                <div key={i} className="w-1/3 flex-shrink-0 snap-start">
+                <div key={i}>
                   <div
                     onClick={() => setSelected(i)}
-                    className="group relative cursor-pointer overflow-hidden rounded-xl"
+                    className="group relative cursor-pointer overflow-hidden rounded-xl aspect-square"
                   >
                     <img
                       src={img.src}
                       alt={img.alt}
                       loading="lazy"
-                      className="h-auto w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
                     />
                     <div className="absolute inset-0 flex items-end bg-gradient-to-t from-black/70 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                      <div className="p-4">
-                        <p className="text-sm font-medium text-white">{img.alt}</p>
-                        <p className="text-xs text-gold">{img.category}</p>
+                      <div className="p-2">
+                        <p className="text-xs font-medium text-white truncate">{img.alt}</p>
                       </div>
                     </div>
                   </div>
@@ -130,6 +146,8 @@ export function GalleryTeaser() {
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4"
             onClick={() => setSelected(null)}
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
           >
             <button
               className="absolute right-4 top-4 text-white/70 transition-colors hover:text-white"
