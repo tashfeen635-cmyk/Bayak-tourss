@@ -59,7 +59,7 @@ export function TeamTeaser({ team: data }: { team?: TeamMember[] }) {
               <StaggerItem key={member.name}>
                 <div
                   onClick={() => setSelected(i)}
-                  className="group cursor-pointer overflow-hidden rounded-2xl border border-border bg-card transition-all duration-300 hover:shadow-xl"
+                  className="group cursor-pointer overflow-hidden rounded-2xl border border-border bg-card transition-all duration-300 hover:shadow-xl flex flex-col"
                 >
                   <div className="relative aspect-square overflow-hidden">
                     <Image
@@ -70,7 +70,7 @@ export function TeamTeaser({ team: data }: { team?: TeamMember[] }) {
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                     />
                   </div>
-                  <div className="p-6">
+                  <div className="flex-1 p-6">
                     <h3 className="font-heading text-lg font-semibold">
                       {member.name}
                     </h3>
@@ -78,7 +78,7 @@ export function TeamTeaser({ team: data }: { team?: TeamMember[] }) {
                       {member.role}
                     </p>
                     <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                      {member.bio}
+                      {member.bio.length > 150 ? member.bio.slice(0, 150) + "..." : member.bio}
                     </p>
                   </div>
                 </div>

@@ -12,13 +12,12 @@ const fields = [
   { key: "groupType", label: "Group Type", type: "select" as const, options: ["Solo", "Couple", "Family", "Friends", "Corporate", "Student", "Other"] },
   { key: "adults", label: "Adults", type: "number" as const },
   { key: "children", label: "Children", type: "number" as const },
-  { key: "travelDate", label: "Travel Date" },
   { key: "duration", label: "Duration" },
   { key: "specialRequests", label: "Special Requests", type: "textarea" as const },
   { key: "status", label: "Status", type: "select" as const, options: ["pending", "confirmed", "cancelled", "completed"] },
 ];
 
-const displayColumns = ["Customer Name", "Destination", "Travel Date", "Status", "Created"];
+const displayColumns = ["Customer Name", "Destination", "Status", "Created"];
 
 export default function BookingsPage() {
   return (

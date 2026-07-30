@@ -87,7 +87,6 @@ export interface Booking {
   groupType: string;
   adults: number;
   children: number;
-  travelDate: string;
   duration: string;
   specialRequests: string;
   status: "pending" | "confirmed" | "cancelled" | "completed";

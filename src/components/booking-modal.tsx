@@ -88,7 +88,6 @@ export function BookingModal({
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [city, setCity] = useState("");
-  const [travelDate, setTravelDate] = useState("");
   const [adults, setAdults] = useState(1);
   const [children, setChildren] = useState(0);
   const [specialRequests, setSpecialRequests] = useState("");
@@ -120,7 +119,6 @@ export function BookingModal({
     setEmail("");
     setPhone("");
     setCity("");
-    setTravelDate("");
     setAdults(1);
     setChildren(0);
     setSpecialRequests("");
@@ -142,7 +140,6 @@ export function BookingModal({
       groupType,
       adults,
       children,
-      travelDate: travelDate,
       duration: tourDuration || "",
       specialRequests,
     };
@@ -335,19 +332,6 @@ export function BookingModal({
                       className="rounded-xl"
                       value={city}
                       onChange={(e) => setCity(e.target.value)}
-                    />
-                  </div>
-
-                  <div>
-                    <label className="mb-1.5 block text-sm font-medium">
-                      Travel Date <span className="text-destructive">*</span>
-                    </label>
-                    <Input
-                      type="date"
-                      required
-                      className="rounded-xl"
-                      value={travelDate}
-                      onChange={(e) => setTravelDate(e.target.value)}
                     />
                   </div>
 
