@@ -58,15 +58,15 @@ export default function AdminLoginPage() {
 
           <div className="space-y-2">
             <label htmlFor="email" className="text-sm font-medium">
-              Email
+              Email or Username
             </label>
             <Input
               id="email"
-              type="email"
+              type="text"
               autoComplete="username"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="admin@bayaktours.com"
+              placeholder="you@bayaktours.com or your username"
               required
             />
           </div>

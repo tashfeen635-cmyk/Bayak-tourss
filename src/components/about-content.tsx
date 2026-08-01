@@ -229,7 +229,7 @@ export function AboutContent() {
                 </p>
               </FadeIn>
               <FadeIn direction="right" delay={0.1}>
-                <Link href="/destinations">
+                <Link href="/tours">
                   <Button className="mt-8 rounded-full bg-gold px-6 text-white hover:bg-gold-dark">
                     Explore Our Trips
                     <ArrowRight className="ml-2 h-4 w-4" />
@@ -450,12 +450,12 @@ export function AboutContent() {
               escape by turquoise lakes — we&apos;ve got you covered.
             </p>
             <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-              <Link href="/destinations">
+              <Link href="/tours">
                 <Button
                   size="lg"
                   className="rounded-full bg-charcoal px-8 text-white hover:bg-charcoal/90"
                 >
-                  View Destinations
+                  View Tours
                 </Button>
               </Link>
               <Link href="/contact">

@@ -8,8 +8,6 @@ import type {
   Testimonial,
   GalleryImage,
   Reel,
-  Settings,
-  User,
   CustomTrip,
 } from "@/types";
 
@@ -20,8 +18,6 @@ type CollectionMap = {
   testimonials: Testimonial;
   gallery: GalleryImage;
   reels: Reel;
-  settings: Settings;
-  users: User;
   customTrips: CustomTrip;
 };
 

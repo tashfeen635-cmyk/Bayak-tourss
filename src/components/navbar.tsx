@@ -10,9 +10,10 @@ import { ThemeToggle } from "./theme-toggle";
 const navLinks = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
-  { href: "/destinations", label: "Destinations" },
-  { href: "/gallery", label: "Gallery" },
-  { href: "/team", label: "Team" },
+  { href: "/tours", label: "Tours" },
+  { href: "/tourist-visa", label: "Tourist Visa" },
+  { href: "/work-with-us", label: "Work With Us" },
+  { href: "/blogs", label: "Blogs" },
   { href: "/contact", label: "Contact" },
 ];
 

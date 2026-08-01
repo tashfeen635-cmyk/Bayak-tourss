@@ -78,7 +78,7 @@ export function BookingDeals({ destinations: data }: { destinations?: Destinatio
             Book Now
           </span>
           <h2 className="mt-3 font-heading text-4xl font-bold tracking-tight sm:text-5xl">
-            Our Destinations
+            Our Tours
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
             Choose from our carefully curated travel packages across Pakistan.

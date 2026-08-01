@@ -1,5 +1,4 @@
 import { Hero } from "@/components/hero";
-import { Intro } from "@/components/intro";
 import { WhyChooseUs } from "@/components/why-choose-us";
 import { GalleryTeaser } from "@/components/gallery-teaser";
 import { ReelsSection } from "@/components/reels-section";
@@ -33,14 +32,13 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <Intro />
       <WhyChooseUs />
+      <DestinationsSection />
+      <CallToAction />
+      <TestimonialsSection />
+      <TeamSection />
       <GallerySection />
       <ReelsSection />
-      <TeamSection />
-      <DestinationsSection />
-      <TestimonialsSection />
-      <CallToAction />
     </>
   );
 }

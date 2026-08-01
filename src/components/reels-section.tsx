@@ -2,7 +2,7 @@
 
 import { useRef, useState, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
-import { Play, ChevronLeft, ChevronRight, X } from "lucide-react";
+import { Play, ChevronLeft, ChevronRight, X, Loader2 } from "lucide-react";
 import { FadeIn } from "./animations";
 import { reels } from "@/data";
 
@@ -12,9 +12,11 @@ export function ReelsSection() {
   const reelRefs = useRef<(HTMLDivElement | null)[]>([]);
   const lightboxVideoRefs = useRef<(HTMLVideoElement | null)[]>([]);
   const desktopVideoRef = useRef<HTMLVideoElement | null>(null);
+  const cardVideoRefs = useRef<(HTMLVideoElement | null)[]>([]);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
   const [selected, setSelected] = useState<number | null>(null);
+  const [videoLoading, setVideoLoading] = useState(true);
 
   const isDesktop = useCallback(() =>
     typeof window !== "undefined" && window.matchMedia("(min-width: 640px)").matches, []);
@@ -46,6 +48,17 @@ export function ReelsSection() {
     const amount = 340;
     el.scrollBy({ left: direction === "left" ? -amount : amount, behavior: "smooth" });
   }, []);
+
+  const preloadVideo = useCallback((i: number) => {
+    const video = cardVideoRefs.current[i];
+    if (!video) return;
+    video.preload = "auto";
+    video.load();
+  }, []);
+
+  useEffect(() => {
+    setVideoLoading(true);
+  }, [selected]);
 
   const toggleLightboxVideo = useCallback(() => {
     const video = getActiveVideo();
@@ -227,10 +240,12 @@ export function ReelsSection() {
             >
               <div
                 onClick={() => setSelected(i)}
+                onMouseEnter={() => preloadVideo(i)}
                 className="group relative h-[400px] w-[280px] shrink-0 cursor-pointer overflow-hidden rounded-3xl bg-charcoal sm:h-[560px] sm:w-[320px]"
               >
                 <div className="absolute inset-0 transition-transform duration-700 group-hover:scale-105">
                   <video
+                    ref={(el) => { cardVideoRefs.current[i] = el; }}
                     src={reel.video}
                     className="absolute inset-0 h-full w-full object-cover"
                     muted
@@ -287,6 +302,11 @@ export function ReelsSection() {
               </button>
 
               <div className="relative h-[560px] w-[320px] overflow-hidden rounded-3xl">
+                {videoLoading && (
+                  <div className="absolute inset-0 z-20 flex items-center justify-center bg-black">
+                    <Loader2 className="h-10 w-10 animate-spin text-white/70" />
+                  </div>
+                )}
                 <video
                   key={selected}
                   src={reels[selected].video}
@@ -294,6 +314,8 @@ export function ReelsSection() {
                   loop
                   playsInline
                   preload="auto"
+                  onWaiting={() => setVideoLoading(true)}
+                  onCanPlay={() => setVideoLoading(false)}
                   ref={desktopVideoRef}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />

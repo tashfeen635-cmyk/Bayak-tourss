@@ -14,7 +14,7 @@ import {
   UserCog,
   Star,
   Image,
-  Settings,
+  UserCircle,
   LogOut,
   Menu,
   X,
@@ -29,8 +29,7 @@ const navItems = [
   { label: "Team", href: "/admin/team", icon: UserCog },
   { label: "Testimonials", href: "/admin/testimonials", icon: Star },
   { label: "Gallery", href: "/admin/gallery", icon: Image },
-  { label: "Users", href: "/admin/users", icon: Users },
-  { label: "Settings", href: "/admin/settings", icon: Settings },
+  { label: "My Account", href: "/admin/my-account", icon: UserCircle },
 ];
 
 export default function AdminLayout({

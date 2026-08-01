@@ -50,18 +50,18 @@ const socials = [
 const footerLinks = {
   explore: [
     { label: "About Us", href: "/about" },
-    { label: "Destinations", href: "/destinations" },
+    { label: "Tours", href: "/tours" },
     { label: "Gallery", href: "/gallery" },
     { label: "Our Team", href: "/team" },
     { label: "Contact", href: "/contact" },
   ],
   services: [
-    { label: "Autumn Tours", href: "/destinations" },
-    { label: "Blossom Tours", href: "/destinations" },
-    { label: "Honeymoon Trips", href: "/destinations" },
-    { label: "Family Packages", href: "/destinations" },
-    { label: "Trekking Tours", href: "/destinations" },
-    { label: "Bike Tours", href: "/destinations" },
+    { label: "Autumn Tours", href: "/tours" },
+    { label: "Blossom Tours", href: "/tours" },
+    { label: "Honeymoon Trips", href: "/tours" },
+    { label: "Family Packages", href: "/tours" },
+    { label: "Trekking Tours", href: "/tours" },
+    { label: "Bike Tours", href: "/tours" },
   ],
 };
 

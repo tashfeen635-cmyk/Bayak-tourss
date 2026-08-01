@@ -45,6 +45,10 @@ export default function TestimonialsPage() {
   const [editingItem, setEditingItem] = useState<Testimonial | null>(null);
   const [formData, setFormData] = useState<Testimonial>(emptyForm);
   const [saving, setSaving] = useState(false);
+  const [saveError, setSaveError] = useState<string | null>(null);
+  const [deleting, setDeleting] = useState(false);
+  const [deleteError, setDeleteError] = useState<string | null>(null);
+  const [updating, setUpdating] = useState(false);
   const [search, setSearch] = useState("");
   const [uploading, setUploading] = useState(false);
   const fetchedRef = useRef(false);
@@ -83,6 +87,7 @@ export default function TestimonialsPage() {
 
   const handleSave = async () => {
     setSaving(true);
+    setSaveError(null);
     try {
       const method = editingItem ? "PUT" : "POST";
       const url = editingItem
@@ -95,41 +100,68 @@ export default function TestimonialsPage() {
         payload.status = "approved";
       }
 
-      await fetch(url, {
+      const res = await fetch(url, {
         method,
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
 
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        setSaveError(data.error || "Failed to save. Please try again.");
+        return;
+      }
+
       setIsModalOpen(false);
       fetchItems();
     } catch (error) {
       console.error("Failed to save:", error);
+      setSaveError("Network error. Please try again.");
     } finally {
       setSaving(false);
     }
   };
 
   const handleDelete = async (id: string) => {
+    if (deleting) return;
     if (!confirm("Delete this testimonial?")) return;
+    setDeleting(true);
+    setDeleteError(null);
     try {
-      await fetch(`/api/testimonials/${id}`, { method: "DELETE" });
+      const res = await fetch(`/api/testimonials/${id}`, { method: "DELETE" });
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        setDeleteError(data.error || "Failed to delete. Please try again.");
+        return;
+      }
+
       fetchItems();
     } catch (error) {
       console.error("Failed to delete:", error);
+      setDeleteError("Network error. Please try again.");
+    } finally {
+      setDeleting(false);
     }
   };
 
   const handleStatus = async (id: string, status: "approved" | "rejected") => {
+    if (updating) return;
+    setUpdating(true);
     try {
-      await fetch(`/api/testimonials/${id}`, {
+      const res = await fetch(`/api/testimonials/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ status }),
       });
-      fetchItems();
+
+      if (res.ok) {
+        fetchItems();
+      }
     } catch (error) {
       console.error("Failed to update status:", error);
+    } finally {
+      setUpdating(false);
     }
   };
 
@@ -215,6 +247,12 @@ export default function TestimonialsPage() {
           className="max-w-sm"
         />
       </div>
+
+      {deleteError && (
+        <div className="rounded-lg border border-destructive/30 bg-destructive/10 px-4 py-3 text-sm text-destructive">
+          {deleteError}
+        </div>
+      )}
 
       <Card>
         <CardContent className="p-0">
@@ -306,6 +344,7 @@ export default function TestimonialsPage() {
                                   size="icon-sm"
                                   onClick={() => handleStatus(item._id!, "approved")}
                                   title="Approve"
+                                  disabled={updating}
                                 >
                                   <Check className="size-3.5 text-green-600" />
                                 </Button>
@@ -314,6 +353,7 @@ export default function TestimonialsPage() {
                                   size="icon-sm"
                                   onClick={() => handleStatus(item._id!, "rejected")}
                                   title="Reject"
+                                  disabled={updating}
                                 >
                                   <Ban className="size-3.5 text-red-600" />
                                 </Button>
@@ -325,6 +365,7 @@ export default function TestimonialsPage() {
                                 size="icon-sm"
                                 onClick={() => handleStatus(item._id!, "approved")}
                                 title="Restore"
+                                disabled={updating}
                               >
                                 <Check className="size-3.5 text-green-600" />
                               </Button>
@@ -333,6 +374,7 @@ export default function TestimonialsPage() {
                               variant="ghost"
                               size="icon-sm"
                               onClick={() => openModal(item)}
+                              disabled={deleting}
                             >
                               <Pencil className="size-3.5" />
                             </Button>
@@ -340,8 +382,13 @@ export default function TestimonialsPage() {
                               variant="ghost"
                               size="icon-sm"
                               onClick={() => handleDelete(item._id!)}
+                              disabled={deleting}
                             >
-                              <Trash2 className="size-3.5 text-destructive" />
+                              {deleting ? (
+                                <Loader2 className="size-3.5 animate-spin" />
+                              ) : (
+                                <Trash2 className="size-3.5 text-destructive" />
+                              )}
                             </Button>
                           </div>
                         </td>
@@ -461,6 +508,7 @@ export default function TestimonialsPage() {
                 />
               </div>
 
+              {saveError && <p className="text-xs text-red-500">{saveError}</p>}
               <div className="flex justify-end gap-2 pt-4">
                 <Button variant="outline" onClick={() => setIsModalOpen(false)}>
                   Cancel
@@ -475,6 +523,24 @@ export default function TestimonialsPage() {
               </div>
             </CardContent>
           </Card>
+        </div>
+      )}
+
+      {/* Loading overlay */}
+      {(saving || deleting || updating) && (
+        <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/60">
+          <div className="flex flex-col items-center gap-4 rounded-2xl bg-card px-10 py-8 shadow-xl">
+            <Loader2 className="size-10 animate-spin text-gold" />
+            <p className="text-sm font-medium">
+              {deleting
+                ? "Deleting testimonial..."
+                : updating
+                ? "Updating status..."
+                : editingItem
+                ? "Saving testimonial..."
+                : "Creating testimonial..."}
+            </p>
+          </div>
         </div>
       )}
     </div>

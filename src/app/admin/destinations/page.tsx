@@ -58,6 +58,9 @@ export default function DestinationsPage() {
   const [editingItem, setEditingItem] = useState<Destination | null>(null);
   const [formData, setFormData] = useState<Destination>(emptyForm);
   const [saving, setSaving] = useState(false);
+  const [saveError, setSaveError] = useState<string | null>(null);
+  const [deleting, setDeleting] = useState(false);
+  const [deleteError, setDeleteError] = useState<string | null>(null);
   const [search, setSearch] = useState("");
   const [uploading, setUploading] = useState(false);
   const [uploadError, setUploadError] = useState<string | null>(null);
@@ -117,6 +120,7 @@ export default function DestinationsPage() {
 
   const handleSave = async () => {
     setSaving(true);
+    setSaveError(null);
     try {
       const method = editingItem ? "PUT" : "POST";
       const url = editingItem ? `/api/destinations/${editingItem._id}` : "/api/destinations";
@@ -129,28 +133,46 @@ export default function DestinationsPage() {
         notIncluded: notIncludedInput.split(",").map((s) => s.trim()).filter(Boolean),
       } as unknown as Record<string, unknown>;
 
-      await fetch(url, {
+      const res = await fetch(url, {
         method,
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
 
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        setSaveError(data.error || "Failed to save destination. Please try again.");
+        return;
+      }
+
       setIsModalOpen(false);
       fetchItems();
     } catch (error) {
       console.error("Failed to save:", error);
+      setSaveError("Something went wrong. Please try again.");
     } finally {
       setSaving(false);
     }
   };
 
   const handleDelete = async (id: string) => {
+    if (deleting || saving) return;
     if (!confirm("Are you sure you want to delete this destination?")) return;
+    setDeleting(true);
+    setDeleteError(null);
     try {
-      await fetch(`/api/destinations/${id}`, { method: "DELETE" });
+      const res = await fetch(`/api/destinations/${id}`, { method: "DELETE" });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        setDeleteError(data.error || "Failed to delete destination. Please try again.");
+        return;
+      }
       fetchItems();
     } catch (error) {
       console.error("Failed to delete:", error);
+      setDeleteError("Something went wrong. Please try again.");
+    } finally {
+      setDeleting(false);
     }
   };
 
@@ -242,6 +264,12 @@ export default function DestinationsPage() {
         />
       </div>
 
+      {deleteError && (
+        <div className="rounded-lg border border-destructive/30 bg-destructive/10 p-3 text-sm text-destructive">
+          {deleteError}
+        </div>
+      )}
+
       <Card>
         <CardContent className="p-0">
           <div className="overflow-x-auto">
@@ -303,15 +331,20 @@ export default function DestinationsPage() {
                       </td>
                       <td className="px-4 py-3 text-right">
                         <div className="flex items-center justify-end gap-1">
-                          <Button variant="ghost" size="icon-sm" onClick={() => openModal(item)}>
+                          <Button variant="ghost" size="icon-sm" onClick={() => openModal(item)} disabled={deleting}>
                             <Pencil className="size-3.5" />
                           </Button>
                           <Button
                             variant="ghost"
                             size="icon-sm"
                             onClick={() => handleDelete(item._id!)}
+                            disabled={deleting}
                           >
-                            <Trash2 className="size-3.5 text-destructive" />
+                            {deleting ? (
+                              <Loader2 className="size-3.5 animate-spin text-destructive" />
+                            ) : (
+                              <Trash2 className="size-3.5 text-destructive" />
+                            )}
                           </Button>
                         </div>
                       </td>
@@ -585,6 +618,13 @@ export default function DestinationsPage() {
                 </div>
               </div>
 
+              {/* Save error */}
+              {saveError && (
+                <div className="rounded-lg border border-destructive/30 bg-destructive/10 p-3 text-sm text-destructive">
+                  {saveError}
+                </div>
+              )}
+
               {/* Actions */}
               <div className="flex justify-end gap-2 pt-4 border-t border-border">
                 <Button variant="outline" onClick={() => setIsModalOpen(false)}>
@@ -600,6 +640,18 @@ export default function DestinationsPage() {
               </div>
             </CardContent>
           </Card>
+        </div>
+      )}
+
+      {/* Saving/Deleting overlay */}
+      {(saving || deleting) && (
+        <div className="fixed inset-0 z-[60] flex flex-col items-center justify-center bg-black/60">
+          <div className="flex flex-col items-center gap-3 rounded-2xl bg-card px-10 py-8 shadow-2xl">
+            <Loader2 className="size-10 animate-spin text-gold" />
+            <p className="text-sm font-medium text-muted-foreground">
+              {deleting ? "Deleting destination…" : editingItem ? "Saving changes…" : "Creating destination…"}
+            </p>
+          </div>
         </div>
       )}
     </div>

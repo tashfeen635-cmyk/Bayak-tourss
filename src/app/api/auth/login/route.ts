@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { findUserByEmail, verifyPassword } from "@/lib/users";
+import { findUserByLogin, verifyPassword } from "@/lib/users";
 import { createSession } from "@/lib/auth";
 
 export async function POST(request: NextRequest) {
@@ -13,7 +13,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const user = await findUserByEmail(email);
+    const user = await findUserByLogin(String(email).trim());
     if (!user) {
       return NextResponse.json(
         { error: "Invalid email or password" },

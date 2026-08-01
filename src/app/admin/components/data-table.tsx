@@ -36,6 +36,9 @@ export function AdminDataTable({
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formData, setFormData] = useState<Record<string, unknown>>({});
   const [saving, setSaving] = useState(false);
+  const [saveError, setSaveError] = useState<string | null>(null);
+  const [deleting, setDeleting] = useState(false);
+  const [deleteError, setDeleteError] = useState<string | null>(null);
   const [search, setSearch] = useState("");
   const [uploading, setUploading] = useState<string | null>(null);
   const [uploadError, setUploadError] = useState<string | null>(null);
@@ -82,39 +85,61 @@ export function AdminDataTable({
     }
     setIsModalOpen(true);
     setUploadError(null);
+    setSaveError(null);
   };
 
   const handleSave = async () => {
     setSaving(true);
+    setSaveError(null);
     try {
       const method = editingItem ? "PUT" : "POST";
       const url = editingItem
         ? `${apiEndpoint}/${editingItem._id}`
         : apiEndpoint;
 
-      await fetch(url, {
+      const res = await fetch(url, {
         method,
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
 
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        setSaveError(data.error || "Failed to save. Please try again.");
+        return;
+      }
+
       setIsModalOpen(false);
       fetchItems();
     } catch (error) {
       console.error("Failed to save:", error);
+      setSaveError("Network error. Please try again.");
     } finally {
       setSaving(false);
     }
   };
 
   const handleDelete = async (id: string) => {
+    if (deleting) return;
     if (!confirm("Are you sure you want to delete this item?")) return;
 
+    setDeleting(true);
+    setDeleteError(null);
     try {
-      await fetch(`${apiEndpoint}/${id}`, { method: "DELETE" });
+      const res = await fetch(`${apiEndpoint}/${id}`, { method: "DELETE" });
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        setDeleteError(data.error || "Failed to delete. Please try again.");
+        return;
+      }
+
       fetchItems();
     } catch (error) {
       console.error("Failed to delete:", error);
+      setDeleteError("Network error. Please try again.");
+    } finally {
+      setDeleting(false);
     }
   };
 
@@ -169,6 +194,12 @@ export function AdminDataTable({
           className="max-w-sm"
         />
       </div>
+
+      {deleteError && (
+        <div className="rounded-lg border border-destructive/30 bg-destructive/10 px-4 py-3 text-sm text-destructive">
+          {deleteError}
+        </div>
+      )}
 
       <Card>
         <CardContent className="p-0">
@@ -231,6 +262,7 @@ export function AdminDataTable({
                             variant="ghost"
                             size="icon-sm"
                             onClick={() => openModal(item)}
+                            disabled={deleting}
                           >
                             <Pencil className="size-3.5" />
                           </Button>
@@ -238,8 +270,13 @@ export function AdminDataTable({
                             variant="ghost"
                             size="icon-sm"
                             onClick={() => handleDelete(item._id as string)}
+                            disabled={deleting}
                           >
-                            <Trash2 className="size-3.5 text-destructive" />
+                            {deleting ? (
+                              <Loader2 className="size-3.5 animate-spin" />
+                            ) : (
+                              <Trash2 className="size-3.5 text-destructive" />
+                            )}
                           </Button>
                         </div>
                       </td>
@@ -371,6 +408,9 @@ export function AdminDataTable({
                   )}
                 </div>
               ))}
+              {saveError && (
+                <p className="text-xs text-red-500">{saveError}</p>
+              )}
               <div className="flex justify-end gap-2 pt-4">
                 <Button
                   variant="outline"
@@ -387,6 +427,22 @@ export function AdminDataTable({
               </div>
             </CardContent>
           </Card>
+        </div>
+      )}
+
+      {/* Loading overlay */}
+      {(saving || deleting) && (
+        <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/60">
+          <div className="flex flex-col items-center gap-4 rounded-2xl bg-card px-10 py-8 shadow-xl">
+            <Loader2 className="size-10 animate-spin text-gold" />
+            <p className="text-sm font-medium">
+              {deleting
+                ? `Deleting ${title.slice(0, -1)}...`
+                : editingItem
+                ? `Saving ${title.slice(0, -1)}...`
+                : `Creating ${title.slice(0, -1)}...`}
+            </p>
+          </div>
         </div>
       )}
     </div>

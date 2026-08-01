@@ -2,7 +2,7 @@
 
 import { useState, useCallback, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import { X, ChevronLeft, ChevronRight, Loader2 } from "lucide-react";
 import Image from "next/image";
 import { FadeIn } from "./animations";
 import type { GalleryImage } from "@/types";
@@ -13,6 +13,7 @@ export function GalleryContent({ images: data }: { images?: GalleryImage[] }) {
     data ? data.filter((img) => img.src) : []
   );
   const [selected, setSelected] = useState<number | null>(null);
+  const [imgLoading, setImgLoading] = useState(true);
   const categories = ["All", ...new Set(galleryImages.map((img) =>
     Array.isArray(img.category) ? img.category[0] : img.category
   ).filter(Boolean))];
@@ -28,6 +29,21 @@ export function GalleryContent({ images: data }: { images?: GalleryImage[] }) {
           const cat = Array.isArray(img.category) ? img.category[0] : img.category;
           return cat === active;
         });
+
+  useEffect(() => {
+    if (selected !== null) setImgLoading(true);
+  }, [selected]);
+
+  const preloadImage = useCallback((url: string) => {
+    const href = buildImageUrl(url, 1600);
+    if (!document.querySelector(`link[rel="preload"][href="${href}"]`)) {
+      const link = document.createElement("link");
+      link.rel = "preload";
+      link.as = "image";
+      link.href = href;
+      document.head.appendChild(link);
+    }
+  }, []);
 
   const goNext = useCallback(() => {
     if (selected === null) return;
@@ -123,6 +139,7 @@ export function GalleryContent({ images: data }: { images?: GalleryImage[] }) {
                 <div key={i}>
                   <div
                     onClick={() => setSelected(i)}
+                    onMouseEnter={() => preloadImage(img.src)}
                     className="group relative cursor-pointer overflow-hidden rounded-xl aspect-square"
                   >
                     <Image
@@ -148,6 +165,7 @@ export function GalleryContent({ images: data }: { images?: GalleryImage[] }) {
                 <div key={i} className="mb-4 break-inside-avoid">
                   <div
                     onClick={() => setSelected(i)}
+                    onMouseEnter={() => preloadImage(img.src)}
                     className="group relative cursor-pointer overflow-hidden rounded-xl"
                   >
                     <Image
@@ -216,11 +234,17 @@ export function GalleryContent({ images: data }: { images?: GalleryImage[] }) {
                 className="flex flex-col items-center"
               >
                 <div className="relative flex items-center justify-center">
+                  {imgLoading && (
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <Loader2 className="h-10 w-10 animate-spin text-white/60" />
+                    </div>
+                  )}
                   <Image
                     src={buildImageUrl(filtered[selected].src, 1600)}
                     alt={filtered[selected].alt}
                     width={1600}
                     height={1200}
+                    onLoad={() => setImgLoading(false)}
                     className="max-h-[85vh] w-auto max-w-5xl object-contain rounded-lg"
                   />
                 </div>

@@ -2,7 +2,7 @@
 
 import { useState, useCallback, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import { X, ChevronLeft, ChevronRight, Loader2 } from "lucide-react";
 import Image from "next/image";
 import { FadeIn } from "./animations";
 import Link from "next/link";
@@ -15,6 +15,11 @@ export function GalleryTeaser({ images: data }: { images?: GalleryImage[] }) {
     data ? data.filter((img) => img.src) : []
   );
   const [selected, setSelected] = useState<number | null>(null);
+  const [imgLoading, setImgLoading] = useState(true);
+
+  useEffect(() => {
+    if (selected !== null) setImgLoading(true);
+  }, [selected]);
 
   useEffect(() => {
     if (data) return;
@@ -29,6 +34,17 @@ export function GalleryTeaser({ images: data }: { images?: GalleryImage[] }) {
 
   const touchStartX = useRef(0);
   const touchStartY = useRef(0);
+
+  const preloadImage = useCallback((url: string) => {
+    const href = buildImageUrl(url, 1600);
+    if (!document.querySelector(`link[rel="preload"][href="${href}"]`)) {
+      const link = document.createElement("link");
+      link.rel = "preload";
+      link.as = "image";
+      link.href = href;
+      document.head.appendChild(link);
+    }
+  }, []);
 
   const goNext = useCallback(() => {
     if (selected === null) return;
@@ -82,15 +98,16 @@ export function GalleryTeaser({ images: data }: { images?: GalleryImage[] }) {
 
         {galleryImages.length > 0 && (
           <div className="mt-12">
-            <div className="grid grid-cols-3 gap-3 sm:hidden">
+            <div className="grid grid-cols-3 gap-3 sm:gap-4">
               {galleryImages.map((img, i) => (
                 <div key={i}>
                   <div
                     onClick={() => setSelected(i)}
+                    onMouseEnter={() => preloadImage(img.src)}
                     className="group relative cursor-pointer overflow-hidden rounded-xl aspect-square"
                   >
                     <Image
-                      src={buildImageUrl(img.src, 400)}
+                      src={buildImageUrl(img.src, 600)}
                       alt={img.alt}
                       fill
                       sizes="33vw"
@@ -99,30 +116,6 @@ export function GalleryTeaser({ images: data }: { images?: GalleryImage[] }) {
                     <div className="absolute inset-0 flex items-end bg-gradient-to-t from-black/70 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                       <div className="p-2">
                         <p className="text-xs font-medium text-white truncate">{img.alt}</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div className="hidden sm:block sm:columns-2 lg:columns-3">
-              {galleryImages.map((img, i) => (
-                <div key={i} className="mb-4 break-inside-avoid">
-                  <div
-                    onClick={() => setSelected(i)}
-                    className="group relative cursor-pointer overflow-hidden rounded-xl"
-                  >
-                    <Image
-                      src={buildImageUrl(img.src, 600)}
-                      alt={img.alt}
-                      width={800}
-                      height={600}
-                      className="h-auto w-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 flex items-end bg-gradient-to-t from-black/70 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                      <div className="p-4">
-                        <p className="text-sm font-medium text-white">{img.alt}</p>
-                        <p className="text-xs text-gold">{img.category}</p>
                       </div>
                     </div>
                   </div>
@@ -188,11 +181,17 @@ export function GalleryTeaser({ images: data }: { images?: GalleryImage[] }) {
                 className="flex flex-col items-center"
               >
                 <div className="relative flex items-center justify-center">
+                  {imgLoading && (
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <Loader2 className="h-10 w-10 animate-spin text-white/60" />
+                    </div>
+                  )}
                   <Image
                     src={buildImageUrl(galleryImages[selected].src, 1600)}
                     alt={galleryImages[selected].alt}
                     width={1600}
                     height={1200}
+                    onLoad={() => setImgLoading(false)}
                     className="max-h-[85vh] w-auto max-w-5xl object-contain rounded-lg"
                   />
                 </div>

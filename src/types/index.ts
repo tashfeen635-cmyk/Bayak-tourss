@@ -111,37 +111,6 @@ export interface CustomTrip {
   updatedAt?: Date;
 }
 
-export interface User {
-  _id?: ObjectId;
-  id?: string;
-  name: string;
-  email: string;
-  password: string;
-  role: "admin" | "editor";
-  lastLogin?: Date;
-  createdAt?: Date;
-  updatedAt?: Date;
-}
-
-export interface Settings {
-  _id?: ObjectId;
-  siteName: string;
-  contactEmail: string;
-  contactPhone: string;
-  address: string;
-  socialLinks: {
-    instagram: string;
-    facebook: string;
-    tiktok: string;
-  };
-  seo: {
-    title: string;
-    description: string;
-    keywords: string[];
-  };
-  updatedAt?: Date;
-}
-
 export interface Stats {
   _id?: ObjectId;
   label: string;

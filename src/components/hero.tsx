@@ -60,7 +60,7 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
           className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row"
         >
-          <Link href="/destinations">
+          <Link href="/tours">
             <Button
               size="lg"
               className="rounded-full bg-gold px-8 text-base text-white hover:bg-gold-dark"
