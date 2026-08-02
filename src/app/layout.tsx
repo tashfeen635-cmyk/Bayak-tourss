@@ -46,6 +46,9 @@ export const metadata: Metadata = {
     description:
       "Discover Pakistan with Bayak Tours. Premium travel experiences to Hunza, Skardu, Fairy Meadows, and more.",
   },
+  icons: {
+    icon: "/favicon.png",
+  },
 };
 
 export default function RootLayout({

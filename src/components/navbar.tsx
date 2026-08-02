@@ -1,9 +1,10 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Mountain } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "./theme-toggle";
 
@@ -36,20 +37,16 @@ export function Navbar() {
       }`}
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <nav className="flex h-20 items-center justify-between">
+        <nav className="flex h-32 items-center justify-between">
           <Link href="/" className="flex items-center gap-2 group">
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gold text-white transition-transform group-hover:scale-110">
-              <Mountain className="h-5 w-5" />
-            </div>
-            <span
-              className={`font-heading text-2xl font-bold tracking-tight transition-colors ${
-                scrolled
-                  ? "text-foreground"
-                  : "text-white"
-              }`}
-            >
-              Bayak Tours
-            </span>
+            <Image
+              src="/bayak-tours-logo-v2.webp"
+              alt="Bayak Tours"
+              width={240}
+              height={120}
+              priority
+              className="h-50 w-auto object-contain"
+            />
           </Link>
 
           <div className="hidden items-center gap-1 md:flex">
