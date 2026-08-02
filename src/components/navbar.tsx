@@ -32,24 +32,27 @@ export function Navbar() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-white/90 shadow-md backdrop-blur-lg dark:bg-charcoal/90"
+          ? ""
           : "bg-transparent"
       }`}
     >
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <nav className="flex h-32 items-center justify-between">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-[100px]">
+        <nav className="flex h-[100px] items-center justify-between mt-[10px] p-[29px_27px_8px_12px] backdrop-blur-2xl rounded-[100px]">
           <Link href="/" className="flex items-center gap-2 group">
             <Image
-              src="/bayak-tours-logo-v2.webp"
+              src="/bayak-tours-logo-v2.png"
               alt="Bayak Tours"
-              width={240}
-              height={120}
+              width={1024}
+              height={1536}
               priority
               className="h-50 w-auto object-contain"
             />
+            <span className="font-heading text-2xl font-bold tracking-tight text-gold -mt-9">
+              Bayak Tours
+            </span>
           </Link>
 
-          <div className="hidden items-center gap-1 md:flex">
+          <div className="hidden items-center gap-1 min-[1028px]:flex pb-[25px]">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
@@ -68,7 +71,7 @@ export function Navbar() {
             </div>
           </div>
 
-          <div className="flex items-center gap-2 md:hidden">
+          <div className="flex items-center gap-2 min-[1028px]:hidden pb-[31px]">
             <ThemeToggle light={scrolled} />
             <button
               onClick={() => setIsOpen(!isOpen)}
@@ -91,7 +94,7 @@ export function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="overflow-hidden border-t border-border bg-white/95 backdrop-blur-lg dark:bg-charcoal/95 md:hidden"
+            className="overflow-hidden border-t border-border bg-white/95 backdrop-blur-lg dark:bg-charcoal/95 min-[1028px]:hidden"
           >
             <div className="space-y-1 px-4 py-4">
               {navLinks.map((link) => (

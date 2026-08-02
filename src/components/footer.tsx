@@ -1,12 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import {
-  Mountain,
   Phone,
   Mail,
 } from "lucide-react";
-import { Mountain as LogoIcon } from "lucide-react";
 
 const socials = [
   {
@@ -70,14 +69,16 @@ export function Footer() {
     <footer className="bg-charcoal text-white/80">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid gap-12 py-16 sm:grid-cols-2 lg:grid-cols-4">
-          <div>
-            <Link href="/" className="flex items-center gap-2 group">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gold text-white transition-transform group-hover:scale-110">
-                <LogoIcon className="h-5 w-5" />
-              </div>
-              <span className="font-heading text-2xl font-bold tracking-tight text-white">
-                Bayak Tours
-              </span>
+          <div className="-mt-[65px]">
+            <Link href="/" className="inline-block group">
+              <Image
+                src="/bayak-tours-logo-v2.png"
+                alt="Bayak Tours"
+                width={1024}
+                height={1536}
+                priority
+                className="h-50 w-auto object-contain -mb-[62px]"
+              />
             </Link>
             <p className="mt-4 text-sm leading-relaxed text-white/60">
               Pakistan&apos;s premier travel company. Crafting unforgettable

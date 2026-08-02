@@ -25,7 +25,10 @@ export async function connectToDatabase(): Promise<{ client: MongoClient; db: Db
       connecting = null;
       return { client: cachedClient, db: cachedDb };
     }
-  );
+  ).catch((err) => {
+    connecting = null;
+    throw err;
+  });
 
   return connecting;
 }
