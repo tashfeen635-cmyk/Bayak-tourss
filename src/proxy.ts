@@ -7,10 +7,29 @@ const SECRET = new TextEncoder().encode(
 
 const PUBLIC_PATHS = ["/admin/login", "/api/auth"];
 
+const PUBLIC_API_POST = [
+  "/api/contact",
+  "/api/bookings",
+  "/api/custom-trips",
+  "/api/testimonials",
+];
+
 export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   if (PUBLIC_PATHS.some((p) => pathname.startsWith(p))) {
+    return NextResponse.next();
+  }
+
+  if (request.method === "POST" && PUBLIC_API_POST.includes(pathname)) {
+    return NextResponse.next();
+  }
+
+  if (
+    request.method === "GET" &&
+    pathname === "/api/testimonials" &&
+    request.nextUrl.searchParams.get("status") === "approved"
+  ) {
     return NextResponse.next();
   }
 

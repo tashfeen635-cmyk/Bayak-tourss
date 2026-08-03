@@ -71,7 +71,7 @@ export function TeamContent({ team: data }: { team?: TeamMember[] }) {
                   >
                     <div className="relative aspect-square overflow-hidden">
                       <Image
-                        src={buildImageUrl(member.image, 400)}
+                        src={buildImageUrl(member.image, 800)}
                         alt={member.name}
                         fill
                         className="object-cover transition-transform duration-500 group-hover:scale-105"

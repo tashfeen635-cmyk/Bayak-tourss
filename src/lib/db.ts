@@ -9,6 +9,7 @@ import type {
   GalleryImage,
   Reel,
   CustomTrip,
+  Inquiry,
 } from "@/types";
 
 type CollectionMap = {
@@ -19,6 +20,7 @@ type CollectionMap = {
   gallery: GalleryImage;
   reels: Reel;
   customTrips: CustomTrip;
+  inquiries: Inquiry;
 };
 
 export type CollectionName = keyof CollectionMap;

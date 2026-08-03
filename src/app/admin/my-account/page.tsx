@@ -56,7 +56,6 @@ export default function MyAccountPage() {
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
-  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
@@ -69,7 +68,6 @@ export default function MyAccountPage() {
     fetch("/api/auth/me")
       .then((res) => (res.ok ? res.json() : Promise.reject()))
       .then((data) => {
-        setName(data.user?.name ?? "");
         setEmail(data.user?.email ?? "");
         setLoading(false);
       })
@@ -97,8 +95,8 @@ export default function MyAccountPage() {
       return;
     }
 
-    if (!newPassword && !name && !email) {
-      setError("Enter a new password, name or email to update.");
+    if (!newPassword && !email) {
+      setError("Enter a new password or email to update.");
       return;
     }
 
@@ -114,7 +112,6 @@ export default function MyAccountPage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           currentPassword,
-          name,
           email,
           newPassword: newPassword || undefined,
         }),
@@ -153,7 +150,7 @@ export default function MyAccountPage() {
           My Account
         </h1>
         <p className="text-sm text-muted-foreground mt-1">
-          Update your display name, login email or password.
+          Update your login email or password.
         </p>
       </div>
 
@@ -165,14 +162,6 @@ export default function MyAccountPage() {
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div className="space-y-1">
-            <label className="text-sm font-medium">Name</label>
-            <Input
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder="Your name"
-            />
-          </div>
           <div className="space-y-1">
             <label className="text-sm font-medium">Email</label>
             <Input

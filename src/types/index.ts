@@ -96,6 +96,19 @@ export interface Booking {
   updatedAt?: Date;
 }
 
+export interface Inquiry {
+  _id?: ObjectId;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone?: string;
+  destination?: string;
+  travelDates?: string;
+  message: string;
+  createdAt?: Date;
+  updatedAt?: Date;
+}
+
 export interface CustomTrip {
   _id?: ObjectId;
   id?: string;

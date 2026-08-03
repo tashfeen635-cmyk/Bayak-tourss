@@ -8,12 +8,13 @@ import {
   Compass,
   Star,
   Image,
+  Inbox,
   TrendingUp,
 } from "lucide-react";
 import Link from "next/link";
 
 async function getStats() {
-  const [destinations, bookings, customTrips, team, testimonials, gallery] =
+  const [destinations, bookings, customTrips, team, testimonials, gallery, inquiries] =
     await Promise.all([
       count("destinations"),
       count("bookings"),
@@ -21,9 +22,10 @@ async function getStats() {
       count("team"),
       count("testimonials"),
       count("gallery"),
+      count("inquiries"),
     ]);
 
-  return { destinations, bookings, customTrips, team, testimonials, gallery };
+  return { destinations, bookings, customTrips, team, testimonials, gallery, inquiries };
 }
 
 const statCards = [
@@ -68,6 +70,13 @@ const statCards = [
     icon: Image,
     href: "/admin/gallery",
     color: "text-pink-500",
+  },
+  {
+    label: "Inquiries",
+    key: "inquiries" as const,
+    icon: Inbox,
+    href: "/admin/inquiries",
+    color: "text-purple-500",
   },
 ];
 
