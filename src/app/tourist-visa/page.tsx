@@ -4,9 +4,12 @@ import { FadeIn, StaggerContainer, StaggerItem } from "@/components/animations";
 import { CheckCircle2, FileText, Globe, CreditCard, Plane } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Tourist Visa | Bayak Tours",
+  title: "Tourist Visa",
   description:
     "Step-by-step guide for foreigners visiting Pakistan. How to apply for a Pakistan tourist visa online through the official Pakistan Online Visa System.",
+  alternates: {
+    canonical: "/tourist-visa",
+  },
 };
 
 const checklist = [

@@ -50,6 +50,9 @@ const footerLinks = {
   explore: [
     { label: "About Us", href: "/about" },
     { label: "Tours", href: "/tours" },
+    { label: "Tourist Visa", href: "/tourist-visa" },
+    { label: "Blogs", href: "/blogs" },
+    { label: "Work With Us", href: "/work-with-us" },
     { label: "Gallery", href: "/gallery" },
     { label: "Our Team", href: "/team" },
     { label: "Contact", href: "/contact" },

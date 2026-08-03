@@ -17,9 +17,12 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Work With Us | Bayak Tours",
+  title: "Work With Us",
   description:
     "Partner with Bayak Tours. Influencers get 50% off tour packages, plus affiliate, travel agent and student ambassador programs.",
+  alternates: {
+    canonical: "/work-with-us",
+  },
 };
 
 const influencerRequirements = [

@@ -3,9 +3,12 @@ import { GalleryContent } from "@/components/gallery-content";
 import { getCollection } from "@/lib/db";
 
 export const metadata: Metadata = {
-  title: "Gallery | Bayak Tours",
+  title: "Gallery",
   description:
     "Browse stunning travel photography from our destinations around the world.",
+  alternates: {
+    canonical: "/gallery",
+  },
 };
 
 export default async function GalleryPage() {

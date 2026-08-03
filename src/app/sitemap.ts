@@ -1,0 +1,24 @@
+import type { MetadataRoute } from "next";
+
+const SITE_URL = "https://bayaktours.com";
+
+export default function sitemap(): MetadataRoute.Sitemap {
+  const routes = [
+    "",
+    "/about",
+    "/tours",
+    "/gallery",
+    "/team",
+    "/contact",
+    "/blogs",
+    "/tourist-visa",
+    "/work-with-us",
+  ];
+
+  return routes.map((route) => ({
+    url: `${SITE_URL}${route}`,
+    lastModified: new Date(),
+    changeFrequency: "weekly",
+    priority: route === "" ? 1 : 0.8,
+  }));
+}
