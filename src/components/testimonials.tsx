@@ -309,7 +309,7 @@ export function Testimonials({ testimonials: data }: { testimonials?: Testimonia
                     <h3 className="font-heading text-xl font-bold">Write a Review</h3>
                     <button
                       onClick={closeReviewModal}
-                      className="text-muted-foreground hover:text-foreground"
+                      className="flex h-10 w-10 items-center justify-center rounded-full bg-black/70 text-white/90 transition-all duration-200 hover:scale-110 hover:bg-black hover:text-white"
                     >
                       <X className="h-5 w-5" />
                     </button>

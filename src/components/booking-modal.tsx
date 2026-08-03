@@ -180,10 +180,10 @@ export function BookingModal({
           onClick={handleClose}
         >
           <button
-            className="absolute right-4 top-4 z-[60] text-white/70 transition-colors hover:text-white"
+            className="absolute right-4 top-4 z-[60] flex h-10 w-10 items-center justify-center rounded-full bg-black/70 text-white/90 transition-all duration-200 hover:scale-110 hover:bg-black hover:text-white"
             onClick={handleClose}
           >
-            <X className="h-8 w-8" />
+            <X className="h-5 w-5" />
           </button>
 
           <motion.div
