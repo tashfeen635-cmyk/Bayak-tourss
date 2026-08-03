@@ -26,6 +26,7 @@
 
 # uploads
 /public/uploads/*
+/assets/Videos/IMG_9640.MP4
 
 # debug
 npm-debug.log*

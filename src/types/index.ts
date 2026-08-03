@@ -47,6 +47,7 @@ export interface TeamMember {
   experience: string;
   specialization: string;
   languages: string[];
+  order?: number;
   createdAt?: Date;
   updatedAt?: Date;
 }

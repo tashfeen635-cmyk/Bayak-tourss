@@ -1,6 +1,7 @@
 import { AdminDataTable } from "../components/data-table";
 
 const fields = [
+  { key: "order", label: "Order", type: "number" as const },
   { key: "name", label: "Name", required: true },
   { key: "role", label: "Role", required: true },
   { key: "bio", label: "Bio", type: "textarea" as const, required: true },
@@ -10,7 +11,7 @@ const fields = [
   { key: "languages", label: "Languages (comma-separated)" },
 ];
 
-const displayColumns = ["Name", "Role", "Experience", "Specialization"];
+const displayColumns = ["Order", "Name", "Role", "Experience", "Specialization"];
 
 export default function TeamPage() {
   return (

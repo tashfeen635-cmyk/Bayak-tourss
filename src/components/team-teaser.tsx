@@ -9,6 +9,7 @@ import { FadeIn, StaggerContainer, StaggerItem } from "./animations";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { TeamMember } from "@/types";
+import { sortMembers } from "@/lib/team";
 
 function toArr(v: unknown): string[] {
   if (Array.isArray(v)) return v;
@@ -22,7 +23,7 @@ function normalizeMember(m: TeamMember): TeamMember {
 
 export function TeamTeaser({ team: data }: { team?: TeamMember[] }) {
   const [teamMembers, setTeamMembers] = useState<TeamMember[]>(() =>
-    data ? data.map(normalizeMember) : []
+    data ? sortMembers(data.map(normalizeMember)) : []
   );
   const [selected, setSelected] = useState<number | null>(null);
 
@@ -31,8 +32,8 @@ export function TeamTeaser({ team: data }: { team?: TeamMember[] }) {
     fetch("/api/team")
       .then((r) => r.json())
       .then((data) => {
-        if (Array.isArray(data)) setTeamMembers(data.map(normalizeMember));
-        else if (data && Array.isArray(data.team)) setTeamMembers(data.team.map(normalizeMember));
+        if (Array.isArray(data)) setTeamMembers(sortMembers(data.map(normalizeMember)));
+        else if (data && Array.isArray(data.team)) setTeamMembers(sortMembers(data.team.map(normalizeMember)));
         else setTeamMembers([]);
       })
       .catch(() => setTeamMembers([]));
@@ -70,17 +71,25 @@ export function TeamTeaser({ team: data }: { team?: TeamMember[] }) {
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                     />
                   </div>
-                  <div className="flex-1 p-6">
-                    <h3 className="font-heading text-lg font-semibold">
-                      {member.name}
-                    </h3>
-                    <p className="mt-1 text-sm font-medium text-gold">
-                      {member.role}
-                    </p>
-                    <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                      {member.bio.length > 150 ? member.bio.slice(0, 150) + "..." : member.bio}
-                    </p>
-                  </div>
+                    <div className="flex flex-1 flex-col p-6">
+                      <h3 className="font-heading text-lg font-semibold">
+                        {member.name}
+                      </h3>
+                      <p className="mt-1 text-sm font-medium text-gold">
+                        {member.role}
+                      </p>
+                      <p className="mt-3 text-sm leading-relaxed text-muted-foreground line-clamp-4">
+                        {member.bio}
+                      </p>
+                      <div className="mt-auto pt-4">
+                        <button
+                          onClick={() => setSelected(i)}
+                          className="inline-flex items-center gap-1.5 rounded-full border border-gold/30 px-4 py-1.5 text-xs font-medium text-gold transition-colors hover:bg-gold hover:text-white"
+                        >
+                          More Details
+                        </button>
+                      </div>
+                    </div>
                 </div>
               </StaggerItem>
             ))}

@@ -10,19 +10,10 @@ import { stats } from "@/data";
 export function Hero() {
   return (
     <section className="relative flex min-h-screen items-center justify-center pb-20">
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        poster="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&q=80"
-        className="absolute inset-0 h-full w-full object-cover"
-      >
-        <source
-          src="https://assets.mixkit.co/videos/preview/mixkit-set-of-plateaus-in-the-middle-of-a-valley-2607-large.mp4"
-          type="video/mp4"
-        />
-      </video>
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{ backgroundImage: "url('/hero-image.jpg')" }}
+      />
       <div className="relative z-10 mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

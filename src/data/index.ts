@@ -239,22 +239,10 @@ export const destinations = [
 
 export const reels = [
   {
-    id: "hunza-reel",
-    destination: "Hunza Valley",
-    description: "Where mountains touch the sky and time stands still.",
-    video: "/videos/video-1.mp4",
-  },
-  {
     id: "skardu-reel",
     destination: "Skardu",
     description: "Turquoise waters of Shangrila, heaven on Earth.",
     video: "/videos/video-2.mp4",
-  },
-  {
-    id: "fairy-reel",
-    destination: "Fairy Meadows",
-    description: "Sleep beneath the mighty Nanga Parbat.",
-    video: "/videos/video-3.mp4",
   },
   {
     id: "naran-reel",
@@ -269,16 +257,46 @@ export const reels = [
     video: "/videos/video-5.mp4",
   },
   {
-    id: "gilgit-reel",
-    destination: "Gilgit",
-    description: "Ancient silk route, modern adventures.",
-    video: "/videos/video-6.mp4",
-  },
-  {
     id: "khunjerab-reel",
     destination: "Khunjerab Pass",
     description: "Where China meets Pakistan at 4,693 meters.",
     video: "/videos/video-7.mp4",
+  },
+  {
+    id: "beyal-camp-reel",
+    destination: "Beyal Camp",
+    description: "The best view of Nanga Parbat — camp beneath the giants.",
+    video: "/videos/reel-beyal-camp.mp4",
+  },
+  {
+    id: "autumn-reel",
+    destination: "Autumn in Skardu",
+    description: "Dm for your autumn tour of Gilgit-Baltistan.",
+    video: "/videos/reel-autumn.mp4",
+  },
+  {
+    id: "fairy-meadows-reel",
+    destination: "Fairy Meadows",
+    description: "A place you never want to say goodbye to.",
+    video: "/videos/reel-fairy-meadows.mp4",
+  },
+  {
+    id: "passu-cones-reel",
+    destination: "Passu Cones",
+    description: "Karakoram's crown — the mighty Passu Cones of Hunza.",
+    video: "/videos/reel-passu-cones.mp4",
+  },
+  {
+    id: "nangma-valley-reel",
+    destination: "Nangma Valley",
+    description: "Create your own travel story — customized trips to Baltistan.",
+    video: "/videos/reel-nangma-valley.mp4",
+  },
+  {
+    id: "skardu-reel-2",
+    destination: "Skardu",
+    description: "Wait for the end — a reel from the land of high peaks.",
+    video: "/videos/reel-skardu-2.mp4",
   },
 ];
 

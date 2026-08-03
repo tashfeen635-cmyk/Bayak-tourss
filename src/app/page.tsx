@@ -7,6 +7,7 @@ import { BookingDeals } from "@/components/booking-deals";
 import { Testimonials } from "@/components/testimonials";
 import { CallToAction } from "@/components/call-to-action";
 import { getCollection } from "@/lib/db";
+import { sortMembers } from "@/lib/team";
 
 async function GallerySection() {
   const images = await getCollection("gallery", {}, { limit: 6 });
@@ -14,7 +15,7 @@ async function GallerySection() {
 }
 
 async function TeamSection() {
-  const team = await getCollection("team", {}, { limit: 4 });
+  const team = sortMembers(await getCollection("team"));
   return <TeamTeaser team={team} />;
 }
 

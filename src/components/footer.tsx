@@ -69,18 +69,18 @@ export function Footer() {
     <footer className="bg-charcoal text-white/80">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid gap-12 py-16 sm:grid-cols-2 lg:grid-cols-4">
-          <div className="-mt-[65px]">
+          <div>
             <Link href="/" className="inline-block group">
               <Image
-                src="/bayak-tours-logo-v2.png"
+                src="/footer-logo.png"
                 alt="Bayak Tours"
-                width={1024}
-                height={1536}
+                width={1536}
+                height={1024}
                 priority
-                className="h-50 w-auto object-contain -mb-[62px]"
+                className="h-50 w-auto object-contain -mt-[47px]"
               />
             </Link>
-            <p className="mt-4 text-sm leading-relaxed text-white/60">
+            <p className="-mt-[68px] text-sm leading-relaxed text-white/60">
               Pakistan&apos;s premier travel company. Crafting unforgettable
               journeys to the most breathtaking destinations since 2021.
             </p>
