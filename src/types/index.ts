@@ -33,6 +33,7 @@ export interface Reel {
   destination: string;
   description: string;
   video: string;
+  poster?: string;
   createdAt?: Date;
   updatedAt?: Date;
 }

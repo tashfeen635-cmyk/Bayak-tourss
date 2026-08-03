@@ -246,12 +246,13 @@ export function ReelsSection() {
                 <div className="absolute inset-0 transition-transform duration-700 group-hover:scale-105">
                   <video
                     ref={(el) => { cardVideoRefs.current[i] = el; }}
-                    src={`${reel.video}#t=1`}
+                    src={reel.video}
+                    poster={reel.poster}
                     className="absolute inset-0 h-full w-full object-cover"
                     muted
                     loop
                     playsInline
-                    preload="metadata"
+                    preload="none"
                   />
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
@@ -309,7 +310,8 @@ export function ReelsSection() {
                 )}
                 <video
                   key={selected}
-                  src={`${reels[selected].video}#t=1`}
+                  src={reels[selected].video}
+                  poster={reels[selected].poster}
                   className="absolute inset-0 h-full w-full object-cover"
                   loop
                   playsInline
@@ -348,7 +350,8 @@ export function ReelsSection() {
                   style={{ scrollSnapAlign: "start", height: "calc(100dvh - 32px)" }}
                 >
                   <video
-                    src={`${reel.video}#t=1`}
+                    src={reel.video}
+                    poster={reel.poster}
                     className="absolute inset-0 h-full w-full object-cover"
                     loop
                     playsInline
