@@ -168,7 +168,7 @@ export default function MyAccountPage() {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="you@bayaktours.com"
+              placeholder="you@terrapakistan.com"
             />
           </div>
         </CardContent>

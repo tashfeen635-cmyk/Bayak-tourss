@@ -2,7 +2,7 @@ import { SignJWT, jwtVerify } from "jose";
 import { cookies } from "next/headers";
 
 const SECRET = new TextEncoder().encode(
-  process.env.NEXTAUTH_SECRET || "bayak-tours-secret-change-in-production"
+  process.env.NEXTAUTH_SECRET || "terra-pakistan-secret-change-in-production"
 );
 
 const COOKIE_NAME = "bayak-admin-token";

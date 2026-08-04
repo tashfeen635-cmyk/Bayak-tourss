@@ -116,7 +116,7 @@ const faqs = [
     a: "No. The free Visa Prior to Arrival (VPA) programme ended on 1 January 2026. All visitors now apply for a paid e-Visa through the Pakistan Online Visa System.",
   },
   {
-    q: "Can Bayak Tours help with my visa?",
+    q: "Can Terra Pakistan help with my visa?",
     a: "Yes. Our team can guide you through the application and arrange your itinerary, hotels and transport so everything is ready for your trip. Contact us for assistance.",
   },
 ];

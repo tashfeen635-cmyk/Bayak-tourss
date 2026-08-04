@@ -16,7 +16,7 @@ import {
 export const metadata: Metadata = {
   title: "Work With Us",
   description:
-    "Partner with Bayak Tours. Influencers get paid collaborations and exclusive discounts, and tour leaders travel free and earn on every group.",
+    "Partner with Terra Pakistan. Influencers get paid collaborations and exclusive discounts, and tour leaders travel free and earn on every group.",
   alternates: {
     canonical: "/work-with-us",
   },
@@ -28,7 +28,7 @@ const partnerGroups = [
     icon: Camera,
     title: "Influencers",
     tagline:
-      "Get paid to create, travel on sponsored experiences and grow a long-term partnership with Bayak Tours.",
+      "Get paid to create, travel on sponsored experiences and grow a long-term partnership with Terra Pakistan.",
     requirements: [
       {
         title: "Authentic travel content",
@@ -58,7 +58,7 @@ const partnerGroups = [
       {
         title: "High-quality videos & photos",
         description:
-          "Sharp, well-composed visuals that reflect the quality of Bayak Tours.",
+          "Sharp, well-composed visuals that reflect the quality of Terra Pakistan.",
       },
       {
         title: "Brand alignment",
@@ -80,7 +80,7 @@ const partnerGroups = [
       {
         title: "Exclusive travel discounts",
         description:
-          "Case-by-case discounts on Bayak tour packages beyond our standard offers.",
+          "Case-by-case discounts on Terra Pakistan tour packages beyond our standard offers.",
       },
       {
         title: "Long-term partnerships",
@@ -129,7 +129,7 @@ const partnerGroups = [
       {
         title: "5+ travelers",
         description:
-          "A group of 5 or more travelers you can bring along on a Bayak tour.",
+          "A group of 5 or more travelers you can bring along on a Terra Pakistan tour.",
       },
       {
         title: "Clear communication",
@@ -154,7 +154,7 @@ const partnerGroups = [
       {
         title: "Brand representation",
         description:
-          "Positive, professional representation of Bayak Tours throughout the trip.",
+          "Positive, professional representation of Terra Pakistan throughout the trip.",
       },
       {
         title: "Feedback & collaboration",
@@ -176,7 +176,7 @@ const partnerGroups = [
       {
         title: "Leader commission",
         description:
-          "Earn on every group booking you bring to Bayak Tours.",
+          "Earn on every group booking you bring to Terra Pakistan.",
       },
       {
         title: "Booking support",
@@ -191,12 +191,12 @@ const partnerGroups = [
       {
         title: "Recognition & perks",
         description:
-          "A leader badge, priority access and appreciation rewards from Bayak Tours.",
+          "A leader badge, priority access and appreciation rewards from Terra Pakistan.",
       },
       {
         title: "Networking opportunities",
         description:
-          "Connect with fellow leaders, creators and partners in the Bayak community.",
+          "Connect with fellow leaders, creators and partners in the Terra Pakistan community.",
       },
       {
         title: "Repeat trip incentives",
@@ -224,7 +224,7 @@ const applySteps = [
 
 const WHATSAPP_URL = "https://wa.me/923146605966?text=" +
   encodeURIComponent(
-    "Hi Bayak Tours! I'd like to partner with you. Here are my details:"
+    "Hi Terra Pakistan! I'd like to partner with you. Here are my details:"
   );
 
 export default function WorkWithUsPage() {
@@ -249,7 +249,7 @@ export default function WorkWithUsPage() {
             <p className="mx-auto mt-4 max-w-2xl text-white/70">
               Get paid for your collaborations, lead your group for free, or
               earn on every referral. Pick your partnership and let&apos;s grow
-              Bayak Tours together.
+              Terra Pakistan together.
             </p>
           </FadeIn>
         </div>
@@ -265,7 +265,7 @@ export default function WorkWithUsPage() {
               Pick your partnership
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-              Two ways to grow with Bayak Tours. Each program spells out what
+              Two ways to grow with Terra Pakistan. Each program spells out what
               we ask of you and exactly what you get in return.
             </p>
           </FadeIn>

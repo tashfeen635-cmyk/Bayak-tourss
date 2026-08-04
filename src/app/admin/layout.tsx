@@ -91,7 +91,7 @@ export default function AdminLayout({
         <div className="flex items-center justify-between p-4 border-b border-border">
           <Link href="/admin" className="flex items-center gap-2">
             <span className="text-lg font-bold font-[family-name:var(--font-heading)] text-gold">
-              Bayak Tours
+              Terra Pakistan
             </span>
           </Link>
           <button

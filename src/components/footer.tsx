@@ -76,7 +76,7 @@ export function Footer() {
             <Link href="/" className="inline-block group">
               <Image
                 src="/footer-logo.png"
-                alt="Bayak Tours"
+                alt="Terra Pakistan"
                 width={1536}
                 height={1024}
                 priority
@@ -150,8 +150,8 @@ export function Footer() {
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="h-4 w-4 shrink-0 text-gold" />
-                <a href="mailto:info@bayaktours.com" className="text-sm text-white/60 transition-colors hover:text-gold">
-                  info@bayaktours.com
+                <a href="mailto:info@terrapakistan.com" className="text-sm text-white/60 transition-colors hover:text-gold">
+                  info@terrapakistan.com
                 </a>
               </li>
 
@@ -161,7 +161,7 @@ export function Footer() {
         </div>
 
         <div className="border-t border-white/10 py-6 text-center text-xs text-white/40">
-          &copy; {new Date().getFullYear()} Bayak Tours. All rights reserved.
+          &copy; {new Date().getFullYear()} Terra Pakistan. All rights reserved.
         </div>
       </div>
     </footer>

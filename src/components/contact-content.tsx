@@ -80,8 +80,8 @@ export function ContactContent() {
                   {
                     icon: Mail,
                     label: "Email Us",
-                    value: "info@bayaktours.com",
-                    href: "mailto:info@bayaktours.com",
+                    value: "info@terrapakistan.com",
+                    href: "mailto:info@terrapakistan.com",
                   },
                   {
                     icon: MessageCircle,

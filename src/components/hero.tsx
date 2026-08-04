@@ -42,7 +42,7 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
           className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-white/70 sm:text-xl"
         >
-          Adventure, Culture &amp; Unforgettable Experiences with Bayak Tours
+          Adventure, Culture &amp; Unforgettable Experiences with Terra Pakistan
         </motion.p>
 
         <motion.div

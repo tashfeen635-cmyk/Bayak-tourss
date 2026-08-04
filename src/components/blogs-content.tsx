@@ -95,7 +95,7 @@ const guides = [
       "A complete route guide to the Baltoro Glacier, Concordia and the world's second-highest peak — from Skardu to Askole.",
     image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=900&q=80",
     message:
-      "Hi Bayak Tours! I'd like to know more about the K2 Base Camp Trek.",
+      "Hi Terra Pakistan! I'd like to know more about the K2 Base Camp Trek.",
   },
   {
     title: "Skardu & Deosai",
@@ -103,7 +103,7 @@ const guides = [
       "Fairy Meadows, Shangrila Lake and the 'Land of Giants' — the Deosai plateau in the heart of Baltistan.",
     image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=900&q=80",
     message:
-      "Hi Bayak Tours! I'd like to know more about the Skardu & Deosai tour.",
+      "Hi Terra Pakistan! I'd like to know more about the Skardu & Deosai tour.",
   },
   {
     title: "Fairy Meadows",
@@ -111,13 +111,13 @@ const guides = [
       "Emerald alpine meadows beneath Nanga Parbat — the world's ninth-highest peak. Reach it by jeep from Raikot Bridge on the Karakoram Highway, then hike 2–3 hours through pine forest to camp under the 'Killer Mountain'.",
     image: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=900&q=80",
     message:
-      "Hi Bayak Tours! I'd like to know more about the Fairy Meadows tour.",
+      "Hi Terra Pakistan! I'd like to know more about the Fairy Meadows tour.",
   },
 ];
 
 const WHATSAPP_URL = "https://wa.me/923146605966?text=" +
   encodeURIComponent(
-    "Hi Bayak Tours! I'd like to plan a trip to Pakistan."
+    "Hi Terra Pakistan! I'd like to plan a trip to Pakistan."
   );
 
 export function BlogsContent() {
@@ -302,7 +302,7 @@ export function BlogsContent() {
               Travel Guides
             </span>
             <h2 className="mt-3 font-heading text-3xl font-bold tracking-tight sm:text-4xl">
-              Bayak Tours guides
+              Terra Pakistan guides
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
               Insider guides to Pakistan&apos;s greatest destinations — written
@@ -369,7 +369,7 @@ export function BlogsContent() {
                   Ready to explore Pakistan yourself?
                 </h2>
                 <p className="mx-auto mt-4 max-w-xl text-white/80">
-                  From the Karakoram Highway to K2 Base Camp, Bayak Tours plans
+                  From the Karakoram Highway to K2 Base Camp, Terra Pakistan plans
                   your perfect trip through Gilgit-Baltistan and beyond.
                 </p>
                 <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">

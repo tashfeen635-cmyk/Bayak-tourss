@@ -46,7 +46,7 @@ export default function AdminLoginPage() {
       <div className="w-full max-w-sm space-y-6">
         <div className="text-center space-y-2">
           <h1 className="text-2xl font-bold font-[family-name:var(--font-heading)]">
-            Bayak Tours
+            Terra Pakistan
           </h1>
           <p className="text-sm text-muted-foreground">Admin Panel</p>
         </div>
@@ -68,7 +68,7 @@ export default function AdminLoginPage() {
               autoComplete="username"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="you@bayaktours.com or your username"
+              placeholder="you@terrapakistan.com or your username"
               required
             />
           </div>

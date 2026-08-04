@@ -314,7 +314,7 @@ export const teamMembers = [
   {
     name: "Ahmed Khan",
     role: "Founder & CEO",
-    bio: "With over 15 years in Pakistan tourism, Ahmed founded Bayak Tours to share the beauty of Pakistan with the world.",
+    bio: "With over 15 years in Pakistan tourism, Ahmed founded Terra Pakistan to share the beauty of Pakistan with the world.",
     image:
       "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80",
     experience: "15+ Years",
@@ -357,7 +357,7 @@ export const testimonials = [
   {
     name: "Sarah Mitchell",
     country: "United Kingdom",
-    text: "Bayak Tours made our trip to Hunza absolutely magical. The guides were incredible, the views were unreal, and every detail was taken care of. Best travel experience of our lives!",
+    text: "Terra Pakistan made our trip to Hunza absolutely magical. The guides were incredible, the views were unreal, and every detail was taken care of. Best travel experience of our lives!",
     rating: 5,
     avatar:
       "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&q=80",
@@ -365,7 +365,7 @@ export const testimonials = [
   {
     name: "David Chen",
     country: "Singapore",
-    text: "Trekking to Fairy Meadows with Bayak was a dream come true. Professional, safe, and so much fun. They truly know how to make every moment special.",
+    text: "Trekking to Fairy Meadows with Terra Pakistan was a dream come true. Professional, safe, and so much fun. They truly know how to make every moment special.",
     rating: 5,
     avatar:
       "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&q=80",
@@ -373,7 +373,7 @@ export const testimonials = [
   {
     name: "Emma Rodriguez",
     country: "Spain",
-    text: "The Skardu trip exceeded all expectations. The Shangrila Resort, the boat ride — everything was perfect. Already planning my next trip with Bayak!",
+    text: "The Skardu trip exceeded all expectations. The Shangrila Resort, the boat ride — everything was perfect. Already planning my next trip with Terra Pakistan!",
     rating: 5,
     avatar:
       "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=100&q=80",
@@ -381,7 +381,7 @@ export const testimonials = [
   {
     name: "James Wilson",
     country: "Australia",
-    text: "Pakistan surprised me in the best way possible. Bayak Tours showed me a side of this country that travel blogs don't show. Truly remarkable.",
+    text: "Pakistan surprised me in the best way possible. Terra Pakistan showed me a side of this country that travel blogs don't show. Truly remarkable.",
     rating: 5,
     avatar:
       "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&q=80",
@@ -389,7 +389,7 @@ export const testimonials = [
   {
     name: "Mia Tanaka",
     country: "Japan",
-    text: "The attention to detail was incredible. From the local food experiences to the hidden viewpoints, Bayak Tours knows Pakistan inside out.",
+    text: "The attention to detail was incredible. From the local food experiences to the hidden viewpoints, Terra Pakistan knows Pakistan inside out.",
     rating: 5,
     avatar:
       "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&q=80",

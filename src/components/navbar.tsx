@@ -41,14 +41,14 @@ export function Navbar() {
           <Link href="/" className="flex items-center gap-2 group">
             <Image
               src="/bayak-tours-logo-v2.png"
-              alt="Bayak Tours"
+              alt="Terra Pakistan"
               width={1024}
               height={1536}
               priority
               className="h-50 w-auto object-contain"
             />
             <span className="font-heading text-2xl font-bold tracking-tight text-gold -mt-9">
-              Bayak Tours
+              Terra Pakistan
             </span>
           </Link>
 

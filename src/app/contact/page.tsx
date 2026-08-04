@@ -4,7 +4,7 @@ import { ContactContent } from "@/components/contact-content";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Get in touch with Bayak Tours. Let us help you plan your next adventure.",
+    "Get in touch with Terra Pakistan. Let us help you plan your next adventure.",
   alternates: {
     canonical: "/contact",
   },

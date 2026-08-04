@@ -52,7 +52,7 @@ const milestones = [
     year: "2021",
     title: "The Beginning",
     description:
-      "Ahmed Khan founded Bayak Tours from a small office in Islamabad with a dream to show the world Pakistan's true beauty.",
+      "Ahmed Khan founded Terra Pakistan from a small office in Islamabad with a dream to show the world Pakistan's true beauty.",
   },
   {
     year: "2022",
@@ -89,19 +89,19 @@ const aboutStats = [
 
 const faqs = [
   {
-    question: "What does Bayak mean?",
+    question: "What does Terra mean?",
     answer:
-      "Bayak is a Shina word that means \"hotel,\" \"traveler's resting place,\" or \"temporary place of living.\" It reflects our mission to provide a comfortable and welcoming home for every traveler exploring the breathtaking landscapes of Pakistan.",
+      "Terra comes from the Latin word for \"earth\" or \"land.\" Paired with \"Pakistan,\" it reflects our passion for this land — its soaring mountains, turquoise lakes and warm people — and our mission to share it with the world.",
   },
   {
-    question: "What is Bayak Tours?",
+    question: "What is Terra Pakistan?",
     answer:
-      "Bayak Tours is Pakistan's premier travel company, founded in 2021. We specialize in crafting premium travel experiences to Pakistan's most breathtaking destinations including Hunza Valley, Skardu, Fairy Meadows, Naran Kaghan, Swat Valley, and more. We have served over 438 happy travelers from 40+ countries worldwide.",
+      "Terra Pakistan is Pakistan's premier travel company, founded in 2021. We specialize in crafting premium travel experiences to Pakistan's most breathtaking destinations including Hunza Valley, Skardu, Fairy Meadows, Naran Kaghan, Swat Valley, and more. We have served over 438 happy travelers from 40+ countries worldwide.",
   },
   {
     question: "Is Pakistan safe for tourists?",
     answer:
-      "Yes, Pakistan is very safe for tourists, especially the northern regions like Gilgit-Baltistan and Khyber Pakhtunkhwa where most tourist destinations are located. The Pakistani government has invested heavily in tourist safety infrastructure. Bayak Tours provides verified accommodations, experienced local guides, and 24/7 support to ensure a safe and comfortable journey.",
+      "Yes, Pakistan is very safe for tourists, especially the northern regions like Gilgit-Baltistan and Khyber Pakhtunkhwa where most tourist destinations are located. The Pakistani government has invested heavily in tourist safety infrastructure. Terra Pakistan provides verified accommodations, experienced local guides, and 24/7 support to ensure a safe and comfortable journey.",
   },
 
   {
@@ -110,34 +110,34 @@ const faqs = [
       "The best time to visit Pakistan's northern areas is from April to October. May to September offers the most pleasant weather with clear skies, blooming meadows, and accessible mountain passes. August and September are ideal for trekking. Winter trips (December to February) are perfect for witnessing snow-covered landscapes in Skardu and Hunza.",
   },
   {
-    question: "What destinations does Bayak Tours cover?",
+    question: "What destinations does Terra Pakistan cover?",
     answer:
-      "Bayak Tours covers 15+ destinations across Pakistan including Hunza Valley, Skardu, Fairy Meadows, Naran Kaghan, Swat Valley, Gilgit, Neelum Valley, Deosai Plains, and more. We offer adventure tours, family packages, honeymoon trips, cultural experiences, and luxury glamping across Gilgit-Baltistan, Khyber Pakhtunkhwa, and Azad Kashmir.",
+      "Terra Pakistan covers 15+ destinations across Pakistan including Hunza Valley, Skardu, Fairy Meadows, Naran Kaghan, Swat Valley, Gilgit, Neelum Valley, Deosai Plains, and more. We offer adventure tours, family packages, honeymoon trips, cultural experiences, and luxury glamping across Gilgit-Baltistan, Khyber Pakhtunkhwa, and Azad Kashmir.",
   },
   {
     question: "Do I need a visa to visit Pakistan?",
     answer:
-      "Most international travelers need a visa to visit Pakistan. Citizens of 50+ countries can apply for an e-Visa online through the Pakistan government portal. Some countries are eligible for visa-on-arrival. Bayak Tours assists with visa guidance and provides invitation letters to help streamline your application process.",
+      "Most international travelers need a visa to visit Pakistan. Citizens of 50+ countries can apply for an e-Visa online through the Pakistan government portal. Some countries are eligible for visa-on-arrival. Terra Pakistan assists with visa guidance and provides invitation letters to help streamline your application process.",
   },
   {
-    question: "What is included in Bayak Tours packages?",
+    question: "What is included in Terra Pakistan packages?",
     answer:
-      "Every Bayak Tours package includes hotel or camping accommodation, daily meals, comfortable transport (4x4s or air-conditioned vehicles), a certified English-speaking local guide, and all planned activities. Some packages also include boat rides, trekking gear, and cultural experiences. Custom additions like photography services and premium upgrades are available on request.",
+      "Every Terra Pakistan package includes hotel or camping accommodation, daily meals, comfortable transport (4x4s or air-conditioned vehicles), a certified English-speaking local guide, and all planned activities. Some packages also include boat rides, trekking gear, and cultural experiences. Custom additions like photography services and premium upgrades are available on request.",
   },
   {
     question: "Can I customize my trip itinerary?",
     answer:
-      "Absolutely. Bayak Tours specializes in personalized itineraries. No trip is cookie-cutter — we tailor every journey to your interests, budget, group size, and travel pace. Whether you want an action-packed adventure, a relaxed family vacation, or a romantic honeymoon, our team will craft the perfect plan for you.",
+      "Absolutely. Terra Pakistan specializes in personalized itineraries. No trip is cookie-cutter — we tailor every journey to your interests, budget, group size, and travel pace. Whether you want an action-packed adventure, a relaxed family vacation, or a romantic honeymoon, our team will craft the perfect plan for you.",
   },
   {
-    question: "Does Bayak Tours offer group travel packages?",
+    question: "Does Terra Pakistan offer group travel packages?",
     answer:
-      "Yes, Bayak Tours offers special group travel packages for families, corporate teams, school groups, and friend groups. Group discounts are available for parties of 6 or more. We handle all logistics including custom routes, group accommodations, team-building activities, and dedicated guides to ensure a seamless group experience.",
+      "Yes, Terra Pakistan offers special group travel packages for families, corporate teams, school groups, and friend groups. Group discounts are available for parties of 6 or more. We handle all logistics including custom routes, group accommodations, team-building activities, and dedicated guides to ensure a seamless group experience.",
   },
   {
-    question: "How do I book a trip with Bayak Tours?",
+    question: "How do I book a trip with Terra Pakistan?",
     answer:
-      `Booking a trip with Bayak Tours is simple. You can reach us via our website contact form, WhatsApp at <a href="https://wa.me/923146605966" target="_blank" rel="noopener noreferrer" style="color: #B8860B; text-decoration: underline;">+92 314 6605966</a>, or email at <a href="mailto:info@bayaktours.com" style="color: #B8860B; text-decoration: underline;">info@bayaktours.com</a>. Share your preferred destination, travel dates, group size, and budget. Our team will create a customized itinerary and guide you through the booking process with secure payment options.`,
+      `Booking a trip with Terra Pakistan is simple. You can reach us via our website contact form, WhatsApp at <a href="https://wa.me/923146605966" target="_blank" rel="noopener noreferrer" style="color: #B8860B; text-decoration: underline;">+92 314 6605966</a>, or email at <a href="mailto:info@terrapakistan.com" style="color: #B8860B; text-decoration: underline;">info@terrapakistan.com</a>. Share your preferred destination, travel dates, group size, and budget. Our team will create a customized itinerary and guide you through the booking process with secure payment options.`,
     isHtml: true,
   },
 ];
@@ -175,7 +175,7 @@ export function AboutContent() {
         <div className="relative z-10 px-4 text-center">
           <FadeIn>
             <h1 className="font-heading text-5xl font-bold text-white sm:text-6xl">
-              About Bayak Tours
+              About Terra Pakistan
             </h1>
             <p className="mx-auto mt-4 max-w-2xl text-white/60">
               Our story, our mission, and the passion that drives every journey
@@ -193,7 +193,7 @@ export function AboutContent() {
                 <div className="relative overflow-hidden rounded-2xl shadow-2xl">
                   <Image
                     src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80"
-                    alt="Bayak Tours team exploring Pakistan mountains"
+                    alt="Terra Pakistan team exploring Pakistan mountains"
                     width={800}
                     height={600}
                     className="h-auto w-full object-cover"
@@ -215,7 +215,7 @@ export function AboutContent() {
                   Born From a Love of Pakistan
                 </h2>
                 <p className="mt-4 text-muted-foreground">
-                  Bayak Tours was founded in 2021 by Ahmed Khan, a lifelong
+                  Terra Pakistan was founded in 2021 by Ahmed Khan, a lifelong
                   mountaineer and travel enthusiast who saw the incredible beauty
                   of Pakistan going unnoticed by the world. What started as a
                   small team of passionate guides has grown into Pakistan&apos;s
@@ -354,7 +354,7 @@ export function AboutContent() {
                   travel destinations on Earth.
                 </p>
                 <p className="mt-4 text-muted-foreground">
-                  At Bayak Tours, we believe everyone deserves to experience
+                  At Terra Pakistan, we believe everyone deserves to experience
                   the warmth of Pakistani hospitality, the grandeur of the
                   Karakoram, and the magic of a land where every corner holds
                   a new adventure.
@@ -389,7 +389,7 @@ export function AboutContent() {
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
               Everything you need to know about traveling to Pakistan with
-              Bayak Tours. Can&apos;t find what you&apos;re looking for?{" "}
+              Terra Pakistan. Can&apos;t find what you&apos;re looking for?{" "}
               <Link href="/contact" className="text-gold hover:underline">
                 Contact us
               </Link>

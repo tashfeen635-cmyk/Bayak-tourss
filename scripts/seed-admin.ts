@@ -15,7 +15,7 @@ async function seed() {
   await client.connect();
   const db = client.db();
 
-  const email = process.env.ADMIN_EMAIL || "admin@bayaktours.com";
+  const email = process.env.ADMIN_EMAIL || "admin@terrapakistan.com";
   const password = process.env.ADMIN_PASSWORD || "admin123";
 
   const existing = await db.collection("users").findOne({ email });

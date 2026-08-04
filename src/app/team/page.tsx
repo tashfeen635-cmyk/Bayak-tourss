@@ -5,7 +5,7 @@ import { getCollection } from "@/lib/db";
 export const metadata: Metadata = {
   title: "Our Team",
   description:
-    "Meet the passionate team behind Bayak Tours. Travel experts dedicated to crafting your perfect journey.",
+    "Meet the passionate team behind Terra Pakistan. Travel experts dedicated to crafting your perfect journey.",
   alternates: {
     canonical: "/team",
   },

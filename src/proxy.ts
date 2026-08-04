@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { jwtVerify } from "jose";
 
 const SECRET = new TextEncoder().encode(
-  process.env.NEXTAUTH_SECRET || "bayak-tours-secret-change-in-production"
+  process.env.NEXTAUTH_SECRET || "terra-pakistan-secret-change-in-production"
 );
 
 const PUBLIC_PATHS = ["/admin/login", "/api/auth"];
