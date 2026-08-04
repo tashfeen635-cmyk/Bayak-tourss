@@ -10,96 +10,211 @@ import {
   Compass,
   Send,
   MessageCircle,
-  BarChart3,
-  Building2,
-  GraduationCap,
   Sparkles,
 } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Work With Us",
   description:
-    "Partner with Bayak Tours. Influencers get 50% off tour packages, plus affiliate, travel agent and student ambassador programs.",
+    "Partner with Bayak Tours. Influencers get paid collaborations and exclusive discounts, and tour leaders travel free and earn on every group.",
   alternates: {
     canonical: "/work-with-us",
   },
 };
 
-const influencerRequirements = [
+const partnerGroups = [
   {
-    title: "10K+ followers",
-    description:
-      "An engaged audience of 10,000+ on at least one platform — Instagram, TikTok or YouTube.",
-  },
-  {
-    title: "Content quality",
-    description:
-      "3+ genuine travel posts, real engagement with your audience, and proper credit to Bayak Tours.",
-  },
-];
-
-const influencerBenefits = [
-  {
-    icon: BadgePercent,
-    title: "50% Off Tours",
-    description:
-      "Enjoy any Bayak tour package at half price while you explore Pakistan's most breathtaking destinations.",
-  },
-  {
+    id: "influencers",
     icon: Camera,
-    title: "Content-First Experience",
-    description:
-      "We design your itinerary around your content — golden-hour shoots, drone spots and hidden viewpoints.",
+    title: "Influencers",
+    tagline:
+      "Get paid to create, travel on sponsored experiences and grow a long-term partnership with Bayak Tours.",
+    requirements: [
+      {
+        title: "Authentic travel content",
+        description:
+          "Genuine, real-world experiences — your audience trusts honesty over polish.",
+      },
+      {
+        title: "Social media collaboration",
+        description:
+          "Cross-promote with us across your channels — posts, stories and reels.",
+      },
+      {
+        title: "Professional collaboration",
+        description:
+          "Clear communication, reliable timelines and a professional working attitude.",
+      },
+      {
+        title: "Passion for travel",
+        description:
+          "A genuine love for exploring Pakistan and sharing it with your audience.",
+      },
+      {
+        title: "Consistent content creation",
+        description:
+          "Regular posting and steady engagement so our partnership keeps momentum.",
+      },
+      {
+        title: "High-quality videos & photos",
+        description:
+          "Sharp, well-composed visuals that reflect the quality of Bayak Tours.",
+      },
+      {
+        title: "Brand alignment",
+        description:
+          "Values and content style that match our brand image and standards.",
+      },
+      {
+        title: "Performance & insights sharing",
+        description:
+          "Share reach, engagement and results so we can grow together.",
+      },
+    ],
+    offers: [
+      {
+        title: "Paid collaborations",
+        description:
+          "Get paid for your work — every sponsored trip and campaign comes with fair compensation.",
+      },
+      {
+        title: "Exclusive travel discounts",
+        description:
+          "Case-by-case discounts on Bayak tour packages beyond our standard offers.",
+      },
+      {
+        title: "Long-term partnerships",
+        description:
+          "Grow with us beyond one trip — repeat collaborations, bigger campaigns and ongoing support.",
+      },
+      {
+        title: "Sponsored travel experiences",
+        description:
+          "Fully or partially sponsored trips so you can explore Pakistan's best destinations.",
+      },
+      {
+        title: "Content support & brand exposure",
+        description:
+          "Our team amplifies your content and introduces you to a wider audience.",
+      },
+      {
+        title: "Creative freedom",
+        description:
+          "Full control over your content — we trust your style, voice and storytelling.",
+      },
+      {
+        title: "Early access to new experiences",
+        description:
+          "Be the first to try new tours, destinations and launches before anyone else.",
+      },
+      {
+        title: "Networking opportunities",
+        description:
+          "Connect with fellow creators, brands and travel industry partners.",
+      },
+    ],
   },
   {
+    id: "tour-leaders",
     icon: Compass,
-    title: "Full Trip Support",
-    description:
-      "Hotels, transport, guides and permits handled by our team, so you just focus on creating.",
-  },
-  {
-    icon: BarChart3,
-    title: "Affiliate Earnings",
-    description:
-      "Share your personal booking link and earn commission on every trip your audience books.",
-  },
-];
-
-const programs = [
-  {
-    icon: BadgePercent,
-    title: "Influencer Collaboration",
-    description:
-      "Travel Pakistan at 50% off in exchange for authentic content and promotion across your channels.",
-  },
-  {
-    icon: BarChart3,
-    title: "Affiliate Program",
-    description:
-      "Earn a commission for every customer you refer. Share your link, track your sales, get paid.",
-  },
-  {
-    icon: Building2,
-    title: "Travel Agent Partnership",
-    description:
-      "Travel agencies and resellers earn preferred rates and commissions on group and package bookings.",
-  },
-  {
-    icon: GraduationCap,
-    title: "Student Ambassador",
-    description:
-      "Campus creators get exclusive perks, free trips and networking — the perfect start to a travel career.",
+    title: "Tour Leaders",
+    tagline:
+      "Bring your group, lead it free, and earn on every seat you fill.",
+    requirements: [
+      {
+        title: "Group experience",
+        description:
+          "A track record of organizing and safely leading group trips.",
+      },
+      {
+        title: "5+ travelers",
+        description:
+          "A group of 5 or more travelers you can bring along on a Bayak tour.",
+      },
+      {
+        title: "Clear communication",
+        description:
+          "Reliable coordination with our team before and during every trip.",
+      },
+      {
+        title: "Leadership skills",
+        description:
+          "Confidence to manage group dynamics, keep energy high and lead the way.",
+      },
+      {
+        title: "Safety awareness",
+        description:
+          "A safety-first approach and sensible decisions for your whole group.",
+      },
+      {
+        title: "Punctuality & organization",
+        description:
+          "On-time, well-planned trips that stick to the itinerary.",
+      },
+      {
+        title: "Brand representation",
+        description:
+          "Positive, professional representation of Bayak Tours throughout the trip.",
+      },
+      {
+        title: "Feedback & collaboration",
+        description:
+          "Share honest feedback and work with our team to keep improving.",
+      },
+    ],
+    offers: [
+      {
+        title: "Free leader seat",
+        description:
+          "Travel free whenever your group reaches the minimum size.",
+      },
+      {
+        title: "Discounted group rates",
+        description:
+          "Preferential pricing for everyone in your group or crew.",
+      },
+      {
+        title: "Leader commission",
+        description:
+          "Earn on every group booking you bring to Bayak Tours.",
+      },
+      {
+        title: "Booking support",
+        description:
+          "Marketing and booking help from our team so you can focus on your group.",
+      },
+      {
+        title: "Exclusive leader training",
+        description:
+          "Guides and tips to help you plan, pitch and run unforgettable trips.",
+      },
+      {
+        title: "Recognition & perks",
+        description:
+          "A leader badge, priority access and appreciation rewards from Bayak Tours.",
+      },
+      {
+        title: "Networking opportunities",
+        description:
+          "Connect with fellow leaders, creators and partners in the Bayak community.",
+      },
+      {
+        title: "Repeat trip incentives",
+        description:
+          "Bigger discounts and higher commissions on every group you bring back.",
+      },
+    ],
   },
 ];
 
 const applySteps = [
   {
     title: "Message us on WhatsApp",
-    description: "Tap the button below and introduce yourself with your name and platforms.",
+    description: "Tap the button below and introduce yourself with your name and role.",
   },
   {
     title: "Share your profile",
-    description: "Send your social handles, follower counts and examples of your travel content.",
+    description: "Send your socials, experience or group size — whichever fits your program.",
   },
   {
     title: "Get your deal",
@@ -109,7 +224,7 @@ const applySteps = [
 
 const WHATSAPP_URL = "https://wa.me/923146605966?text=" +
   encodeURIComponent(
-    "Hi Bayak Tours! I'd like to collaborate as an influencer. Here are my social links and stats:"
+    "Hi Bayak Tours! I'd like to partner with you. Here are my details:"
   );
 
 export default function WorkWithUsPage() {
@@ -132,8 +247,9 @@ export default function WorkWithUsPage() {
               Work With Us
             </h1>
             <p className="mx-auto mt-4 max-w-2xl text-white/70">
-              Travel Pakistan at 50% off, earn on every referral, or grow with
-              us as a partner. Let&apos;s grow Bayak Tours together.
+              Get paid for your collaborations, lead your group for free, or
+              earn on every referral. Pick your partnership and let&apos;s grow
+              Bayak Tours together.
             </p>
           </FadeIn>
         </div>
@@ -143,106 +259,95 @@ export default function WorkWithUsPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <FadeIn className="text-center">
             <span className="text-sm font-semibold uppercase tracking-wider text-gold">
-              Influencer Program
+              Partner Programs
             </span>
             <h2 className="mt-3 font-heading text-3xl font-bold tracking-tight sm:text-4xl">
-              Travel Pakistan at 50% Off
+              Pick your partnership
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-              We&apos;re looking for creators who love adventure and great
-              content. Approved influencers get half off any Bayak tour
-              package in exchange for authentic posts and promotion.
+              Two ways to grow with Bayak Tours. Each program spells out what
+              we ask of you and exactly what you get in return.
             </p>
           </FadeIn>
-
-          <div className="mt-12 grid gap-6 lg:grid-cols-2">
-            <FadeIn direction="left">
-              <div className="h-full rounded-2xl border border-border bg-card p-8">
-                <div className="flex items-center gap-2">
-                  <Heart className="h-5 w-5 text-gold" />
-                  <h3 className="font-heading text-xl font-semibold">
-                    What we&apos;re looking for
-                  </h3>
-                </div>
-                <StaggerContainer className="mt-6 space-y-4" staggerDelay={0.15}>
-                  {influencerRequirements.map((req) => (
-                    <StaggerItem key={req.title}>
-                      <div className="flex items-start gap-3 rounded-xl border border-border bg-muted/40 p-5">
-                        <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-gold" />
-                        <div>
-                          <h4 className="font-heading text-lg font-semibold">
-                            {req.title}
-                          </h4>
-                          <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
-                            {req.description}
-                          </p>
-                        </div>
-                      </div>
-                    </StaggerItem>
-                  ))}
-                </StaggerContainer>
-              </div>
-            </FadeIn>
-
-            <FadeIn direction="right" delay={0.1}>
-              <div className="h-full rounded-2xl border border-gold/40 bg-gold/5 p-8">
-                <div className="flex items-center gap-2">
-                  <Sparkles className="h-5 w-5 text-gold" />
-                  <h3 className="font-heading text-xl font-semibold">
-                    What&apos;s in it for you
-                  </h3>
-                </div>
-                <StaggerContainer className="mt-6 grid gap-4 sm:grid-cols-2" staggerDelay={0.12}>
-                  {influencerBenefits.map((benefit) => (
-                    <StaggerItem key={benefit.title}>
-                      <div className="rounded-xl border border-border bg-card p-5">
-                        <benefit.icon className="h-6 w-6 text-gold" />
-                        <h4 className="mt-3 font-heading text-lg font-semibold">
-                          {benefit.title}
-                        </h4>
-                        <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
-                          {benefit.description}
-                        </p>
-                      </div>
-                    </StaggerItem>
-                  ))}
-                </StaggerContainer>
-              </div>
-            </FadeIn>
-          </div>
         </div>
       </section>
 
-      <section className="bg-muted/50 py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <FadeIn className="text-center">
-            <span className="text-sm font-semibold uppercase tracking-wider text-gold">
-              Grow With Us
-            </span>
-            <h2 className="mt-3 font-heading text-3xl font-bold tracking-tight sm:text-4xl">
-              More ways to grow our business
-            </h2>
-          </FadeIn>
+      {partnerGroups.map((group, i) => (
+        <section
+          key={group.id}
+          className={i % 2 === 1 ? "bg-muted/50 py-20" : "py-20"}
+        >
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <FadeIn className="flex flex-col items-center gap-3 text-center">
+              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gold/10 text-gold">
+                <group.icon className="h-7 w-7" />
+              </div>
+              <h2 className="font-heading text-3xl font-bold tracking-tight sm:text-4xl">
+                {group.title}
+              </h2>
+              <p className="max-w-2xl text-muted-foreground">{group.tagline}</p>
+            </FadeIn>
 
-          <StaggerContainer className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {programs.map((program) => (
-              <StaggerItem key={program.title}>
-                <div className="group h-full rounded-2xl border border-border bg-card p-8 transition-all duration-500 hover:border-gold/30 hover:shadow-xl">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gold/10 text-gold transition-colors group-hover:bg-gold group-hover:text-white">
-                    <program.icon className="h-6 w-6" />
+            <div className="mt-12 grid gap-6 lg:grid-cols-2">
+              <FadeIn direction={i % 2 === 0 ? "left" : "right"}>
+                <div className="h-full rounded-2xl border border-border bg-card p-8">
+                  <div className="flex items-center gap-2">
+                    <Heart className="h-5 w-5 text-gold" />
+                    <h3 className="font-heading text-xl font-semibold">
+                      What we want from you
+                    </h3>
                   </div>
-                  <h3 className="mt-6 font-heading text-lg font-semibold">
-                    {program.title}
-                  </h3>
-                  <p className="mt-4 text-sm leading-loose text-muted-foreground">
-                    {program.description}
-                  </p>
+                  <StaggerContainer className="mt-6 space-y-4" staggerDelay={0.12}>
+                    {group.requirements.map((req) => (
+                      <StaggerItem key={req.title}>
+                        <div className="flex items-start gap-3 rounded-xl border border-border bg-muted/40 p-5">
+                          <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-gold" />
+                          <div>
+                            <h4 className="font-heading text-lg font-semibold">
+                              {req.title}
+                            </h4>
+                            <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
+                              {req.description}
+                            </p>
+                          </div>
+                        </div>
+                      </StaggerItem>
+                    ))}
+                  </StaggerContainer>
                 </div>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
-        </div>
-      </section>
+              </FadeIn>
+
+              <FadeIn direction={i % 2 === 0 ? "right" : "left"} delay={0.1}>
+                <div className="h-full rounded-2xl border border-gold/40 bg-gold/5 p-8">
+                  <div className="flex items-center gap-2">
+                    <BadgePercent className="h-5 w-5 text-gold" />
+                    <h3 className="font-heading text-xl font-semibold">
+                      What we offer
+                    </h3>
+                  </div>
+                  <StaggerContainer className="mt-6 space-y-4" staggerDelay={0.12}>
+                    {group.offers.map((offer) => (
+                      <StaggerItem key={offer.title}>
+                        <div className="flex items-start gap-3 rounded-xl border border-border bg-card p-5">
+                          <Sparkles className="mt-0.5 h-5 w-5 shrink-0 text-gold" />
+                          <div>
+                            <h4 className="font-heading text-lg font-semibold">
+                              {offer.title}
+                            </h4>
+                            <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
+                              {offer.description}
+                            </p>
+                          </div>
+                        </div>
+                      </StaggerItem>
+                    ))}
+                  </StaggerContainer>
+                </div>
+              </FadeIn>
+            </div>
+          </div>
+        </section>
+      ))}
 
       <section className="py-20">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
@@ -298,8 +403,8 @@ export default function WorkWithUsPage() {
                   Ready to collaborate?
                 </h2>
                 <p className="mx-auto mt-4 max-w-xl text-white/80">
-                  Message us on WhatsApp and we&apos;ll confirm your 50% off
-                  deal, partnership or commission within 48 hours.
+                  Message us on WhatsApp and we&apos;ll confirm your discount,
+                  partnership or commission within 48 hours.
                 </p>
                 <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
                   <a
