@@ -13,7 +13,7 @@ const navLinks = [
   { href: "/about", label: "About" },
   { href: "/tours", label: "Tours" },
   { href: "/tourist-visa", label: "Tourist Visa" },
-  { href: "/work-with-us", label: "Work With Us" },
+  { href: "/creators-and-group-leaders", label: "Creators & Group Leaders" },
   { href: "/blogs", label: "Blogs" },
   { href: "/contact", label: "Contact" },
 ];

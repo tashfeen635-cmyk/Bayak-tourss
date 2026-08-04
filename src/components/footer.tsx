@@ -52,7 +52,7 @@ const footerLinks = {
     { label: "Tours", href: "/tours" },
     { label: "Tourist Visa", href: "/tourist-visa" },
     { label: "Blogs", href: "/blogs" },
-    { label: "Work With Us", href: "/work-with-us" },
+    { label: "Creators & Group Leaders", href: "/creators-and-group-leaders" },
     { label: "Gallery", href: "/gallery" },
     { label: "Our Team", href: "/team" },
     { label: "Contact", href: "/contact" },

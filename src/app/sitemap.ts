@@ -12,7 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/contact",
     "/blogs",
     "/tourist-visa",
-    "/work-with-us",
+    "/creators-and-group-leaders",
   ];
 
   return routes.map((route) => ({
