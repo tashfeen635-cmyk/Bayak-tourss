@@ -239,6 +239,13 @@ export const destinations = [
 
 export const reels = [
   {
+    id: "kalash-reel",
+    destination: "Kalash Valley",
+    description: "Step into the timeless culture of the Kalash Valley in Chitral.",
+    video: "/videos/reel-kalash.mp4",
+    poster: "/videos/poster-reel-kalash.jpg",
+  },
+  {
     id: "skardu-reel",
     destination: "Skardu",
     description: "Turquoise waters of Shangrila, heaven on Earth.",

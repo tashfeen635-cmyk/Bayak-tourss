@@ -27,7 +27,7 @@ const CATEGORIES = [
   "Family",
   "Trekking",
   "Bike tours",
-  "Festivals",
+  "Kalash Festival",
 ];
 
 function toArr(v: unknown): string[] {

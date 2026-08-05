@@ -35,7 +35,7 @@ interface Destination {
   featured: boolean;
 }
 
-const PREDEFINED_CATEGORIES = ["Autumn", "Blossom", "Honeymoon", "Family", "Trekking", "Bike tours", "Festivals"];
+const PREDEFINED_CATEGORIES = ["Autumn", "Blossom", "Honeymoon", "Family", "Trekking", "Bike tours", "Kalash Festival"];
 
 const emptyForm: Destination = {
   name: "",
