@@ -40,16 +40,13 @@ export function Navbar() {
         <nav className="flex h-[100px] items-center justify-between mt-[10px] p-[29px_27px_8px_12px] backdrop-blur-2xl rounded-[100px]">
           <Link href="/" className="flex items-center gap-2 group">
             <Image
-              src="/bayak-tours-logo-v2.png"
+              src="/bayak-tours-logo-v3.png"
               alt="Terra Pakistan"
               width={1024}
               height={1536}
               priority
-              className="h-50 w-auto object-contain"
+              className="h-80 w-auto object-contain max-[1027px]:mt-[-20px] min-[1028px]:ml-[-79px] min-[1028px]:mb-[23px]"
             />
-            <span className="font-heading text-2xl font-bold tracking-tight text-gold -mt-9">
-              Terra Pakistan
-            </span>
           </Link>
 
           <div className="hidden items-center gap-1 min-[1028px]:flex pb-[25px]">
