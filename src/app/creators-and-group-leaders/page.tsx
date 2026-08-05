@@ -196,6 +196,45 @@ const tradePartners = [
   { icon: MapPin, title: "Destination Management Companies (DMCs)" },
 ];
 
+const tradeOffers = [
+  {
+    icon: CalendarCheck,
+    title: "Custom Itineraries",
+    description:
+      "Itineraries designed around your clients' preferences, group size and budget.",
+  },
+  {
+    icon: BadgePercent,
+    title: "Exclusive B2B Rates",
+    description:
+      "Tailored trade rates based on your volume, group size and collaboration.",
+  },
+  {
+    icon: LifeBuoy,
+    title: "Dedicated Local Support",
+    description:
+      "A dedicated team on the ground before and throughout every tour.",
+  },
+  {
+    icon: Bus,
+    title: "Full Logistics",
+    description:
+      "Reliable transport, accommodation, permits and on-ground logistics handled for you.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Professional Guides",
+    description:
+      "Experienced, trusted guides who represent your brand and clients well.",
+  },
+  {
+    icon: HeartHandshake,
+    title: "Long-Term Partnership",
+    description:
+      "A reliable partner you can count on for recurring client bookings.",
+  },
+];
+
 const tradeExpectations = [
   {
     icon: MessageSquareText,
@@ -574,7 +613,35 @@ export default function CreatorsPage() {
             ))}
           </StaggerContainer>
 
-          <FadeIn className="mt-20 text-center">
+          <FadeIn className="mt-16 text-center">
+            <h3 className="font-heading text-2xl font-bold tracking-tight">
+              What We Offer
+            </h3>
+            <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
+              Everything your agency needs to deliver unforgettable journeys to
+              your clients.
+            </p>
+          </FadeIn>
+
+          <StaggerContainer className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {tradeOffers.map((offer) => (
+              <StaggerItem key={offer.title}>
+                <div className="group h-full rounded-2xl border border-border bg-card p-8 transition-all duration-500 hover:border-gold/30 hover:shadow-xl">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gold/10 text-gold transition-colors group-hover:bg-gold group-hover:text-white">
+                    <offer.icon className="h-6 w-6" />
+                  </div>
+                  <h4 className="mt-6 font-heading text-lg font-semibold">
+                    {offer.title}
+                  </h4>
+                  <p className="mt-3 text-sm leading-loose text-muted-foreground">
+                    {offer.description}
+                  </p>
+                </div>
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
+
+          <FadeIn className="mt-16 text-center">
             <h3 className="font-heading text-2xl font-bold tracking-tight">
               What We Expect
             </h3>
