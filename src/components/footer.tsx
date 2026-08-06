@@ -69,25 +69,25 @@ const footerLinks = {
 
 export function Footer() {
   return (
-    <footer className="bg-charcoal text-white/80">
+    <footer className="bg-black text-white/80">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid gap-12 py-16 sm:grid-cols-2 lg:grid-cols-4">
           <div>
             <Link href="/" className="inline-block group">
               <Image
-                src="/footer-logo.png"
+                src="/footer-logo-v4.png"
                 alt="Terra Pakistan"
-                width={1536}
-                height={1024}
+                width={1105}
+                height={401}
                 priority
-                className="h-50 w-auto object-contain -mt-[47px]"
+                className="h-25 w-auto object-contain"
               />
             </Link>
-            <p className="-mt-[68px] text-sm leading-relaxed text-white/60">
+            <p className="mt-6 text-sm leading-relaxed text-white/60">
               Pakistan&apos;s premier travel company. Crafting unforgettable
               journeys to the most breathtaking destinations since 2021.
             </p>
-            <div className="mt-6 flex gap-3">
+            <div className="mt-8 flex gap-3">
               {socials.map((s) => (
                 <a
                   key={s.label}

@@ -63,13 +63,21 @@ export function TeamTeaser({ team: data }: { team?: TeamMember[] }) {
                   className="group cursor-pointer overflow-hidden rounded-2xl border border-border bg-card transition-all duration-300 hover:shadow-xl flex flex-col"
                 >
                   <div className="relative aspect-square overflow-hidden">
-                    <Image
-                      src={buildImageUrl(member.image, 800)}
-                      alt={member.name}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                    />
+                    {member.image ? (
+                      <Image
+                        src={buildImageUrl(member.image, 800)}
+                        alt={member.name}
+                        fill
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                      />
+                    ) : (
+                      <div className="flex h-full w-full items-center justify-center bg-muted/50">
+                        <span className="font-heading text-6xl font-bold text-gold/40">
+                          {member.name.charAt(0)}
+                        </span>
+                      </div>
+                    )}
                   </div>
                     <div className="flex flex-1 flex-col p-6">
                       <h3 className="font-heading text-lg font-semibold">
@@ -133,12 +141,20 @@ export function TeamTeaser({ team: data }: { team?: TeamMember[] }) {
               className="relative w-full max-w-2xl overflow-hidden rounded-2xl bg-card shadow-2xl"
             >
               <div className="relative h-64 sm:h-72">
-                <Image
-                  src={buildImageUrl(teamMembers[selected].image, 600)}
-                  alt={teamMembers[selected].name}
-                  fill
-                  className="object-contain"
-                />
+                {teamMembers[selected].image ? (
+                  <Image
+                    src={buildImageUrl(teamMembers[selected].image, 600)}
+                    alt={teamMembers[selected].name}
+                    fill
+                    className="object-contain"
+                  />
+                ) : (
+                  <div className="flex h-full w-full items-center justify-center bg-muted/50">
+                    <span className="font-heading text-7xl font-bold text-gold/40">
+                      {teamMembers[selected].name.charAt(0)}
+                    </span>
+                  </div>
+                )}
               </div>
 
               <div className="px-6 pb-6 sm:px-8 pt-5">

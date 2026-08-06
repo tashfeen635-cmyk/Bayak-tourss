@@ -37,19 +37,19 @@ export function Navbar() {
       }`}
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-[100px]">
-        <nav className="flex h-[100px] items-center justify-between mt-[10px] p-[29px_27px_8px_12px] backdrop-blur-2xl rounded-[100px]">
-          <Link href="/" className="flex items-center gap-2 group">
+        <nav className="flex h-[100px] items-center justify-between mt-[10px] px-5 sm:px-8 backdrop-blur-2xl rounded-[100px]">
+          <Link href="/" className="flex items-center">
             <Image
-              src="/bayak-tours-logo-v3.png"
+              src="/bayak-tours-logo-v5.png"
               alt="Terra Pakistan"
-              width={1024}
-              height={1536}
+              width={1145}
+              height={292}
               priority
-              className="h-80 w-auto object-contain max-[1027px]:mt-[-20px] min-[1028px]:ml-[-79px] min-[1028px]:mb-[23px]"
+              className="h-10 w-auto object-contain sm:h-11 lg:h-12"
             />
           </Link>
 
-          <div className="hidden items-center gap-1 min-[1028px]:flex pb-[25px]">
+          <div className="hidden items-center gap-1 min-[1028px]:flex">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
@@ -68,7 +68,7 @@ export function Navbar() {
             </div>
           </div>
 
-          <div className="flex items-center gap-2 min-[1028px]:hidden pb-[31px]">
+          <div className="flex items-center gap-2 min-[1028px]:hidden">
             <ThemeToggle light={scrolled} />
             <button
               onClick={() => setIsOpen(!isOpen)}

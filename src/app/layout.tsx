@@ -12,7 +12,7 @@ const organizationJsonLd = {
   "@id": `${SITE_URL}/#organization`,
   name: "Terra Pakistan",
   url: SITE_URL,
-  logo: `${SITE_URL}/bayak-tours-logo-v3.png`,
+  logo: `${SITE_URL}/bayak-tours-logo-v5.png`,
   image: `${SITE_URL}/og-image.jpg`,
   description:
     "Discover Pakistan with Terra Pakistan. Premium travel experiences to Hunza, Skardu, Fairy Meadows, and more. Adventure, culture & unforgettable journeys.",
@@ -104,9 +104,6 @@ export const metadata: Metadata = {
     description:
       "Discover Pakistan with Terra Pakistan. Premium travel experiences to Hunza, Skardu, Fairy Meadows, and more.",
     images: [`${SITE_URL}/og-image.jpg`],
-  },
-  icons: {
-    icon: "/favicon.png",
   },
   alternates: {
     canonical: "/",
