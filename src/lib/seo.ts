@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 
-export const SITE_URL = "https://terrapakistan.com";
+const PROD_URL = "https://terrapakistan.com";
+
+export const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : PROD_URL);
 export const SITE_NAME = "Terra Pakistan";
 export const SITE_TITLE = "Terra Pakistan | Premium Pakistan Travel Experiences";
 export const SITE_DESCRIPTION =
