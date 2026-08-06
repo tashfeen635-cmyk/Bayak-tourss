@@ -3,19 +3,23 @@ import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { LayoutShell } from "@/components/layout-shell";
-
-const SITE_URL = "https://terrapakistan.com";
+import {
+  SITE_URL,
+  SITE_NAME,
+  SITE_TITLE,
+  SITE_DESCRIPTION,
+  SITE_OG_IMAGE,
+} from "@/lib/seo";
 
 const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": "TravelAgency",
   "@id": `${SITE_URL}/#organization`,
-  name: "Terra Pakistan",
+  name: SITE_NAME,
   url: SITE_URL,
   logo: `${SITE_URL}/bayak-tours-logo-v5.png`,
-  image: `${SITE_URL}/og-image.jpg`,
-  description:
-    "Discover Pakistan with Terra Pakistan. Premium travel experiences to Hunza, Skardu, Fairy Meadows, and more. Adventure, culture & unforgettable journeys.",
+  image: SITE_OG_IMAGE,
+  description: SITE_DESCRIPTION,
   foundingDate: "2021",
   telephone: "+923146605966",
   email: "info@terrapakistan.com",
@@ -36,9 +40,8 @@ const websiteJsonLd = {
   "@type": "WebSite",
   "@id": `${SITE_URL}/#website`,
   url: SITE_URL,
-  name: "Terra Pakistan",
-  description:
-    "Discover Pakistan with Terra Pakistan. Premium travel experiences to Hunza, Skardu, Fairy Meadows, and more.",
+  name: SITE_NAME,
+  description: SITE_DESCRIPTION,
   inLanguage: "en",
   publisher: {
     "@id": `${SITE_URL}/#organization`,
@@ -68,11 +71,10 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Terra Pakistan | Premium Pakistan Travel Experiences",
+    default: SITE_TITLE,
     template: "%s | Terra Pakistan",
   },
-  description:
-    "Discover Pakistan with Terra Pakistan. Premium travel experiences to Hunza, Skardu, Fairy Meadows, and more. Adventure, culture & unforgettable journeys.",
+  description: SITE_DESCRIPTION,
   keywords: [
     "Pakistan tourism",
     "Hunza Valley tours",
@@ -82,28 +84,26 @@ export const metadata: Metadata = {
     "Terra Pakistan",
   ],
   openGraph: {
-    title: "Terra Pakistan | Premium Pakistan Travel Experiences",
-    description:
-      "Discover Pakistan with Terra Pakistan. Premium travel experiences to Hunza, Skardu, Fairy Meadows, and more.",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
     url: SITE_URL,
-    siteName: "Terra Pakistan",
+    siteName: SITE_NAME,
     locale: "en_US",
     type: "website",
     images: [
       {
-        url: `${SITE_URL}/og-image.jpg`,
+        url: SITE_OG_IMAGE,
         width: 1200,
         height: 630,
-        alt: "Terra Pakistan — Premium Pakistan Travel Experiences",
+        alt: SITE_TITLE,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Terra Pakistan | Premium Pakistan Travel Experiences",
-    description:
-      "Discover Pakistan with Terra Pakistan. Premium travel experiences to Hunza, Skardu, Fairy Meadows, and more.",
-    images: [`${SITE_URL}/og-image.jpg`],
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    images: [SITE_OG_IMAGE],
   },
   alternates: {
     canonical: "/",

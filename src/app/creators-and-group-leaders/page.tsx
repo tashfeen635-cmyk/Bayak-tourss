@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/animations";
+import { buildMetadata } from "@/lib/seo";
 import {
   Clapperboard,
   Camera,
@@ -31,14 +32,12 @@ import {
   DollarSign,
 } from "lucide-react";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "Content Creators",
   description:
     "Create with Terra Pakistan. Filmmakers, photographers, YouTubers and travel creators get PR collaborations, hidden destinations, local support and long-term partnerships.",
-  alternates: {
-    canonical: "/creators-and-group-leaders",
-  },
-};
+  path: "/creators-and-group-leaders",
+});
 
 const creatorRoles = [
   { icon: Clapperboard, title: "Filmmakers" },

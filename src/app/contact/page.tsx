@@ -1,14 +1,12 @@
-import type { Metadata } from "next";
 import { ContactContent } from "@/components/contact-content";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: "Contact",
   description:
     "Get in touch with Terra Pakistan. Let us help you plan your next adventure.",
-  alternates: {
-    canonical: "/contact",
-  },
-};
+  path: "/contact",
+});
 
 export default function ContactPage() {
   return <ContactContent />;

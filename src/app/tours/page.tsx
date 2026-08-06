@@ -1,15 +1,13 @@
-import type { Metadata } from "next";
 import { DestinationsContent } from "@/components/destinations-content";
 import { getCollection } from "@/lib/db";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: "Tours",
   description:
     "Explore our handpicked tours around Pakistan. From tropical beaches to mountain adventures.",
-  alternates: {
-    canonical: "/tours",
-  },
-};
+  path: "/tours",
+});
 
 export default async function DestinationsPage() {
   const destinations = await getCollection("destinations");

@@ -1,15 +1,13 @@
-import type { Metadata } from "next";
 import { GalleryContent } from "@/components/gallery-content";
 import { getCollection } from "@/lib/db";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: "Gallery",
   description:
     "Browse stunning travel photography from our destinations around the world.",
-  alternates: {
-    canonical: "/gallery",
-  },
-};
+  path: "/gallery",
+});
 
 export default async function GalleryPage() {
   const images = await getCollection("gallery");

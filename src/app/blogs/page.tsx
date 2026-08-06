@@ -1,14 +1,12 @@
-import type { Metadata } from "next";
 import { BlogsContent } from "@/components/blogs-content";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: "Blogs",
   description:
     "Travel news, stories and guides from Pakistan's north — Gilgit-Baltistan in the global spotlight, Karakoram Highway road trips, and hiking guides to K2 Base Camp.",
-  alternates: {
-    canonical: "/blogs",
-  },
-};
+  path: "/blogs",
+});
 
 export default function BlogsPage() {
   return <BlogsContent />;

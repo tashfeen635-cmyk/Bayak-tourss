@@ -1,16 +1,14 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/animations";
 import { CheckCircle2, FileText, Globe, CreditCard, Plane } from "lucide-react";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: "Tourist Visa",
   description:
     "Step-by-step guide for foreigners visiting Pakistan. How to apply for a Pakistan tourist visa online through the official Pakistan Online Visa System.",
-  alternates: {
-    canonical: "/tourist-visa",
-  },
-};
+  path: "/tourist-visa",
+});
 
 const checklist = [
   "Passport valid for at least 6 months with blank pages",
