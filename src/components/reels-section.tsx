@@ -17,6 +17,17 @@ export function ReelsSection() {
   const [canScrollRight, setCanScrollRight] = useState(true);
   const [selected, setSelected] = useState<number | null>(null);
   const [videoLoading, setVideoLoading] = useState(true);
+  const [mobileLoading, setMobileLoading] = useState<boolean[]>(() =>
+    reels.map(() => true)
+  );
+
+  const updateMobileLoading = useCallback((i: number, loading: boolean) => {
+    setMobileLoading((prev) => {
+      const next = [...prev];
+      next[i] = loading;
+      return next;
+    });
+  }, []);
 
   const isDesktop = useCallback(() =>
     typeof window !== "undefined" && window.matchMedia("(min-width: 640px)").matches, []);
@@ -356,8 +367,17 @@ export function ReelsSection() {
                     loop
                     playsInline
                     preload="metadata"
+                    onLoadStart={() => updateMobileLoading(i, true)}
+                    onWaiting={() => updateMobileLoading(i, true)}
+                    onPlaying={() => updateMobileLoading(i, false)}
+                    onCanPlay={() => updateMobileLoading(i, false)}
                     ref={(el) => { lightboxVideoRefs.current[i] = el; }}
                   />
+                  {mobileLoading[i] && selected === i && (
+                    <div className="absolute inset-0 z-30 flex items-center justify-center bg-black">
+                      <Loader2 className="h-10 w-10 animate-spin text-white/70" />
+                    </div>
+                  )}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
 
                   <button
