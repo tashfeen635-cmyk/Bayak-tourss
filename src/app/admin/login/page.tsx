@@ -68,7 +68,6 @@ export default function AdminLoginPage() {
               autoComplete="username"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="you@terrapakistan.com or your username"
               required
             />
           </div>
@@ -84,7 +83,6 @@ export default function AdminLoginPage() {
                 autoComplete="current-password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="Enter password"
                 className="pr-10"
                 required
               />
