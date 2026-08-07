@@ -246,25 +246,11 @@ export const reels = [
     poster: "/videos/poster-reel-kalash.jpg",
   },
   {
-    id: "skardu-reel",
-    destination: "Skardu",
-    description: "Turquoise waters of Shangrila, heaven on Earth.",
-    video: "/videos/video-2.mp4",
-    poster: "/videos/poster-video-2.jpg",
-  },
-  {
     id: "naran-reel",
     destination: "Naran Kaghan",
     description: "Lake Saiful Muluk — the lake of fairy tales.",
     video: "/videos/video-4.mp4",
     poster: "/videos/poster-video-4.jpg",
-  },
-  {
-    id: "swat-reel",
-    destination: "Swat Valley",
-    description: "The Switzerland of the East awaits you.",
-    video: "/videos/video-5.mp4",
-    poster: "/videos/poster-video-5.jpg",
   },
   {
     id: "khunjerab-reel",
@@ -314,6 +300,18 @@ export const reels = [
     description: "Wait for the end — a reel from the land of high peaks.",
     video: "/videos/reel-skardu-2.mp4",
     poster: "/videos/poster-reel-skardu-2.jpg",
+  },
+  {
+    id: "gilgit-baltistan-reel",
+    destination: "Gilgit Baltistan",
+    description: "Dm for your tour of Gilgit-Baltistan.",
+    video: "/videos/reel-gilgit-baltistan.mp4",
+  },
+  {
+    id: "upper-kachura-reel",
+    destination: "Upper Kachura Lake",
+    description: "Boating adventure on Upper Kachura Lake.",
+    video: "/videos/reel-upper-kachura.mp4",
   },
 ];
 
