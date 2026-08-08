@@ -42,7 +42,7 @@ export function ContactContent() {
           className="absolute inset-0 bg-cover bg-center opacity-30"
           style={{
             backgroundImage:
-              "url('https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=1920&q=80')",
+              "url('/images/fairy-meadows.jpg')",
           }}
         />
         <div className="relative z-10 px-4 text-center">

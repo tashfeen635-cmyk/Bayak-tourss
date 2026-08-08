@@ -44,7 +44,7 @@ export function TeamContent({ team: data }: { team?: TeamMember[] }) {
           className="absolute inset-0 bg-cover bg-center opacity-30"
           style={{
             backgroundImage:
-              "url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1920&q=80')",
+              "url('/images/team-hero.jpg')",
           }}
         />
         <div className="relative z-10 px-4 text-center">

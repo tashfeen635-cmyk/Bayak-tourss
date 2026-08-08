@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
 import { buildImageUrl } from "@/lib/image";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -13,6 +14,7 @@ import {
   BadgeCheck,
   Filter,
   X,
+  MessageCircle,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { FadeIn, StaggerContainer, StaggerItem } from "./animations";
@@ -47,12 +49,31 @@ function normalizeDest(d: Destination): Destination {
 }
 
 export function DestinationsContent({ destinations: data }: { destinations?: Destination[] }) {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const categoryParam = searchParams.get("category");
+
+  const selectCategory = (cat: string) => {
+    setActive(cat);
+    router.replace(
+      cat === "All" ? "/tours" : `/tours?category=${encodeURIComponent(cat)}`
+    );
+  };
+
   const [destinations, setDestinations] = useState<Destination[]>(() =>
     data ? data.map(normalizeDest) : []
   );
-  const [active, setActive] = useState("All");
+  const [active, setActive] = useState(
+    () => (categoryParam && CATEGORIES.includes(categoryParam) ? categoryParam : "All")
+  );
   const [selected, setSelected] = useState<number | null>(null);
   const [bookingDest, setBookingDest] = useState<Destination | null>(null);
+
+  useEffect(() => {
+    if (categoryParam && CATEGORIES.includes(categoryParam)) {
+      setActive(categoryParam);
+    }
+  }, [categoryParam]);
 
   useEffect(() => {
     if (data) return;
@@ -78,7 +99,7 @@ export function DestinationsContent({ destinations: data }: { destinations?: Des
           className="absolute inset-0 bg-cover bg-center opacity-30"
           style={{
             backgroundImage:
-              "url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&q=80')",
+              "url('/images/hunza.jpg')",
           }}
         />
         <div className="relative z-10 px-4 text-center">
@@ -102,7 +123,7 @@ export function DestinationsContent({ destinations: data }: { destinations?: Des
               {CATEGORIES.map((cat) => (
                 <button
                   key={cat}
-                  onClick={() => setActive(cat)}
+                  onClick={() => selectCategory(cat)}
                   className={`rounded-full px-5 py-2 text-sm font-medium transition-all ${
                     active === cat
                       ? "bg-gold text-white shadow-md"
@@ -116,8 +137,7 @@ export function DestinationsContent({ destinations: data }: { destinations?: Des
           </FadeIn>
 
           {filtered.length > 0 && (
-            <StaggerContainer key={`dest-content-grid-${active}`} className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-              {filtered.map((dest, i) => (
+            <StaggerContainer key={`dest-content-grid-${active}`} className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">              {filtered.map((dest, i) => (
                 <StaggerItem key={String(dest._id ?? dest.id ?? i)}>
                   <div
                     onClick={() => setSelected(i)}
@@ -217,6 +237,34 @@ export function DestinationsContent({ destinations: data }: { destinations?: Des
                 </StaggerItem>
               ))}
             </StaggerContainer>
+          )}
+
+          {filtered.length === 0 && (
+            <FadeIn className="mt-12">
+              <div className="flex flex-col items-center justify-center gap-4 rounded-3xl border border-border bg-card px-8 py-20 text-center">
+                <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gold/10 text-gold">
+                  <Clock className="h-8 w-8" />
+                </div>
+                <h3 className="font-heading text-2xl font-bold tracking-tight sm:text-3xl">
+                  Coming Soon
+                </h3>
+                <p className="max-w-md text-sm leading-relaxed text-muted-foreground">
+                  We&apos;re crafting an amazing{" "}
+                  <span className="font-semibold text-gold">{active}</span>{" "}
+                  experience for you. New tours for this category are on the
+                  way — reach out to us and we&apos;ll help you plan your trip.
+                </p>
+                <a
+                  href="https://wa.me/923146605966"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-gold px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-gold/90"
+                >
+                  <MessageCircle className="h-4 w-4" />
+                  WhatsApp Us
+                </a>
+              </div>
+            </FadeIn>
           )}
         </div>
       </section>

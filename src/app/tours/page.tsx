@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { DestinationsContent } from "@/components/destinations-content";
 import { getCollection } from "@/lib/db";
 import { buildMetadata } from "@/lib/seo";
@@ -11,5 +12,9 @@ export const metadata = buildMetadata({
 
 export default async function DestinationsPage() {
   const destinations = await getCollection("destinations");
-  return <DestinationsContent destinations={destinations} />;
+  return (
+    <Suspense fallback={null}>
+      <DestinationsContent destinations={destinations} />
+    </Suspense>
+  );
 }

@@ -10,6 +10,7 @@ export function ReelsSection() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const mobileScrollRef = useRef<HTMLDivElement>(null);
   const reelRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const lightboxVideoRefs = useRef<(HTMLVideoElement | null)[]>([]);
   const desktopVideoRef = useRef<HTMLVideoElement | null>(null);
   const cardVideoRefs = useRef<(HTMLVideoElement | null)[]>([]);
@@ -17,9 +18,18 @@ export function ReelsSection() {
   const [canScrollRight, setCanScrollRight] = useState(true);
   const [selected, setSelected] = useState<number | null>(null);
   const [videoLoading, setVideoLoading] = useState(true);
+  const [loadedPosters, setLoadedPosters] = useState<boolean[]>(() =>
+    reels.map(() => false)
+  );
   const [mobileLoading, setMobileLoading] = useState<boolean[]>(() =>
     reels.map(() => true)
   );
+
+  const loadPoster = useCallback((i: number) => {
+    setLoadedPosters((prev) =>
+      prev[i] ? prev : prev.map((loaded, idx) => (idx === i ? true : loaded))
+    );
+  }, []);
 
   const updateMobileLoading = useCallback((i: number, loading: boolean) => {
     setMobileLoading((prev) => {
@@ -66,6 +76,26 @@ export function ReelsSection() {
     video.preload = "auto";
     video.load();
   }, []);
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            const index = cardRefs.current.indexOf(entry.target as HTMLDivElement);
+            if (index !== -1) loadPoster(index);
+          }
+        }
+      },
+      { root: el, rootMargin: "600px" }
+    );
+    cardRefs.current.forEach((card) => {
+      if (card) observer.observe(card);
+    });
+    return () => observer.disconnect();
+  }, [loadPoster]);
 
   useEffect(() => {
     setVideoLoading(true);
@@ -250,6 +280,7 @@ export function ReelsSection() {
               transition={{ duration: 0.5 }}
             >
               <div
+                ref={(el) => { cardRefs.current[i] = el; }}
                 onClick={() => setSelected(i)}
                 onMouseEnter={() => preloadVideo(i)}
                 className="group relative h-[400px] w-[280px] shrink-0 cursor-pointer overflow-hidden rounded-3xl bg-charcoal sm:h-[560px] sm:w-[320px]"
@@ -258,7 +289,7 @@ export function ReelsSection() {
                   <video
                     ref={(el) => { cardVideoRefs.current[i] = el; }}
                     src={reel.video}
-                    poster={reel.poster}
+                    poster={loadedPosters[i] ? reel.poster : undefined}
                     className="absolute inset-0 h-full w-full object-cover"
                     muted
                     loop
@@ -326,7 +357,7 @@ export function ReelsSection() {
                   className="absolute inset-0 h-full w-full object-cover"
                   loop
                   playsInline
-                  preload="auto"
+                  preload="metadata"
                   onWaiting={() => setVideoLoading(true)}
                   onCanPlay={() => setVideoLoading(false)}
                   ref={desktopVideoRef}

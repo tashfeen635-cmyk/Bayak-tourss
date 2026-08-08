@@ -98,7 +98,7 @@ export function GalleryContent({ images: data }: { images?: GalleryImage[] }) {
           className="absolute inset-0 bg-cover bg-center opacity-30"
           style={{
             backgroundImage:
-              "url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&q=80')",
+              "url('/images/hunza.jpg')",
           }}
         />
         <div className="relative z-10 px-4 text-center">

@@ -169,7 +169,7 @@ export function AboutContent() {
           className="absolute inset-0 bg-cover bg-center opacity-30"
           style={{
             backgroundImage:
-              "url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1920&q=80')",
+              "url('/images/about-hero.jpg')",
           }}
         />
         <div className="relative z-10 px-4 text-center">
@@ -192,7 +192,7 @@ export function AboutContent() {
               <div className="relative">
                 <div className="relative overflow-hidden rounded-2xl shadow-2xl">
                   <Image
-                    src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80"
+                    src="/images/hunza.jpg"
                     alt="Terra Pakistan team exploring Pakistan mountains"
                     width={800}
                     height={600}
@@ -365,7 +365,7 @@ export function AboutContent() {
               <FadeIn direction="right">
                 <div className="relative overflow-hidden rounded-2xl shadow-2xl">
                   <Image
-                    src="https://images.unsplash.com/photo-1531761535209-180857e963b9?w=800&q=80"
+                    src="/images/skardu.jpg"
                     alt="Scenic view of Skardu, Pakistan"
                     width={800}
                     height={600}

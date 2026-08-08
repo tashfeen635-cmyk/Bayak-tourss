@@ -56,6 +56,31 @@ const websiteJsonLd = {
   },
 };
 
+const sitelinksJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SiteNavigationElement",
+  name: [
+    "About",
+    "Tours",
+    "Tourist Visa",
+    "Travel Partners",
+    "Gallery",
+    "Our Team",
+    "Blogs",
+    "Contact",
+  ],
+  url: [
+    `${SITE_URL}/about`,
+    `${SITE_URL}/tours`,
+    `${SITE_URL}/tourist-visa`,
+    `${SITE_URL}/travel-partners`,
+    `${SITE_URL}/gallery`,
+    `${SITE_URL}/team`,
+    `${SITE_URL}/blogs`,
+    `${SITE_URL}/contact`,
+  ],
+};
+
 const playfair = Playfair_Display({
   variable: "--font-heading",
   subsets: ["latin"],
@@ -125,6 +150,10 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(sitelinksJsonLd) }}
         />
         <ThemeProvider>
           <LayoutShell>{children}</LayoutShell>

@@ -32,7 +32,7 @@ const featured = {
   source: "CNN Travel",
   date: "January 2025",
   href: "https://www.cnn.com/travel/best-destinations-to-visit-2025",
-  image: "https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1200&q=80",
+  image: "/images/blog-cnn.jpg",
   quote:
     "It has more tantalizing peaks than a lemon meringue pie.",
 };
@@ -54,7 +54,7 @@ const posts: {
     source: "BBC Travel",
     date: "September 2023",
     href: "https://www.bbc.com/travel/article/20230903-the-karakoram-highway-the-road-thats-the-eighth-world-wonder",
-    image: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=900&q=80",
+    image: "/images/blog-bbc.jpg",
   },
   {
     title: "Pakistan's mountains are calling — here's why you should go",
@@ -64,7 +64,7 @@ const posts: {
     source: "National Geographic",
     date: "April 2025",
     href: "https://www.nationalgeographic.com/travel/article/why-you-should-explore-pakistans-mountains-karakoram-range-baltistan",
-    image: "https://images.unsplash.com/photo-1501555088652-021faa106b9b?w=900&q=80",
+    image: "/images/blog-natgeo.jpg",
   },
   {
     title: "How to trek to K2 base camp in Pakistan",
@@ -74,7 +74,7 @@ const posts: {
     source: "Lonely Planet",
     date: "November 2019",
     href: "https://www.lonelyplanet.com/articles/how-to-trek-to-k2-base-camp",
-    image: "https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?w=900&q=80",
+    image: "/images/blog-lonelyplanet.jpg",
   },
   {
     title: "Gilgit-Baltistan 2026: record visitors, overtourism concerns",
@@ -84,7 +84,7 @@ const posts: {
     source: "Gilgit Media Network",
     date: "June 2026",
     href: "https://gmnpk.com/gilgit-baltistan-tourism-season-2026-peak-record-visitors-overtourism/",
-    image: "https://images.unsplash.com/photo-1458668383970-8ddd3927deed?w=900&q=80",
+    image: "/images/blog-gmn.jpg",
   },
 ];
 
@@ -93,7 +93,7 @@ const guides = [
     title: "K2 Base Camp Trek",
     description:
       "A complete route guide to the Baltoro Glacier, Concordia and the world's second-highest peak — from Skardu to Askole.",
-    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=900&q=80",
+    image: "/images/hunza.jpg",
     message:
       "Hi Terra Pakistan! I'd like to know more about the K2 Base Camp Trek.",
   },
@@ -101,7 +101,7 @@ const guides = [
     title: "Skardu & Deosai",
     description:
       "Fairy Meadows, Shangrila Lake and the 'Land of Giants' — the Deosai plateau in the heart of Baltistan.",
-    image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=900&q=80",
+    image: "/images/about-hero.jpg",
     message:
       "Hi Terra Pakistan! I'd like to know more about the Skardu & Deosai tour.",
   },
@@ -109,7 +109,7 @@ const guides = [
     title: "Fairy Meadows",
     description:
       "Emerald alpine meadows beneath Nanga Parbat — the world's ninth-highest peak. Reach it by jeep from Raikot Bridge on the Karakoram Highway, then hike 2–3 hours through pine forest to camp under the 'Killer Mountain'.",
-    image: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=900&q=80",
+    image: "/images/blog-guide-forest.jpg",
     message:
       "Hi Terra Pakistan! I'd like to know more about the Fairy Meadows tour.",
   },
@@ -133,7 +133,7 @@ export function BlogsContent() {
           className="absolute inset-0 bg-cover bg-center opacity-40"
           style={{
             backgroundImage:
-              "url('https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=1920&q=80')",
+              "url('/images/blogs-hero.jpg')",
           }}
         />
         <div className="relative z-10 px-4 text-center">

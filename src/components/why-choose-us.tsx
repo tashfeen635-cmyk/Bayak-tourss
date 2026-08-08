@@ -14,7 +14,7 @@ export function WhyChooseUs() {
             <div className="relative">
               <div className="relative overflow-hidden rounded-2xl shadow-2xl">
                 <Image
-                  src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80"
+                  src="/images/hunza.jpg"
                   alt="Pakistan mountain landscape"
                   width={800}
                   height={600}

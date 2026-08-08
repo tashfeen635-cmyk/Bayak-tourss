@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-const SITE_URL = "https://terrapakistan.com";
+import { SITE_URL } from "@/lib/seo";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes = [
@@ -12,7 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/contact",
     "/blogs",
     "/tourist-visa",
-    "/creators-and-group-leaders",
+    "/travel-partners",
   ];
 
   return routes.map((route) => ({
