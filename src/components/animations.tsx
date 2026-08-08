@@ -8,11 +8,13 @@ export function FadeIn({
   className = "",
   delay = 0,
   direction = "up",
+  id,
 }: {
   children: ReactNode;
   className?: string;
   delay?: number;
   direction?: "up" | "down" | "left" | "right";
+  id?: string;
 }) {
   const directionMap = {
     up: { y: 40 },
@@ -23,6 +25,7 @@ export function FadeIn({
 
   return (
     <motion.div
+      id={id}
       initial={{ opacity: 0, ...directionMap[direction] }}
       whileInView={{ opacity: 1, x: 0, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}

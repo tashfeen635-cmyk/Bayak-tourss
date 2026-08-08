@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/animations";
+import { TradeDetailsModal } from "@/components/trade-details-modal";
 import { buildMetadata } from "@/lib/seo";
 import {
   Clapperboard,
@@ -33,7 +34,7 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Content Creators",
+  title: "Partner With Terra Pakistan",
   description:
     "Create with Terra Pakistan. Filmmakers, photographers, YouTubers and travel creators get PR collaborations, hidden destinations, local support and long-term partnerships.",
   path: "/creators-and-group-leaders",
@@ -189,79 +190,6 @@ const groupLeaderExpectations = [
   },
 ];
 
-const tradePartners = [
-  { icon: Plane, title: "Travel Agencies" },
-  { icon: Compass, title: "Tour Operators" },
-  { icon: MapPin, title: "Destination Management Companies (DMCs)" },
-];
-
-const tradeOffers = [
-  {
-    icon: CalendarCheck,
-    title: "Custom Itineraries",
-    description:
-      "Itineraries designed around your clients' preferences, group size and budget.",
-  },
-  {
-    icon: BadgePercent,
-    title: "Exclusive B2B Rates",
-    description:
-      "Tailored trade rates based on your volume, group size and collaboration.",
-  },
-  {
-    icon: LifeBuoy,
-    title: "Dedicated Local Support",
-    description:
-      "A dedicated team on the ground before and throughout every tour.",
-  },
-  {
-    icon: Bus,
-    title: "Full Logistics",
-    description:
-      "Reliable transport, accommodation, permits and on-ground logistics handled for you.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Professional Guides",
-    description:
-      "Experienced, trusted guides who represent your brand and clients well.",
-  },
-  {
-    icon: HeartHandshake,
-    title: "Long-Term Partnership",
-    description:
-      "A reliable partner you can count on for recurring client bookings.",
-  },
-];
-
-const tradeExpectations = [
-  {
-    icon: MessageSquareText,
-    title: "Clear Communication",
-    description: "Share client requirements and keep communication open throughout the booking.",
-  },
-  {
-    icon: CalendarCheck,
-    title: "Timely Bookings",
-    description: "Confirm bookings and client details in advance so we can plan smoothly.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Professional Conduct",
-    description: "Represent Terra Pakistan with integrity and professionalism at all times.",
-  },
-  {
-    icon: Megaphone,
-    title: "Honest Promotion",
-    description: "Promote destinations accurately and set honest expectations for your clients.",
-  },
-  {
-    icon: ClipboardList,
-    title: "Valuable Feedback",
-    description: "Share feedback from your clients to help us keep improving our experiences.",
-  },
-];
-
 const tradeFaqs = [
   {
     q: "How do I become a travel trade partner?",
@@ -326,14 +254,56 @@ export default function CreatorsPage() {
               Partner With Us
             </span>
             <h1 className="mt-3 font-heading text-5xl font-bold text-white sm:text-6xl">
-              Content Creators
+              Partner With Terra Pakistan
             </h1>
             <p className="mx-auto mt-4 max-w-2xl text-white/70">
               Filmmakers, photographers, storytellers, travel influencers,
-              YouTubers, bloggers, and group tour hosts are welcome to
-              collaborate with Terra Pakistan.
+              YouTubers, bloggers, Travel Agencies and Tour Operators and
+              group tour hosts are welcome to collaborate with Terra Pakistan.
             </p>
           </FadeIn>
+        </div>
+      </section>
+
+      <section className="py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <FadeIn className="text-center">
+            <span className="text-sm font-semibold uppercase tracking-wider text-gold">
+              Trade Partners
+            </span>
+            <h2 className="mt-3 font-heading text-3xl font-bold tracking-tight sm:text-4xl">
+              Travel Trade Partnerships
+            </h2>
+            <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
+              Let&apos;s work together to deliver unforgettable journeys to
+              your clients across Pakistan.
+            </p>
+          </FadeIn>
+
+          <TradeDetailsModal />
+
+          <div className="mx-auto mt-20 max-w-3xl">
+            <FadeIn className="text-center">
+              <h3 className="font-heading text-2xl font-bold tracking-tight">
+                Frequently Asked Questions
+              </h3>
+            </FadeIn>
+
+            <div className="mt-10 space-y-4">
+              {tradeFaqs.map((faq, i) => (
+                <FadeIn key={faq.q} delay={Math.min(i * 0.05, 0.3)}>
+                  <div className="rounded-xl border border-border bg-card p-6">
+                    <h4 className="font-heading text-lg font-semibold">
+                      {faq.q}
+                    </h4>
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                      {faq.a}
+                    </p>
+                  </div>
+                </FadeIn>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
@@ -559,138 +529,6 @@ export default function CreatorsPage() {
               </StaggerItem>
             ))}
           </StaggerContainer>
-
-          <FadeIn className="mt-16 rounded-3xl bg-charcoal px-8 py-12 text-center sm:px-16">
-            <h3 className="font-heading text-2xl font-bold tracking-tight text-white sm:text-3xl">
-              Let&apos;s Build Unforgettable Adventures Together
-            </h3>
-            <p className="mx-auto mt-4 max-w-2xl text-white/70">
-              If you&apos;re passionate about travel and want to lead meaningful
-              group experiences in one of the world&apos;s most breathtaking
-              destinations, we&apos;d love to hear from you.
-            </p>
-            <a
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-gold px-8 py-3 text-base font-semibold text-white hover:bg-gold/90"
-            >
-              <MessageCircle className="h-5 w-5" />
-              WhatsApp Us
-            </a>
-          </FadeIn>
-        </div>
-      </section>
-
-      <section className="py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <FadeIn className="text-center">
-            <span className="text-sm font-semibold uppercase tracking-wider text-gold">
-              Trade Partners
-            </span>
-            <h2 className="mt-3 font-heading text-3xl font-bold tracking-tight sm:text-4xl">
-              Travel Trade Partnerships
-            </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-              Let&apos;s work together to deliver unforgettable journeys to
-              your clients across Pakistan.
-            </p>
-          </FadeIn>
-
-          <StaggerContainer className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {tradePartners.map((partner) => (
-              <StaggerItem key={partner.title}>
-                <div className="group flex h-full flex-col items-center gap-4 rounded-2xl border border-border bg-card p-8 text-center transition-all duration-500 hover:border-gold/30 hover:shadow-xl">
-                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gold/10 text-gold transition-colors group-hover:bg-gold group-hover:text-white">
-                    <partner.icon className="h-7 w-7" />
-                  </div>
-                  <h3 className="font-heading text-lg font-semibold">
-                    {partner.title}
-                  </h3>
-                </div>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
-
-          <FadeIn className="mt-16 text-center">
-            <h3 className="font-heading text-2xl font-bold tracking-tight">
-              What We Offer
-            </h3>
-            <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-              Everything your agency needs to deliver unforgettable journeys to
-              your clients.
-            </p>
-          </FadeIn>
-
-          <StaggerContainer className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {tradeOffers.map((offer) => (
-              <StaggerItem key={offer.title}>
-                <div className="group h-full rounded-2xl border border-border bg-card p-8 transition-all duration-500 hover:border-gold/30 hover:shadow-xl">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gold/10 text-gold transition-colors group-hover:bg-gold group-hover:text-white">
-                    <offer.icon className="h-6 w-6" />
-                  </div>
-                  <h4 className="mt-6 font-heading text-lg font-semibold">
-                    {offer.title}
-                  </h4>
-                  <p className="mt-3 text-sm leading-loose text-muted-foreground">
-                    {offer.description}
-                  </p>
-                </div>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
-
-          <FadeIn className="mt-16 text-center">
-            <h3 className="font-heading text-2xl font-bold tracking-tight">
-              What We Expect
-            </h3>
-            <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-              A few simple things we ask of every partner.
-            </p>
-          </FadeIn>
-
-          <StaggerContainer className="mt-10 space-y-4">
-            {tradeExpectations.map((expectation) => (
-              <StaggerItem key={expectation.title}>
-                <div className="flex items-start gap-4 rounded-xl border border-border bg-card p-6 transition-all duration-300 hover:border-gold/30">
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gold/10 text-gold">
-                    <expectation.icon className="h-5 w-5" />
-                  </div>
-                  <div>
-                    <h4 className="font-heading text-lg font-semibold">
-                      {expectation.title}
-                    </h4>
-                    <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
-                      {expectation.description}
-                    </p>
-                  </div>
-                </div>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
-
-          <div className="mx-auto mt-20 max-w-3xl">
-            <FadeIn className="text-center">
-              <h3 className="font-heading text-2xl font-bold tracking-tight">
-                Frequently Asked Questions
-              </h3>
-            </FadeIn>
-
-            <div className="mt-10 space-y-4">
-              {tradeFaqs.map((faq, i) => (
-                <FadeIn key={faq.q} delay={Math.min(i * 0.05, 0.3)}>
-                  <div className="rounded-xl border border-border bg-card p-6">
-                    <h4 className="font-heading text-lg font-semibold">
-                      {faq.q}
-                    </h4>
-                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                      {faq.a}
-                    </p>
-                  </div>
-                </FadeIn>
-              ))}
-            </div>
-          </div>
         </div>
       </section>
 
