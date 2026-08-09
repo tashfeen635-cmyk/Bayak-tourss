@@ -9,6 +9,8 @@ import { CallToAction } from "@/components/call-to-action";
 import { getCollection } from "@/lib/db";
 import { sortMembers } from "@/lib/team";
 
+export const dynamic = "force-dynamic";
+
 async function GallerySection() {
   const images = await getCollection("gallery", {}, { limit: 6 });
   return <GalleryTeaser images={images} />;

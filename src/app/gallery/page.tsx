@@ -2,6 +2,8 @@ import { GalleryContent } from "@/components/gallery-content";
 import { getCollection } from "@/lib/db";
 import { buildMetadata } from "@/lib/seo";
 
+export const dynamic = "force-dynamic";
+
 export const metadata = buildMetadata({
   title: "Gallery",
   description:
