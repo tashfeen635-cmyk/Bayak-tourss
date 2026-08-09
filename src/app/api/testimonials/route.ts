@@ -18,7 +18,7 @@ export async function GET(request: NextRequest) {
     const results = await getCollection("testimonials", filter);
 
     return NextResponse.json(results, {
-      headers: { "Cache-Control": "public, s-maxage=60, stale-while-revalidate=120" },
+      headers: { "Cache-Control": "no-store" },
     });
   } catch (error) {
     console.error("GET testimonials error:", error);
