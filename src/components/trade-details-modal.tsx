@@ -25,7 +25,7 @@ import {
 const tradePartners = [
   { icon: MapPin, title: "Content Creators" },
   { icon: Plane, title: "Travel Agencies" },
-  { icon: Compass, title: "Tour Operators" },
+  { icon: Compass, title: "Tour Operators & Group Leaders" },
 ];
 
 type TradeItem = { icon: LucideIcon; title: string; description: string };
@@ -146,13 +146,13 @@ const tourOperatorsOffers: TradeItem[] = [
 
 const partnerOffers: Record<string, TradeItem[]> = {
   "Travel Agencies": travelAgenciesOffers,
-  "Tour Operators": tourOperatorsOffers,
+  "Tour Operators & Group Leaders": tourOperatorsOffers,
   "Content Creators": tradeOffers,
 };
 
 const partnerExpectations: Record<string, TradeItem[]> = {
   "Travel Agencies": [],
-  "Tour Operators": [],
+  "Tour Operators & Group Leaders": [],
   "Content Creators": tradeExpectations,
 };
 
