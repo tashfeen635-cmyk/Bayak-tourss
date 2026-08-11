@@ -80,7 +80,7 @@ export default function CreatorsPage() {
               Let&apos;s Work Together
             </span>
             <h1 className="mt-3 font-heading text-5xl font-bold text-white sm:text-6xl">
-              Partner With Terra Pakistan
+              Partnership opportunities
             </h1>
             <p className="mx-auto mt-4 max-w-2xl text-white/70">
               Filmmakers, photographers, storytellers, travel influencers,

@@ -16,6 +16,7 @@ import {
   Camera,
   Image,
   Video,
+  Globe,
   X,
   MessageCircle,
   type LucideIcon,
@@ -215,6 +216,12 @@ export function TradeDetailsModal() {
             <h3 className="font-heading text-lg font-semibold">
               {partner.title}
             </h3>
+            {partner.title === "Content Creators" && (
+              <span className="inline-flex items-center gap-2 text-sm font-medium text-gold">
+                <Globe className="h-4 w-4" />
+                Reach Audiences Worldwide
+              </span>
+            )}
             <span className="mt-auto inline-flex items-center justify-center rounded-full bg-gold/10 px-5 py-2 text-sm font-semibold text-gold transition-colors group-hover:bg-gold group-hover:text-white">
               View All Details
             </span>
