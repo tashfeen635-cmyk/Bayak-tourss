@@ -180,7 +180,7 @@ export function GalleryTeaser({ images: data }: { images?: GalleryImage[] }) {
                 onClick={(e) => e.stopPropagation()}
                 className="flex flex-col items-center"
               >
-                <div className="relative flex items-center justify-center">
+                <div className="relative flex min-h-[45vh] items-center justify-center sm:min-h-[60vh]">
                   {imgLoading && (
                     <div className="absolute inset-0 flex items-center justify-center">
                       <Loader2 className="h-10 w-10 animate-spin text-white/60" />
@@ -192,20 +192,24 @@ export function GalleryTeaser({ images: data }: { images?: GalleryImage[] }) {
                     width={1600}
                     height={1200}
                     onLoad={() => setImgLoading(false)}
-                    className="max-h-[85vh] w-auto max-w-5xl object-contain rounded-lg"
+                    className={`max-h-[85vh] w-auto max-w-5xl object-contain rounded-lg transition-opacity duration-300 ${
+                      imgLoading ? "opacity-0" : "opacity-100"
+                    }`}
                   />
                 </div>
-                <div className="mt-3 text-center">
-                  <p className="text-sm font-medium text-white">
-                    {galleryImages[selected].alt}
-                  </p>
-                  <p className="text-xs text-gold">
-                    {galleryImages[selected].category}
-                  </p>
-                  <p className="mt-1 text-xs text-white/40">
-                    {selected + 1} / {galleryImages.length}
-                  </p>
-                </div>
+                {!imgLoading && (
+                  <div className="mt-3 text-center">
+                    <p className="text-sm font-medium text-white">
+                      {galleryImages[selected].alt}
+                    </p>
+                    <p className="text-xs text-gold">
+                      {galleryImages[selected].category}
+                    </p>
+                    <p className="mt-1 text-xs text-white/40">
+                      {selected + 1} / {galleryImages.length}
+                    </p>
+                  </div>
+                )}
               </motion.div>
             </AnimatePresence>
           </motion.div>
