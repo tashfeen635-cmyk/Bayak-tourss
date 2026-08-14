@@ -52,7 +52,7 @@ const footerLinks = {
     { label: "Tours", href: "/tours" },
     { label: "Tourist Visa", href: "/tourist-visa" },
     { label: "Blogs", href: "/blogs" },
-    { label: "Travel Partners", href: "/travel-partners" },
+    { label: "Work With Us", href: "/work-with-us" },
     { label: "Gallery", href: "/gallery" },
     { label: "Our Team", href: "/team" },
     { label: "Contact", href: "/contact" },
@@ -65,6 +65,7 @@ const footerLinks = {
     { label: "Trekking Tours", href: "/tours?category=Trekking" },
     { label: "Bike Tours", href: "/tours?category=Bike%20tours" },
     { label: "Kalash Festival", href: "/tours?category=Kalash%20Festival" },
+    { label: "Safari Tours", href: "/tours?category=Safari" },
   ],
 };
 

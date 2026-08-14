@@ -1,6 +1,15 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  async redirects() {
+    return [
+      {
+        source: "/travel-partners",
+        destination: "/work-with-us",
+        permanent: true,
+      },
+    ];
+  },
   experimental: {
     proxyClientMaxBodySize: "50mb",
   },

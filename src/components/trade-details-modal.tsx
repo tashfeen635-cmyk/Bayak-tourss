@@ -217,10 +217,16 @@ export function TradeDetailsModal() {
               {partner.title}
             </h3>
             {partner.title === "Content Creators" && (
-              <span className="inline-flex items-center gap-2 text-sm font-medium text-gold">
-                <Globe className="h-4 w-4" />
-                Reach Audiences Worldwide
-              </span>
+              <>
+                <span className="inline-flex items-center gap-2 text-sm font-medium text-gold">
+                  <Globe className="h-4 w-4" />
+                  Reach Audiences Worldwide
+                </span>
+                <p className="text-sm leading-relaxed text-muted-foreground">
+                  <span className="font-semibold text-foreground">World wide reach.</span>{" "}
+                  Your content will reach curious Pakistanis and across the globe.
+                </p>
+              </>
             )}
             <span className="mt-auto inline-flex items-center justify-center rounded-full bg-gold/10 px-5 py-2 text-sm font-semibold text-gold transition-colors group-hover:bg-gold group-hover:text-white">
               View All Details

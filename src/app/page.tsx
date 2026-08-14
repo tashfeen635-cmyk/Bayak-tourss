@@ -1,5 +1,4 @@
 import { Hero } from "@/components/hero";
-import { WhyChooseUs } from "@/components/why-choose-us";
 import { GalleryTeaser } from "@/components/gallery-teaser";
 import { ReelsSection } from "@/components/reels-section";
 import { TeamTeaser } from "@/components/team-teaser";
@@ -22,7 +21,7 @@ async function TeamSection() {
 }
 
 async function DestinationsSection() {
-  const destinations = await getCollection("destinations", {}, { limit: 6 });
+  const destinations = await getCollection("destinations");
   return <BookingDeals destinations={destinations} />;
 }
 
@@ -35,7 +34,6 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <WhyChooseUs />
       <DestinationsSection />
       <CallToAction />
       <TestimonialsSection />

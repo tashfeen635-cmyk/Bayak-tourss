@@ -13,7 +13,7 @@ export const metadata: Metadata = buildMetadata({
   title: "Partner With Terra Pakistan",
   description:
     "Create with Terra Pakistan. Filmmakers, photographers, YouTubers and travel creators get PR collaborations, hidden destinations, local support and long-term partnerships.",
-  path: "/travel-partners",
+  path: "/work-with-us",
 });
 
 const tradeFaqs = [
@@ -98,7 +98,7 @@ export default function CreatorsPage() {
               Trade Partners
             </span>
             <h2 className="mt-3 font-heading text-3xl font-bold tracking-tight sm:text-4xl">
-              Travel Trade Partnerships
+              Work With Us
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
               Let&apos;s work together to deliver unforgettable journeys to

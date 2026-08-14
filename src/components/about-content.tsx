@@ -73,7 +73,7 @@ const milestones = [
       "Crossed the milestone of 438 satisfied travelers from over 10 countries around the world.",
   },
   {
-    year: "2024",
+    year: "2025",
     title: "Expanding Horizons",
     description:
       "Launched luxury glamping experiences, cultural immersion programs, and sustainable tourism initiatives.",
@@ -255,7 +255,7 @@ export function AboutContent() {
           <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {values.map((value, i) => (
               <FadeIn key={value.title} delay={i * 0.1}>
-                <div className="group relative overflow-hidden rounded-2xl border border-border bg-card p-8 text-center transition-all duration-500 hover:border-gold/30 hover:shadow-xl">
+                <div className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card p-8 text-center transition-all duration-500 hover:border-gold/30 hover:shadow-xl">
                   <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-gold/5 transition-all duration-500 group-hover:scale-150 group-hover:bg-gold/10" />
                   <div className="relative z-10">
                     <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-xl bg-gold/10 text-gold transition-colors group-hover:bg-gold group-hover:text-white">
@@ -290,7 +290,7 @@ export function AboutContent() {
             <div className="absolute left-4 top-0 h-full w-px bg-border sm:left-1/2 sm:-translate-x-px" />
 
             {milestones.map((m, i) => (
-              <div key={m.year} className="relative mb-12 last:mb-0">
+              <div key={i} className="relative mb-12 last:mb-0">
                 <FadeIn
                   direction={i % 2 === 0 ? "left" : "right"}
                   delay={i * 0.1}
@@ -298,7 +298,7 @@ export function AboutContent() {
                     i % 2 === 0 ? "sm:flex-row" : "sm:flex-row-reverse"
                   } items-start gap-8`}
                 >
-                  <div className={`flex-1 ${i % 2 === 0 ? "sm:text-right" : "sm:text-left"}`}>
+                  <div className={`flex-1 pl-10 sm:pl-0 ${i % 2 === 0 ? "sm:text-right" : "sm:text-left"}`}>
                     <span className="inline-block rounded-full bg-gold/10 px-4 py-1.5 text-sm font-bold text-gold">
                       {m.year}
                     </span>
@@ -462,7 +462,7 @@ export function AboutContent() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="rounded-full border-charcoal bg-charcoal px-8 text-white hover:bg-charcoal/90"
+                  className="rounded-full border-white bg-white px-8 text-gold hover:bg-white/90"
                 >
                   Contact Us
                 </Button>

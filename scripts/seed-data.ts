@@ -173,7 +173,7 @@ const destinations = [
     rating: 4.9,
     reviews: 156,
     image: "https://images.unsplash.com/photo-1493246507139-91e8fad9978e?w=800&q=80",
-    category: ["Adventure", "Luxury"],
+    category: ["Adventure", "Luxury", "Safari"],
     featured: false,
     availableDates: ["Aug 5", "Aug 20", "Sep 5"],
     included: ["Camping Stay", "All Meals", "4x4 Transport", "Guide", "Camping Gear"],

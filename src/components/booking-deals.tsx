@@ -17,6 +17,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { FadeIn, StaggerContainer, StaggerItem } from "./animations";
 import { BookingModal } from "./booking-modal";
+import { ComingSoon } from "./coming-soon";
 import { Destination } from "@/types";
 
 const categories = [
@@ -28,6 +29,7 @@ const categories = [
   "Trekking",
   "Bike tours",
   "Kalash Festival",
+  "Safari",
 ];
 
 function toArr(v: unknown): string[] {
@@ -69,7 +71,9 @@ export function BookingDeals({ destinations: data }: { destinations?: Destinatio
   const filtered =
     active === "All"
       ? destinations
-      : destinations.filter((d) => d.category.includes(active));
+      : destinations.filter((d) =>
+          d.category.some((c) => c.toLowerCase() === active.toLowerCase())
+        );
 
   return (
     <section className="bg-sand py-24 dark:bg-charcoal/50 sm:py-32">
@@ -217,6 +221,8 @@ export function BookingDeals({ destinations: data }: { destinations?: Destinatio
             ))}
           </StaggerContainer>
         )}
+
+        {filtered.length === 0 && <ComingSoon category={active} />}
       </div>
 
       <AnimatePresence>

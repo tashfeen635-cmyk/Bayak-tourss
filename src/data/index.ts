@@ -216,7 +216,7 @@ export const destinations = [
     rating: 4.9,
     image:
       "/images/deosai.jpg",
-    category: ["Adventure", "Luxury"],
+    category: ["Adventure", "Luxury", "Safari"],
     featured: false,
     availableDates: ["Aug 5", "Aug 20", "Sep 5"],
     included: [
