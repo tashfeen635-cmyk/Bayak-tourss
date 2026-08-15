@@ -16,23 +16,23 @@ function ProjectCover({
   return (
     <div
       className={`group/cvr relative flex items-center justify-center overflow-hidden rounded-lg border border-[var(--tp-line)] bg-[#0d131c] ${
-        large ? "aspect-[21/10] sm:aspect-[21/9]" : "aspect-[4/3] sm:aspect-[16/11]"
+        large ? "aspect-[4/3] sm:aspect-[21/9]" : "aspect-[4/3] sm:aspect-[16/11]"
       }`}
     >
       <Contours className="absolute inset-0 h-full w-full" />
-      <span className="absolute left-4 top-4 z-10 border border-[var(--tp-line-strong)] bg-[#0a0e14]/80 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--tp-muted)]">
+      <span className="absolute left-3 top-3 z-10 max-w-[calc(100%-2.5rem)] truncate border border-[var(--tp-line-strong)] bg-[#0a0e14]/80 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--tp-muted)] sm:left-4 sm:top-4">
         {project.category}
       </span>
-      <div className="relative z-10 flex flex-col items-center gap-3 px-6 text-center">
+      <div className="relative z-10 flex flex-col items-center gap-2.5 px-6 text-center sm:gap-3">
         <span className="tp-mono-label">Project {project.index}</span>
         <span
           className={`font-bold tracking-tight text-[var(--tp-text)] ${
-            large ? "text-4xl sm:text-6xl" : "text-3xl sm:text-5xl"
+            large ? "text-3xl sm:text-6xl" : "text-2xl sm:text-5xl"
           }`}
         >
           {project.title}
         </span>
-        <span className="h-px w-16 bg-[var(--tp-accent)] transition-all duration-500 group-hover/cvr:w-28" />
+        <span className="h-px w-14 bg-[var(--tp-accent)] transition-all duration-500 group-hover/cvr:w-28 sm:w-16" />
         <span className="text-sm text-[var(--tp-muted)]">{project.type}</span>
       </div>
       <span className="absolute bottom-4 right-5 font-mono text-xs tracking-[0.2em] text-[var(--tp-faint)]">
@@ -56,7 +56,7 @@ function ProjectMeta({ project }: { project: (typeof projects)[number] }) {
       {rows.map(([label, value]) => (
         <div
           key={label}
-          className="grid grid-cols-[110px_1fr] gap-4 border-b border-[var(--tp-line)] py-2.5"
+          className="grid grid-cols-[88px_1fr] gap-3 border-b border-[var(--tp-line)] py-2.5 sm:grid-cols-[110px_1fr] sm:gap-4"
         >
           <dt className="tp-mono-label pt-0.5">{label}</dt>
           <dd className="text-sm text-[var(--tp-text)]">{value}</dd>
@@ -166,7 +166,7 @@ export function Projects() {
               <div className="flex flex-wrap items-end justify-between gap-4">
                 <div>
                   <p className="tp-eyebrow">Flagship Project — {featured.index}</p>
-                  <h3 className="mt-4 text-4xl font-bold tracking-tight sm:text-6xl">
+                  <h3 className="mt-4 text-3xl font-bold tracking-tight sm:text-6xl">
                     {featured.title}
                   </h3>
                   <p className="mt-2 text-base font-medium text-[var(--tp-accent)]">
