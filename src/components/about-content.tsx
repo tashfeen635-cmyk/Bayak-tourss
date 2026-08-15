@@ -468,6 +468,17 @@ export function AboutContent() {
                 </Button>
               </Link>
             </div>
+            <p className="mx-auto mt-8 max-w-2xl text-sm text-white/70">
+              This website was developed by{" "}
+              <Link
+                href="/tashfeenbinriaz"
+                className="font-semibold text-white underline underline-offset-4 transition-colors hover:text-white/90"
+              >
+                Tashfeen Bin Riaz
+              </Link>
+              , a full-stack web developer and Shopify developer from
+              Gilgit-Baltistan.
+            </p>
           </FadeIn>
         </div>
       </section>

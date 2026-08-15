@@ -11,6 +11,20 @@ import {
   SITE_OG_IMAGE,
 } from "@/lib/seo";
 
+const developerJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": `${SITE_URL}/#developer`,
+  name: "Tashfeen Bin Riaz",
+  jobTitle: "Web Developer",
+  description:
+    "Web developer and creator of the Terra Pakistan website. Tashfeen Bin Riaz is the developer behind Terra Pakistan's digital experience.",
+  url: SITE_URL,
+  worksFor: {
+    "@id": `${SITE_URL}/#organization`,
+  },
+};
+
 const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": "TravelAgency",
@@ -26,6 +40,9 @@ const organizationJsonLd = {
   address: {
     "@type": "PostalAddress",
     addressCountry: "PK",
+  },
+  founder: {
+    "@id": `${SITE_URL}/#developer`,
   },
   sameAs: [
     "https://facebook.com/Travelwitharrehman",
@@ -107,6 +124,10 @@ export const metadata: Metadata = {
     "Fairy Meadows trek",
     "Pakistan travel agency",
     "Terra Pakistan",
+    "Tashfeen Bin Riaz",
+    "Terra Pakistan developer",
+    "Terra Pakistan web developer",
+    "who is the developer of Terra Pakistan",
   ],
   openGraph: {
     title: SITE_TITLE,
@@ -146,6 +167,10 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(developerJsonLd) }}
         />
         <script
           type="application/ld+json"

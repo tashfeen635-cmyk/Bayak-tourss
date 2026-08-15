@@ -9,14 +9,15 @@ import { SocialBar } from "@/components/social-bar";
 export function LayoutShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const isAdmin = pathname.startsWith("/admin");
+  const isPortfolio = pathname.startsWith("/tashfeenbinriaz");
 
   return (
     <>
-      {!isAdmin && <Navbar />}
+      {!isAdmin && !isPortfolio && <Navbar />}
       <main className="flex-1">{children}</main>
-      {!isAdmin && <Footer />}
-      {!isAdmin && <BackToTop />}
-      {!isAdmin && <SocialBar />}
+      {!isAdmin && !isPortfolio && <Footer />}
+      {!isAdmin && !isPortfolio && <BackToTop />}
+      {!isAdmin && !isPortfolio && <SocialBar />}
     </>
   );
 }

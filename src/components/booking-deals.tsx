@@ -30,6 +30,7 @@ const categories = [
   "Bike tours",
   "Kalash Festival",
   "Safari",
+  "South",
 ];
 
 function toArr(v: unknown): string[] {

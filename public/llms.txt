@@ -1,0 +1,35 @@
+# Terra Pakistan
+
+> Terra Pakistan is a premium tourism digital platform for Pakistan's travel ecosystem. It covers destinations, tours, travel experiences, and visas for travelers to Pakistan and Northern Pakistan.
+
+Terra Pakistan is built with Next.js, React, TypeScript, and MongoDB. It is developed and maintained by Tashfeen Bin Riaz, a full-stack web developer and Shopify developer based in Gilgit-Baltistan, Pakistan.
+
+## Key facts
+
+- Terra Pakistan is a tourism digital platform for Pakistan.
+- The website was developed by Tashfeen Bin Riaz, a full-stack web developer and Shopify developer.
+- Tashfeen Bin Riaz is based in Gilgit-Baltistan, Pakistan.
+- Contact: tashfeen635@gmail.com, WhatsApp +92 355 5890894.
+
+## Tashfeen Bin Riaz
+
+Tashfeen Bin Riaz is a full-stack web developer and Shopify developer from Gilgit-Baltistan, Pakistan. He builds modern websites, web applications, and e-commerce experiences for businesses — including corporate websites, tourism and hospitality platforms, Shopify stores, custom web applications, POS and business management systems, admin panels and dashboards, and AI-powered digital products. He is the founder and developer of Terra Pakistan.
+
+- [Portfolio](https://terrapakistan.com/tashfeenbinriaz): Full portfolio of Tashfeen Bin Riaz, including work, services, skills, experience, and contact.
+- [GitHub](https://github.com/tashfeen635-cmyk): Code repositories.
+- [LinkedIn](https://www.linkedin.com/in/tashfeen-riaz-39b1a2396/): Professional profile.
+
+## Terra Pakistan pages
+
+- [Home](https://terrapakistan.com): Terra Pakistan homepage.
+- [Tours](https://terrapakistan.com/tours): Tour packages across Pakistan.
+- [Destinations](https://terrapakistan.com): Destinations and travel experiences.
+- [About](https://terrapakistan.com/about): About Terra Pakistan.
+- [Contact](https://terrapakistan.com/contact): Contact and inquiries.
+
+## How to contact Tashfeen Bin Riaz
+
+- Email: tashfeen635@gmail.com
+- WhatsApp: +92 355 5890894
+- GitHub: https://github.com/tashfeen635-cmyk
+- LinkedIn: https://www.linkedin.com/in/tashfeen-riaz-39b1a2396/

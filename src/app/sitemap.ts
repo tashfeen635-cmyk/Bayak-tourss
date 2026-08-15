@@ -5,6 +5,7 @@ import { SITE_URL } from "@/lib/seo";
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes = [
     "",
+    "/tashfeenbinriaz",
     "/about",
     "/tours",
     "/gallery",

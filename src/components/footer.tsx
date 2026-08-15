@@ -2,9 +2,11 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { motion, useReducedMotion } from "framer-motion";
 import {
   Phone,
   Mail,
+  Heart,
 } from "lucide-react";
 
 const socials = [
@@ -66,10 +68,13 @@ const footerLinks = {
     { label: "Bike Tours", href: "/tours?category=Bike%20tours" },
     { label: "Kalash Festival", href: "/tours?category=Kalash%20Festival" },
     { label: "Safari Tours", href: "/tours?category=Safari" },
+    { label: "South Tours", href: "/tours?category=South" },
   ],
 };
 
 export function Footer() {
+  const reduce = useReducedMotion();
+
   return (
     <footer className="bg-black text-white/80">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -162,8 +167,32 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-white/10 py-6 text-center text-xs text-white/40">
-          &copy; {new Date().getFullYear()} Terra Pakistan. All rights reserved.
+        <div className="border-t border-white/10 py-6">
+          <div className="flex flex-col items-center justify-between gap-2 text-xs text-white/40 sm:flex-row">
+            <span>&copy; {new Date().getFullYear()} Terra Pakistan. All rights reserved.</span>
+            <Link
+              href="/tashfeenbinriaz"
+              className="flex items-center gap-1.5 transition-colors hover:text-white"
+            >
+              <motion.span
+                className="inline-flex items-center gap-1.5"
+                animate={
+                  reduce ? undefined : { opacity: [1, 0.35, 1] }
+                }
+                transition={{
+                  duration: 1.1,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              >
+                Developed with <Heart className="h-3.5 w-3.5 fill-gold text-gold" /> by
+                <span className="font-medium tracking-wide text-white/60">
+                  Tashfeen Bin Riaz
+                </span>
+                <span className="hidden sm:inline text-white/30">| Web Developer</span>
+              </motion.span>
+            </Link>
+          </div>
         </div>
       </div>
     </footer>
