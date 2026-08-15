@@ -133,6 +133,7 @@ const projectsJsonLd = {
       item: {
         "@type": "CreativeWork",
         name: "Gilgit Adventure Treks",
+        url: "https://gilgitadventuretreks.com/",
         description:
           "Tourism website for travel experiences in Gilgit-Baltistan and Northern Pakistan, with tour presentation, admin functionality, and AI chatbot integration.",
       },
@@ -143,6 +144,7 @@ const projectsJsonLd = {
       item: {
         "@type": "CreativeWork",
         name: "MAS Corporates",
+        url: "https://mascorporates.com/",
         description:
           "Professional corporate business website with a modern UI, responsive development, and reliable deployment.",
       },

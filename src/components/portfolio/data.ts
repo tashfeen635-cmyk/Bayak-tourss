@@ -147,7 +147,7 @@ export const projects = [
       year: "2024",
       services: "Web Design · Development · Admin Panel",
     },
-    url: "#",
+    url: "https://gilgitadventuretreks.com/",
   },
   {
     index: "02",
@@ -169,7 +169,7 @@ export const projects = [
       year: "2025",
       services: "UI Development · Responsive Build · Deployment",
     },
-    url: "#",
+    url: "https://mascorporates.com/",
   },
   {
     index: "03",

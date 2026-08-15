@@ -82,6 +82,19 @@ function ProjectLink({ url, label }: { url: string; label: string }) {
     );
   }
 
+  if (/^https?:\/\//.test(url)) {
+    return (
+      <a
+        href={url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="tp-link inline-flex items-center gap-1.5 text-sm font-medium"
+      >
+        {inner}
+      </a>
+    );
+  }
+
   return null;
 }
 
