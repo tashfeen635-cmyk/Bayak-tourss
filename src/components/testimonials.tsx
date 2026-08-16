@@ -164,7 +164,7 @@ export function Testimonials({ testimonials: data }: { testimonials?: Testimonia
             </div>
             <div className="border-l border-border pl-8">
               <div className="font-heading text-2xl font-bold text-gold">
-                438+
+                150+
               </div>
               <div className="text-sm text-muted-foreground">
                 Happy Travelers

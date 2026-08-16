@@ -467,7 +467,7 @@ export const galleryImages = [
 
 export const stats = [
   { label: "Tours Completed", value: 44 },
-  { label: "Happy Travelers", value: 438 },
+  { label: "Happy Travelers", value: 150 },
   { label: "Destinations", value: 11 },
   { label: "Years Experience", value: 5 },
 ];

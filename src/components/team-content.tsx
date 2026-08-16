@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { buildImageUrl } from "@/lib/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Globe, Briefcase, Languages } from "lucide-react";
+import { X, Briefcase, Languages } from "lucide-react";
 import { FadeIn, StaggerContainer, StaggerItem } from "./animations";
 import { TeamMember } from "@/types";
 import { sortMembers } from "@/lib/team";
@@ -170,13 +170,6 @@ export function TeamContent({ team: data }: { team?: TeamMember[] }) {
                     <div>
                       <p className="text-xs text-muted-foreground">Experience</p>
                       <p className="text-sm font-medium">{teamMembers[selected].experience}</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-3 rounded-xl bg-muted/50 p-3">
-                    <Globe className="h-5 w-5 shrink-0 text-gold" />
-                    <div>
-                      <p className="text-xs text-muted-foreground">Specialization</p>
-                      <p className="text-sm font-medium">{teamMembers[selected].specialization}</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-3 rounded-xl bg-muted/50 p-3">

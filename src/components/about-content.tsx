@@ -47,56 +47,23 @@ const values = [
   },
 ];
 
-const milestones = [
-  {
-    year: "2021",
-    title: "The Beginning",
-    description:
-      "Ahmed Khan founded Terra Pakistan from a small office in Islamabad with a dream to show the world Pakistan's true beauty.",
-  },
-  {
-    year: "2022",
-    title: "First 200 Travelers",
-    description:
-      "Reached our first 200 happy travelers, expanding routes to cover all of Gilgit-Baltistan and Khyber Pakhtunkhwa.",
-  },
-  {
-    year: "2023",
-    title: "International Recognition",
-    description:
-      "Featured in Lonely Planet and recognized by Pakistan's Ministry of Tourism as a top-tier travel operator.",
-  },
-  {
-    year: "2024",
-    title: "438+ Happy Travelers",
-    description:
-      "Crossed the milestone of 438 satisfied travelers from over 10 countries around the world.",
-  },
-  {
-    year: "2025",
-    title: "Expanding Horizons",
-    description:
-      "Launched luxury glamping experiences, cultural immersion programs, and sustainable tourism initiatives.",
-  },
-];
-
 const aboutStats = [
   { label: "Years of Experience", value: 5, suffix: "+" },
-  { label: "Happy Travelers", value: 438, suffix: "+" },
+  { label: "Happy Travelers", value: 150, suffix: "+" },
   { label: "Destinations Covered", value: 11, suffix: "" },
-  { label: "Team Members", value: 35, suffix: "+" },
+  { label: "Team Members", value: 6, suffix: "+" },
 ];
 
 const faqs = [
   {
-    question: "What does Terra mean?",
+    question: "What does “Terra” mean?",
     answer:
-      "Terra comes from the Latin word for \"earth\" or \"land.\" Paired with \"Pakistan,\" it reflects our passion for this land — its soaring mountains, turquoise lakes and warm people — and our mission to share it with the world.",
+      "“Terra” is a Latin word meaning Earth or Land. For us, Terra represents the diverse landscapes, majestic mountains, rich cultures, and unforgettable journeys that make Pakistan truly unique. Terra Pakistan is our way of inviting travelers from around the world to discover and experience the land we call home.",
   },
   {
     question: "What is Terra Pakistan?",
     answer:
-      "Terra Pakistan is Pakistan's premier travel company, founded in 2021. We specialize in crafting premium travel experiences to Pakistan's most breathtaking destinations including Hunza Valley, Skardu, Fairy Meadows, Naran Kaghan, Swat Valley, and more. We have served over 438 happy travelers from 40+ countries worldwide.",
+      "Terra Pakistan is Pakistan's premier travel company, founded in 2021. We specialize in crafting premium travel experiences to Pakistan's most breathtaking destinations including Hunza Valley, Skardu, Fairy Meadows, Naran Kaghan, Swat Valley, and more.",
   },
   {
     question: "Is Pakistan safe for tourists?",
@@ -212,20 +179,31 @@ export function AboutContent() {
                   Our Story
                 </span>
                 <h2 className="mt-3 font-heading text-3xl font-bold tracking-tight sm:text-4xl">
-                  Born From a Love of Pakistan
+                  Discover Pakistan. Experience It Differently.
                 </h2>
                 <p className="mt-4 text-muted-foreground">
-                  Terra Pakistan was founded in 2021 by Ahmed Khan, a lifelong
-                  mountaineer and travel enthusiast who saw the incredible beauty
-                  of Pakistan going unnoticed by the world. What started as a
-                  small team of passionate guides has grown into Pakistan&apos;s
-                  most trusted travel company.
+                  Terra Pakistan is a locally rooted travel company offering
+                  customized tours across Pakistan, with a special focus on
+                  Northern Pakistan, Gilgit-Baltistan, Hunza, and Skardu.
                 </p>
                 <p className="mt-4 text-muted-foreground">
-                  From the soaring peaks of the Karakoram to the lush valleys of
-                  Swat, we&apos;ve dedicated ourselves to crafting journeys that
-                  don&apos;t just show you Pakistan — they let you experience it
-                  with all your senses.
+                  We create authentic private, family, couple, adventure,
+                  cultural, and group tours for travelers from around the world.
+                  With strong local knowledge, trusted partners, and dedicated
+                  on-ground support, we make exploring Pakistan comfortable,
+                  seamless, and memorable.
+                </p>
+                <p className="mt-4 text-muted-foreground">
+                  From breathtaking mountain landscapes to rich culture and
+                  hidden gems, Terra Pakistan helps you discover the real
+                  Pakistan — authentically and responsibly.
+                </p>
+                <h3 className="mt-8 font-heading text-2xl font-bold tracking-tight">
+                  Our Vision
+                </h3>
+                <p className="mt-3 text-muted-foreground">
+                  To connect the world with Pakistan through meaningful
+                  journeys, authentic experiences, and genuine hospitality.
                 </p>
               </FadeIn>
               <FadeIn direction="right" delay={0.1}>
@@ -276,45 +254,18 @@ export function AboutContent() {
       </section>
 
       <section className="py-20 sm:py-28">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <FadeIn className="text-center">
-            <span className="text-sm font-semibold uppercase tracking-wider text-gold">
-              Our Journey
-            </span>
-            <h2 className="mt-3 font-heading text-3xl font-bold tracking-tight sm:text-4xl">
-              Milestones That Define Us
+            <h2 className="mt-4 font-heading text-3xl font-bold tracking-tight sm:text-4xl">
+              The Visionary Behind Terra Pakistan
             </h2>
+            <p className="mx-auto mt-5 max-w-2xl leading-relaxed text-muted-foreground">
+              Abdul Rehman founded Terra Pakistan with a vision to explore
+              Pakistan and share its breathtaking beauty with the world. His
+              journey began with a simple dream — to reveal the Pakistan beyond
+              the ordinary, one unforgettable journey at a time.
+            </p>
           </FadeIn>
-
-          <div className="relative mt-16">
-            <div className="absolute left-4 top-0 h-full w-px bg-border sm:left-1/2 sm:-translate-x-px" />
-
-            {milestones.map((m, i) => (
-              <div key={i} className="relative mb-12 last:mb-0">
-                <FadeIn
-                  direction={i % 2 === 0 ? "left" : "right"}
-                  delay={i * 0.1}
-                  className={`flex flex-col sm:flex-row ${
-                    i % 2 === 0 ? "sm:flex-row" : "sm:flex-row-reverse"
-                  } items-start gap-8`}
-                >
-                  <div className={`flex-1 pl-10 sm:pl-0 ${i % 2 === 0 ? "sm:text-right" : "sm:text-left"}`}>
-                    <span className="inline-block rounded-full bg-gold/10 px-4 py-1.5 text-sm font-bold text-gold">
-                      {m.year}
-                    </span>
-                    <h3 className="mt-3 font-heading text-xl font-semibold">
-                      {m.title}
-                    </h3>
-                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                      {m.description}
-                    </p>
-                  </div>
-                  <div className="absolute left-4 top-1 h-4 w-4 -translate-x-1/2 rounded-full border-2 border-gold bg-background sm:relative sm:left-auto sm:top-auto sm:translate-x-0" />
-                  <div className="hidden flex-1 sm:block" />
-                </FadeIn>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -365,7 +316,7 @@ export function AboutContent() {
               <FadeIn direction="right">
                 <div className="relative overflow-hidden rounded-2xl shadow-2xl">
                   <Image
-                    src="/images/skardu.jpg"
+                    src="/images/why-pakistan.jpg"
                     alt="Scenic view of Skardu, Pakistan"
                     width={800}
                     height={600}

@@ -5,7 +5,7 @@ import { AdminDataTable } from "../components/data-table";
 const fields = [
   { key: "src", label: "Image", type: "image" as const, required: true },
   { key: "alt", label: "Alt Text", required: true },
-  { key: "category", label: "Category", type: "select" as const, options: ["Mountains", "Lakes", "Adventure", "Nature", "Culture", "Other"] },
+  { key: "category", label: "Category", type: "select" as const, options: ["Truck Art", "Deserts", "Fort", "Food", "Bridge", "Glacier", "Mosque", "Handicraft", "Dry Fruits", "Portraits", "Wildlife", "Meadows", "Sunset", "Mountains", "Lakes", "Adventure", "Nature", "Culture", "Other"] },
 ];
 
 const displayColumns = ["Alt", "Category", "Image"];

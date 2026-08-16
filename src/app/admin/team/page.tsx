@@ -7,11 +7,10 @@ const fields = [
   { key: "bio", label: "Bio", type: "textarea" as const, required: true },
   { key: "image", label: "Image", type: "image" as const },
   { key: "experience", label: "Experience" },
-  { key: "specialization", label: "Specialization" },
   { key: "languages", label: "Languages (comma-separated)" },
 ];
 
-const displayColumns = ["Order", "Name", "Role", "Experience", "Specialization"];
+const displayColumns = ["Order", "Name", "Role", "Experience"];
 
 export default function TeamPage() {
   return (

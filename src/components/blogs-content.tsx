@@ -11,8 +11,6 @@ import {
   Route,
   Compass,
   ArrowRight,
-  MessageCircle,
-  Sparkles,
 } from "lucide-react";
 
 type Category = "News" | "Hiking" | "Road Trips" | "Travel Guides";
@@ -54,7 +52,7 @@ const posts: {
     source: "BBC Travel",
     date: "September 2023",
     href: "https://www.bbc.com/travel/article/20230903-the-karakoram-highway-the-road-thats-the-eighth-world-wonder",
-    image: "/images/blog-bbc.jpg",
+    image: "/images/blog-bbc-karakoram.jpg",
   },
   {
     title: "Pakistan's mountains are calling — here's why you should go",
@@ -64,7 +62,7 @@ const posts: {
     source: "National Geographic",
     date: "April 2025",
     href: "https://www.nationalgeographic.com/travel/article/why-you-should-explore-pakistans-mountains-karakoram-range-baltistan",
-    image: "/images/blog-natgeo.jpg",
+    image: "/images/blog-natgeo-mountains.jpg",
   },
   {
     title: "How to trek to K2 base camp in Pakistan",
@@ -74,7 +72,7 @@ const posts: {
     source: "Lonely Planet",
     date: "November 2019",
     href: "https://www.lonelyplanet.com/articles/how-to-trek-to-k2-base-camp",
-    image: "/images/blog-lonelyplanet.jpg",
+    image: "/images/blog-k2-base-camp.webp",
   },
   {
     title: "Gilgit-Baltistan 2026: record visitors, overtourism concerns",
@@ -84,34 +82,7 @@ const posts: {
     source: "Gilgit Media Network",
     date: "June 2026",
     href: "https://gmnpk.com/gilgit-baltistan-tourism-season-2026-peak-record-visitors-overtourism/",
-    image: "/images/blog-gmn.jpg",
-  },
-];
-
-const guides = [
-  {
-    title: "K2 Base Camp Trek",
-    description:
-      "A complete route guide to the Baltoro Glacier, Concordia and the world's second-highest peak — from Skardu to Askole.",
-    image: "/images/hunza.jpg",
-    message:
-      "Hi Terra Pakistan! I'd like to know more about the K2 Base Camp Trek.",
-  },
-  {
-    title: "Skardu & Deosai",
-    description:
-      "Fairy Meadows, Shangrila Lake and the 'Land of Giants' — the Deosai plateau in the heart of Baltistan.",
-    image: "/images/about-hero.jpg",
-    message:
-      "Hi Terra Pakistan! I'd like to know more about the Skardu & Deosai tour.",
-  },
-  {
-    title: "Fairy Meadows",
-    description:
-      "Emerald alpine meadows beneath Nanga Parbat — the world's ninth-highest peak. Reach it by jeep from Raikot Bridge on the Karakoram Highway, then hike 2–3 hours through pine forest to camp under the 'Killer Mountain'.",
-    image: "/images/blog-guide-forest.jpg",
-    message:
-      "Hi Terra Pakistan! I'd like to know more about the Fairy Meadows tour.",
+    image: "/images/blog-gmn-tourism.jpg",
   },
 ];
 
@@ -292,64 +263,6 @@ export function BlogsContent() {
               No stories in this category yet — check back soon.
             </p>
           )}
-        </div>
-      </section>
-
-      <section className="py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <FadeIn className="text-center">
-            <span className="text-sm font-semibold uppercase tracking-wider text-gold">
-              Travel Guides
-            </span>
-            <h2 className="mt-3 font-heading text-3xl font-bold tracking-tight sm:text-4xl">
-              Terra Pakistan guides
-            </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-              Insider guides to Pakistan&apos;s greatest destinations — written
-              by the people who know them best. Ask us for the full itinerary.
-            </p>
-          </FadeIn>
-
-          <StaggerContainer className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {guides.map((guide) => (
-              <StaggerItem key={guide.title}>
-                <div className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card transition-all duration-500 hover:border-gold/30 hover:shadow-xl">
-                  <div className="relative aspect-[16/10] overflow-hidden">
-                    <Image
-                      src={guide.image}
-                      alt={guide.title}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    />
-                    <div className="absolute left-4 top-4 flex items-center gap-1 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-charcoal backdrop-blur-sm">
-                      <Sparkles className="h-3 w-3 text-gold" />
-                      Coming Soon
-                    </div>
-                  </div>
-                  <div className="flex flex-1 flex-col p-8">
-                    <h3 className="font-heading text-xl font-semibold">
-                      {guide.title}
-                    </h3>
-                    <p className="mt-4 text-sm leading-loose text-muted-foreground">
-                      {guide.description}
-                    </p>
-                    <a
-                      href={`https://wa.me/923146605966?text=${encodeURIComponent(
-                        guide.message
-                      )}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-gold px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-gold/90"
-                    >
-                      <MessageCircle className="h-4 w-4" />
-                      Get the itinerary
-                    </a>
-                  </div>
-                </div>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
         </div>
       </section>
 

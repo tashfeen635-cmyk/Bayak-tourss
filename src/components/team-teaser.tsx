@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import { buildImageUrl } from "@/lib/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Globe, Briefcase, Languages, ChevronLeft, ChevronRight } from "lucide-react";
+import { X, Briefcase, Languages, ChevronLeft, ChevronRight } from "lucide-react";
 import { FadeIn } from "./animations";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -241,13 +241,6 @@ export function TeamTeaser({ team: data }: { team?: TeamMember[] }) {
                     <div>
                       <p className="text-xs text-muted-foreground">Experience</p>
                       <p className="text-sm font-medium">{teamMembers[selected].experience}</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-3 rounded-xl bg-muted/50 p-3">
-                    <Globe className="h-5 w-5 shrink-0 text-gold" />
-                    <div>
-                      <p className="text-xs text-muted-foreground">Specialization</p>
-                      <p className="text-sm font-medium">{teamMembers[selected].specialization}</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-3 rounded-xl bg-muted/50 p-3">

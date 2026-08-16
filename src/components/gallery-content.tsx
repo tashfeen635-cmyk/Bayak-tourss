@@ -5,8 +5,25 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight, Loader2 } from "lucide-react";
 import Image from "next/image";
 import { FadeIn } from "./animations";
+import { ComingSoon } from "./coming-soon";
 import type { GalleryImage } from "@/types";
 import { buildImageUrl } from "@/lib/image";
+
+const GALLERY_CATEGORIES = [
+  "Truck Art",
+  "Deserts",
+  "Fort",
+  "Food",
+  "Bridge",
+  "Glacier",
+  "Mosque",
+  "Handicraft",
+  "Dry Fruits",
+  "Portraits",
+  "Wildlife",
+  "Meadows",
+  "Sunset",
+];
 
 export function GalleryContent({ images: data }: { images?: GalleryImage[] }) {
   const [galleryImages, setGalleryImages] = useState<GalleryImage[]>(() =>
@@ -14,9 +31,15 @@ export function GalleryContent({ images: data }: { images?: GalleryImage[] }) {
   );
   const [selected, setSelected] = useState<number | null>(null);
   const [imgLoading, setImgLoading] = useState(true);
-  const categories = ["All", ...new Set(galleryImages.map((img) =>
-    Array.isArray(img.category) ? img.category[0] : img.category
-  ).filter(Boolean))];
+  const categories = [
+    "All",
+    ...new Set([
+      ...GALLERY_CATEGORIES,
+      ...galleryImages
+        .map((img) => (Array.isArray(img.category) ? img.category[0] : img.category))
+        .filter(Boolean),
+    ]),
+  ];
   const [active, setActive] = useState("All");
 
   const touchStartX = useRef(0);
@@ -188,6 +211,8 @@ export function GalleryContent({ images: data }: { images?: GalleryImage[] }) {
               ))}
             </div>
           </div>
+
+          {filtered.length === 0 && <ComingSoon category={active} />}
         </div>
       </section>
 
