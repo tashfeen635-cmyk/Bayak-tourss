@@ -1,11 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { buildImageUrl } from "@/lib/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Globe, Briefcase, Languages } from "lucide-react";
-import { FadeIn, StaggerContainer, StaggerItem } from "./animations";
+import { X, Globe, Briefcase, Languages, ChevronLeft, ChevronRight } from "lucide-react";
+import { FadeIn } from "./animations";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { TeamMember } from "@/types";
@@ -21,11 +21,68 @@ function normalizeMember(m: TeamMember): TeamMember {
   return { ...m, languages: toArr(m.languages) };
 }
 
+function MemberCard({
+  member,
+  index,
+  onSelect,
+}: {
+  member: TeamMember;
+  index: number;
+  onSelect: (i: number) => void;
+}) {
+  return (
+    <div
+      onClick={() => onSelect(index)}
+      className="group flex h-full w-[280px] cursor-pointer flex-col overflow-hidden rounded-2xl border border-border bg-card transition-all duration-300 hover:shadow-xl sm:w-[320px]"
+    >
+      <div className="relative aspect-square overflow-hidden">
+        {member.image ? (
+          <Image
+            src={buildImageUrl(member.image, 800)}
+            alt={member.name}
+            fill
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
+            sizes="(max-width: 640px) 100vw, 320px"
+          />
+        ) : (
+          <div className="flex h-full w-full items-center justify-center bg-muted/50">
+            <span className="font-heading text-6xl font-bold text-gold/40">
+              {member.name.charAt(0)}
+            </span>
+          </div>
+        )}
+      </div>
+      <div className="flex flex-1 flex-col p-6">
+        <h3 className="font-heading text-lg font-semibold">
+          {member.name}
+        </h3>
+        <p className="mt-1 text-sm font-medium text-gold">
+          {member.role}
+        </p>
+        <p className="mt-3 text-sm leading-relaxed text-muted-foreground line-clamp-4">
+          {member.bio}
+        </p>
+        <div className="mt-auto pt-4">
+          <button
+            onClick={() => onSelect(index)}
+            className="inline-flex items-center gap-1.5 rounded-full border border-gold/30 px-4 py-1.5 text-xs font-medium text-gold transition-colors hover:bg-gold hover:text-white"
+          >
+            More Details
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function TeamTeaser({ team: data }: { team?: TeamMember[] }) {
   const [teamMembers, setTeamMembers] = useState<TeamMember[]>(() =>
     data ? sortMembers(data.map(normalizeMember)) : []
   );
   const [selected, setSelected] = useState<number | null>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(false);
+  const scrollRef = useRef<HTMLUListElement>(null);
 
   useEffect(() => {
     if (data) return;
@@ -38,6 +95,32 @@ export function TeamTeaser({ team: data }: { team?: TeamMember[] }) {
       })
       .catch(() => setTeamMembers([]));
   }, [data]);
+
+  const updateScrollState = () => {
+    const el = scrollRef.current;
+    if (!el) return;
+    setCanScrollLeft(el.scrollLeft > 4);
+    setCanScrollRight(el.scrollLeft + el.clientWidth < el.scrollWidth - 4);
+  };
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    updateScrollState();
+    el.addEventListener("scroll", updateScrollState, { passive: true });
+    window.addEventListener("resize", updateScrollState);
+    return () => {
+      el.removeEventListener("scroll", updateScrollState);
+      window.removeEventListener("resize", updateScrollState);
+    };
+  }, [teamMembers]);
+
+  const scrollByCards = (dir: -1 | 1) => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const cardWidth = el.querySelector("li")?.clientWidth ?? 320;
+    el.scrollBy({ left: dir * (cardWidth + 32), behavior: "smooth" });
+  };
 
   return (
     <section className="py-24 sm:py-32">
@@ -55,53 +138,37 @@ export function TeamTeaser({ team: data }: { team?: TeamMember[] }) {
         </FadeIn>
 
         {teamMembers.length > 0 && (
-          <StaggerContainer key="team-grid" className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {teamMembers.map((member, i) => (
-              <StaggerItem key={member.name}>
-                <div
-                  onClick={() => setSelected(i)}
-                  className="group cursor-pointer overflow-hidden rounded-2xl border border-border bg-card transition-all duration-300 hover:shadow-xl flex flex-col"
-                >
-                  <div className="relative aspect-square overflow-hidden">
-                    {member.image ? (
-                      <Image
-                        src={buildImageUrl(member.image, 800)}
-                        alt={member.name}
-                        fill
-                        className="object-cover transition-transform duration-500 group-hover:scale-105"
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                      />
-                    ) : (
-                      <div className="flex h-full w-full items-center justify-center bg-muted/50">
-                        <span className="font-heading text-6xl font-bold text-gold/40">
-                          {member.name.charAt(0)}
-                        </span>
-                      </div>
-                    )}
-                  </div>
-                    <div className="flex flex-1 flex-col p-6">
-                      <h3 className="font-heading text-lg font-semibold">
-                        {member.name}
-                      </h3>
-                      <p className="mt-1 text-sm font-medium text-gold">
-                        {member.role}
-                      </p>
-                      <p className="mt-3 text-sm leading-relaxed text-muted-foreground line-clamp-4">
-                        {member.bio}
-                      </p>
-                      <div className="mt-auto pt-4">
-                        <button
-                          onClick={() => setSelected(i)}
-                          className="inline-flex items-center gap-1.5 rounded-full border border-gold/30 px-4 py-1.5 text-xs font-medium text-gold transition-colors hover:bg-gold hover:text-white"
-                        >
-                          More Details
-                        </button>
-                      </div>
-                    </div>
-                </div>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
+          <div className="mt-16">
+            <div className="relative">
+              <ul
+                ref={scrollRef}
+                className="scrollbar-none flex snap-x snap-mandatory gap-8 overflow-x-auto"
+              >
+                {teamMembers.map((member, i) => (
+                  <li key={member.name} className="flex shrink-0 snap-start">
+                    <MemberCard member={member} index={i} onSelect={setSelected} />
+                  </li>
+                ))}
+              </ul>
+
+              <button
+                onClick={() => scrollByCards(-1)}
+                disabled={!canScrollLeft}
+                aria-label="Scroll team left"
+                className="absolute -left-4 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-gold/30 bg-card text-gold shadow-lg transition-all duration-200 hover:bg-gold hover:text-white disabled:pointer-events-none disabled:opacity-30 sm:-left-5"
+              >
+                <ChevronLeft className="h-5 w-5" />
+              </button>
+              <button
+                onClick={() => scrollByCards(1)}
+                disabled={!canScrollRight}
+                aria-label="Scroll team right"
+                className="absolute -right-4 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-gold/30 bg-card text-gold shadow-lg transition-all duration-200 hover:bg-gold hover:text-white disabled:pointer-events-none disabled:opacity-30 sm:-right-5"
+              >
+                <ChevronRight className="h-5 w-5" />
+              </button>
+            </div>
+          </div>
         )}
 
         <FadeIn className="mt-12 text-center">
