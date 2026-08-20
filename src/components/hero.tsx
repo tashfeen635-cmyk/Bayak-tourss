@@ -40,7 +40,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-          className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-white/70 sm:text-xl"
+          className="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-white/70 sm:mt-6 sm:text-xl"
         >
           Adventure, Culture &amp; Unforgettable Experiences with Terra Pakistan
         </motion.p>
@@ -49,7 +49,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-6 flex flex-col items-center justify-center gap-3 sm:mt-10 sm:gap-4 sm:flex-row"
+          className="mt-4 flex flex-col items-center justify-center gap-3 sm:mt-10 sm:gap-4 sm:flex-row"
         >
           <Link href="/tours">
             <Button
