@@ -131,7 +131,7 @@ export function AboutContent() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
-      <section className="relative flex min-h-[50vh] items-center justify-center overflow-hidden bg-charcoal pt-32 pb-20">
+      <section className="relative flex min-h-[50vh] items-center justify-center overflow-hidden bg-charcoal pt-20 pb-12 sm:pt-32 sm:pb-20">
         <div
           className="absolute inset-0 bg-cover bg-center opacity-30"
           style={{
@@ -156,7 +156,7 @@ export function AboutContent() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
             <FadeIn direction="left">
-              <div className="relative">
+              <div className="relative overflow-hidden">
                 <div className="relative overflow-hidden rounded-2xl shadow-2xl">
                   <Image
                     src="/images/hunza.jpg"

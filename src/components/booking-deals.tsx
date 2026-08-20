@@ -77,7 +77,7 @@ export function BookingDeals({ destinations: data }: { destinations?: Destinatio
         );
 
   return (
-    <section className="bg-sand py-24 dark:bg-charcoal/50 sm:py-32">
+    <section className="bg-sand py-12 dark:bg-charcoal/50 sm:py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <FadeIn className="text-center">
           <span className="text-sm font-semibold uppercase tracking-wider text-gold">

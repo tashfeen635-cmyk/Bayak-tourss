@@ -123,7 +123,7 @@ export function TeamTeaser({ team: data }: { team?: TeamMember[] }) {
   };
 
   return (
-    <section className="py-24 sm:py-32">
+    <section className="py-12 sm:py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <FadeIn className="text-center">
           <span className="text-sm font-semibold uppercase tracking-wider text-gold">

@@ -123,7 +123,7 @@ export function BlogsContent() {
         </div>
       </section>
 
-      <section className="py-20">
+      <section className="py-12 sm:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <FadeIn className="text-center">
             <span className="text-sm font-semibold uppercase tracking-wider text-gold">

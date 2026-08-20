@@ -11,10 +11,10 @@ export function CallToAction() {
   const [bookingOpen, setBookingOpen] = useState(false);
 
   return (
-    <section className="py-24 sm:py-32">
+    <section className="py-12 sm:py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <FadeIn>
-          <div className="relative overflow-hidden rounded-3xl bg-gold px-8 py-20 text-center sm:px-16">
+          <div className="relative overflow-hidden rounded-3xl bg-gold px-5 py-10 text-center sm:px-8 sm:py-16 md:px-16">
             <div className="absolute -left-20 -top-20 h-64 w-64 rounded-full bg-white/10" />
             <div className="absolute -bottom-20 -right-20 h-64 w-64 rounded-full bg-white/10" />
             <div className="relative z-10">

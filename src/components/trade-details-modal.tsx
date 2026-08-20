@@ -208,7 +208,7 @@ export function TradeDetailsModal() {
                 setOpen(true);
               }
             }}
-            className="group flex h-full cursor-pointer flex-col items-center gap-4 rounded-2xl border border-border bg-card p-8 text-center transition-all duration-500 hover:border-gold/30 hover:shadow-xl"
+            className="group flex h-full cursor-pointer flex-col items-center gap-4 rounded-2xl border border-border bg-card p-5 text-center transition-all duration-500 hover:border-gold/30 hover:shadow-xl sm:p-8"
           >
             <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gold/10 text-gold transition-colors group-hover:bg-gold group-hover:text-white">
               <partner.icon className="h-7 w-7" />

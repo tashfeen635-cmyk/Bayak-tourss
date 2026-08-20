@@ -108,7 +108,7 @@ export function DestinationsContent({ destinations: data }: { destinations?: Des
         />
         <div className="relative z-10 px-4 text-center">
           <FadeIn>
-            <h1 className="font-heading text-5xl font-bold text-gold sm:text-6xl">
+            <h1 className="font-heading text-4xl font-bold text-gold sm:text-5xl md:text-6xl">
               Our Tours
             </h1>
             <p className="mx-auto mt-4 max-w-2xl text-white/60">

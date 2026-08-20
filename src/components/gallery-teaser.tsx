@@ -82,7 +82,7 @@ export function GalleryTeaser({ images: data }: { images?: GalleryImage[] }) {
   }, [selected, goNext, goPrev]);
 
   return (
-    <section className="py-24 sm:py-32">
+    <section className="py-12 sm:py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <FadeIn className="text-center">
           <span className="text-sm font-semibold uppercase tracking-wider text-gold">
@@ -98,7 +98,7 @@ export function GalleryTeaser({ images: data }: { images?: GalleryImage[] }) {
 
         {galleryImages.length > 0 && (
           <div className="mt-12">
-            <div className="grid grid-cols-3 gap-3 sm:gap-4">
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4">
               {galleryImages.map((img, i) => (
                 <div key={i}>
                   <div
