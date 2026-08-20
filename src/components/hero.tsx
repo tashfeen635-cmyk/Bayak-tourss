@@ -9,7 +9,7 @@ import { stats } from "@/data";
 
 export function Hero() {
   return (
-    <section className="relative flex min-h-screen items-center justify-center pb-16 pt-24 sm:pb-20 sm:pt-28">
+    <section className="relative flex min-h-screen items-center justify-center pb-24 pt-24 sm:pb-20 sm:pt-28">
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{ backgroundImage: "url('/hero-image.jpg')" }}
