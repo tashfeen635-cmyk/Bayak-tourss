@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { buildImageUrl } from "@/lib/image";
@@ -69,12 +70,17 @@ export function BookingDeals({ destinations: data }: { destinations?: Destinatio
       .catch(() => setDestinations([]));
   }, [data]);
 
-  const filtered =
+  const matches =
     active === "All"
       ? destinations
       : destinations.filter((d) =>
           d.category.some((c) => c.toLowerCase() === active.toLowerCase())
         );
+
+  // Tours marked as featured in admin appear first
+  const filtered = [...matches].sort(
+    (a, b) => Number(Boolean(b.featured)) - Number(Boolean(a.featured))
+  );
 
   return (
     <section className="bg-sand py-12 dark:bg-charcoal/50 sm:py-24 md:py-32">
@@ -112,7 +118,7 @@ export function BookingDeals({ destinations: data }: { destinations?: Destinatio
 
         {filtered.length > 0 && (
           <StaggerContainer key={`dest-grid-${active}`} className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {filtered.map((dest, i) => (
+            {filtered.slice(0, 4).map((dest, i) => (
               <StaggerItem key={String(dest._id ?? dest.id ?? i)}>
                 <div
                   onClick={() => setSelected(i)}
@@ -221,6 +227,19 @@ export function BookingDeals({ destinations: data }: { destinations?: Destinatio
               </StaggerItem>
             ))}
           </StaggerContainer>
+        )}
+
+        {filtered.length > 4 && (
+          <FadeIn className="mt-12 text-center">
+            <Link href="/tours">
+              <Button
+                size="lg"
+                className="rounded-full bg-gold px-8 text-base text-white hover:bg-gold-dark"
+              >
+                More Tours
+              </Button>
+            </Link>
+          </FadeIn>
         )}
 
         {filtered.length === 0 && <ComingSoon category={active} />}

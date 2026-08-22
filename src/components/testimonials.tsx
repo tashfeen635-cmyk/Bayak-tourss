@@ -151,7 +151,7 @@ export function Testimonials({ testimonials: data }: { testimonials?: Testimonia
             </h2>
           </FadeIn>
 
-          <FadeIn className="mt-8 flex flex-wrap justify-center gap-6 text-center sm:gap-8">
+          <FadeIn className="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-4 text-center sm:gap-x-8">
             <div>
               <div className="flex justify-center gap-0.5">
                 {Array.from({ length: 5 }).map((_, i) => (
@@ -162,7 +162,7 @@ export function Testimonials({ testimonials: data }: { testimonials?: Testimonia
                 5-Star Rated
               </div>
             </div>
-            <div className="border-l border-border pl-6 sm:pl-8">
+            <div className="sm:border-l sm:border-border sm:pl-8">
               <div className="font-heading text-2xl font-bold text-gold">
                 150+
               </div>
@@ -170,7 +170,7 @@ export function Testimonials({ testimonials: data }: { testimonials?: Testimonia
                 Happy Travelers
               </div>
             </div>
-            <div className="border-l border-border pl-6 sm:pl-8">
+            <div className="sm:border-l sm:border-border sm:pl-8">
               <div className="font-heading text-2xl font-bold text-gold">
                 98%
               </div>

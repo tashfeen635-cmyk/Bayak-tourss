@@ -132,6 +132,7 @@
   }
   html {
     @apply scroll-smooth font-sans;
+    overflow-x: clip;
   }
 }
 

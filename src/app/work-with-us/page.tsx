@@ -79,7 +79,7 @@ export default function CreatorsPage() {
             <span className="text-sm font-semibold uppercase tracking-wider text-gold">
               Let&apos;s Work Together
             </span>
-            <h1 className="mt-3 font-heading text-4xl font-bold text-white sm:text-5xl md:text-6xl">
+            <h1 className="mt-3 font-heading text-[30px] font-bold text-white sm:text-5xl md:text-6xl">
               Partnership opportunities
             </h1>
             <p className="mx-auto mt-4 max-w-2xl text-white/70">
