@@ -89,12 +89,17 @@ export function DestinationsContent({ destinations: data }: { destinations?: Des
       .catch(() => setDestinations([]));
   }, []);
 
-  const filtered =
+  const matches =
     active === "All"
       ? destinations
       : destinations.filter((d) =>
           d.category.some((c) => c.toLowerCase() === active.toLowerCase())
         );
+
+  // Tours marked as featured in admin appear first
+  const filtered = [...matches].sort(
+    (a, b) => Number(Boolean(b.featured)) - Number(Boolean(a.featured))
+  );
 
   return (
     <>
@@ -108,7 +113,7 @@ export function DestinationsContent({ destinations: data }: { destinations?: Des
         />
         <div className="relative z-10 px-4 text-center">
           <FadeIn>
-            <h1 className="font-heading text-5xl font-bold text-gold sm:text-6xl">
+            <h1 className="font-heading pt-[58px] text-[33px] font-bold text-gold sm:pt-0 sm:text-6xl">
               Our Tours
             </h1>
             <p className="mx-auto mt-4 max-w-2xl text-white/60">

@@ -29,7 +29,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-          className="font-heading text-5xl font-bold leading-tight tracking-tight text-white sm:text-6xl md:text-7xl lg:text-8xl"
+          className="font-heading max-[401px]:text-[33px] text-5xl font-bold leading-tight tracking-tight text-white sm:text-6xl md:text-7xl lg:text-8xl"
         >
           Discover Pakistan
           <br />
@@ -88,7 +88,7 @@ export function Hero() {
         <div className="mx-auto max-w-4xl">
           <div className="grid grid-cols-2 gap-4 rounded-2xl bg-white/95 p-6 shadow-2xl backdrop-blur-sm sm:grid-cols-4 sm:gap-0 sm:divide-x sm:divide-border dark:bg-charcoal/95">
             {stats.map((stat) => (
-              <div key={stat.label} className="px-4 text-center">
+              <div key={stat.label} className="px-2 text-center sm:px-4">
                 <div className="font-heading text-3xl font-bold text-gold sm:text-4xl">
                   <Counter target={stat.value} suffix="+" />
                 </div>
