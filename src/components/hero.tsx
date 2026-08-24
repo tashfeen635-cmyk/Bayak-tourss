@@ -33,7 +33,7 @@ export function Hero() {
         >
           Discover Pakistan
           <br />
-          <span className="text-gold">Like Never Before</span>
+          <span className="text-[#ffbd00]">Like Never Before</span>
         </motion.h1>
 
         <motion.p
