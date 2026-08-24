@@ -236,7 +236,7 @@ export function BookingDeals({ destinations: data }: { destinations?: Destinatio
                 size="lg"
                 className="rounded-full bg-gold px-8 text-base text-white hover:bg-gold-dark"
               >
-                More Tours
+                Explore More Tours
               </Button>
             </Link>
           </FadeIn>
