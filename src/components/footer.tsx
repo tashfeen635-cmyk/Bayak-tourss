@@ -82,10 +82,10 @@ export function Footer() {
           <div>
             <Link href="/" className="inline-block group">
               <Image
-                src="/footer-logo-v4.png"
+                src="/bayak-tours-logo-v5.png"
                 alt="Terra Pakistan"
-                width={1105}
-                height={401}
+                width={1145}
+                height={292}
                 priority
                 className="h-25 w-auto object-contain"
               />
