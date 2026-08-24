@@ -29,7 +29,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-          className="font-heading max-[489px]:text-[40px] max-[401px]:text-[33px] text-5xl font-bold leading-tight tracking-tight text-white sm:text-6xl md:text-7xl lg:text-8xl"
+          className="font-heading max-[401px]:text-[33px] text-5xl font-bold leading-tight tracking-tight text-white sm:text-6xl md:text-7xl lg:text-8xl"
         >
           Discover Pakistan
           <br />
@@ -40,7 +40,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-          className="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-white/70 sm:mt-6 sm:text-xl"
+          className="mx-auto mt-4 max-w-2xl text-[16px] leading-relaxed text-white/70 sm:mt-6 sm:text-xl"
         >
           Adventure, Culture &amp; Unforgettable Experiences with Terra Pakistan
         </motion.p>

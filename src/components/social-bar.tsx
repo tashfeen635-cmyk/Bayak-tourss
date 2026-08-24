@@ -59,7 +59,7 @@ export function SocialBar() {
   if (hidden) return null;
 
   return (
-    <div className="fixed right-4 top-1/2 z-50 -translate-y-1/2 sm:right-6">
+    <div className="fixed right-4 bottom-[100px] z-50 sm:right-6 sm:bottom-auto sm:top-1/2 sm:-translate-y-1/2">
       <div className="flex flex-col items-center gap-3">
         {socials.map((social) => (
           <a
