@@ -12,7 +12,7 @@ export function Hero() {
     <section className="relative flex min-h-screen items-center justify-center pb-24 pt-24 sm:pb-20 sm:pt-28">
       <div
         className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: "url('/hero-image.jpg')" }}
+        style={{ backgroundImage: "url('/gilgit-baltistan-hero.jpg')" }}
       />
       <div className="relative z-10 mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
         <motion.div
@@ -40,7 +40,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-          className="mx-auto mt-4 max-w-2xl text-[16px] leading-relaxed text-white/70 sm:mt-6 sm:text-xl"
+          className="mx-auto mt-4 max-w-2xl text-[16px] font-bold leading-relaxed text-white sm:mt-6 sm:text-xl"
         >
           Adventure, Culture &amp; Unforgettable Experiences with Terra Pakistan
         </motion.p>
@@ -62,7 +62,7 @@ export function Hero() {
           <Link href="/contact">
             <Button
               size="lg"
-              className="rounded-full border border-white/30 bg-transparent px-8 text-base text-white hover:border-white/60 hover:bg-white/10"
+              className="rounded-full border border-white/30 bg-gold px-8 text-base text-white hover:border-white/60 hover:bg-gold-dark"
             >
               Contact Us
             </Button>
