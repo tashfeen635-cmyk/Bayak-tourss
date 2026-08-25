@@ -54,7 +54,7 @@ export function Hero() {
           <Link href="/tours">
             <Button
               size="lg"
-              className="rounded-full bg-gold px-8 text-base text-white hover:bg-gold-dark"
+              className="rounded-full bg-[#ffbd00] px-8 text-base text-white hover:bg-[#d9a100]"
             >
               Explore Tours
             </Button>
@@ -62,7 +62,7 @@ export function Hero() {
           <Link href="/contact">
             <Button
               size="lg"
-              className="rounded-full border border-white/30 bg-gold px-8 text-base text-white hover:border-white/60 hover:bg-gold-dark"
+              className="rounded-full border border-white/30 bg-[#ffbd00] px-8 text-base text-white hover:border-white/60 hover:bg-[#d9a100]"
             >
               Contact Us
             </Button>
